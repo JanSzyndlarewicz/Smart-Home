@@ -1,6 +1,5 @@
 package Device.Bulb;
 
-import Control.Color;
 import Control.ColorRGBW;
 import DeviceProperty.DevicePropertyColor;
 
@@ -16,4 +15,6 @@ public class BulbRGBW extends Bulb{
         super();
         addProperty(new DevicePropertyColor("Color", new ColorRGBW(r, g, b, w)));
     }
+
+
 }

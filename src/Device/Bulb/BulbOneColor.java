@@ -8,4 +8,14 @@ public class BulbOneColor extends Bulb{
         super();
         addProperty(new DevicePropertySlider("Brightness", 0));
     }
+
+    public BulbOneColor(int b){
+        super();
+        if(0<=b && b<=100){
+            addProperty(new DevicePropertySlider("Brightness", b));
+        }
+        else {
+            new BulbOneColor();
+        }
+    }
 }

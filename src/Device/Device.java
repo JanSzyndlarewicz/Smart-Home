@@ -6,7 +6,7 @@ import Control.Color;
 public abstract class Device {
     final private int MAX_NUMBER_OF_PROPERTIES = 1000;
     private DeviceProperty [] properties = new DeviceProperty[MAX_NUMBER_OF_PROPERTIES];
-    private int propertiesCount;
+    private int propertiesCount = 0;
     private String alias;
 
     protected void addProperty(DeviceProperty prop) {
@@ -68,7 +68,7 @@ public abstract class Device {
         }
         System.err.println("Error! Specified property does not exist. Aborting");
     }
-    
+
 
     public String toString() {
         String res = "Device\n\tAlias: "+getAlias()+"\n\tProperties:";
