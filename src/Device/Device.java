@@ -3,6 +3,8 @@ package Device;
 import DeviceProperty.*;
 import Control.Color;
 
+import java.util.Objects;
+
 public abstract class Device {
     final private int MAX_NUMBER_OF_PROPERTIES = 1000;
     private DeviceProperty [] properties = new DeviceProperty[MAX_NUMBER_OF_PROPERTIES];
@@ -29,8 +31,8 @@ public abstract class Device {
 
     public void setProperty(String name, boolean value) {
         for(int i=0; i<propertiesCount; i++) {
-            if(properties[i].getName() == name) {
-                if(properties[i].getType() != "Toggle" ) {
+            if(Objects.equals(properties[i].getName(), name)) {
+                if(!Objects.equals(properties[i].getType(), "Toggle")) {
                     System.err.println("Error! Types mismatch. Cannot assign boolean value to DeviceProperty"+properties[i].getType()+"! Aborting");
                     return;
                 }
@@ -43,8 +45,8 @@ public abstract class Device {
 
     public void setProperty(String name, double value) {
         for(int i=0; i<propertiesCount; i++) {
-            if(properties[i].getName() == name) {
-                if(properties[i].getType() != "Slider" ) {
+            if(Objects.equals(properties[i].getName(), name)) {
+                if(!Objects.equals(properties[i].getType(), "Slider")) {
                     System.err.println("Error! Types mismatch. Cannot assign double value to DeviceProperty"+properties[i].getType()+"! Aborting");
                     return;
                 }
@@ -57,8 +59,8 @@ public abstract class Device {
 
     public void setProperty(String name, Color value) {
         for(int i=0; i<propertiesCount; i++) {
-            if(properties[i].getName() == name) {
-                if(properties[i].getType() != "Color" ) {
+            if(Objects.equals(properties[i].getName(), name)) {
+                if(!Objects.equals(properties[i].getType(), "Color")) {
                     System.err.println("Error! Types mismatch. Cannot assign color to DeviceProperty"+properties[i].getType()+"! Aborting");
                     return;
                 }
