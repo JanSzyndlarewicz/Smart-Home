@@ -1,5 +1,5 @@
 package Control;
 
-public class Color {
-    // Placeholder
+public abstract class Color {
+
 }
