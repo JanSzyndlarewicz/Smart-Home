@@ -1,5 +1,24 @@
+import Control.ColorHSL;
+import Control.ColorRGBW;
+import Device.Bulb.BulbRGBW;
+import Device.Device;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+/*
+        Device x;
+        x = new BulbRGBW(10, 10, 20, 30);
+        System.out.println(x);
+        x.setProperty("Color", new ColorHSL(40, 30, 20));
+        System.out.println(x);
+        x.setProperty("Color", new ColorRGBW(5,6,3,56));
+        System.out.println(x);
+        x.setProperty("Is turned", true);
+        System.out.println(x);
+        x.setProperty("Is turned on", true);
+        System.out.println(x);
+        x.setProperty("Color", new ColorRGBW(5,6,3,56));
+        System.out.println(x);
+*/
     }
 }
