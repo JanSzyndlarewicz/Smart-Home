@@ -17,5 +17,6 @@ public class Main {
         x.setProperty("Color", new ColorRGBW(5,6,3,56));
         System.out.println(x);
 */
+
     }
 }
