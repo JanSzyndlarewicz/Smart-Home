@@ -1,7 +1,7 @@
 package Device;
 
 import DeviceProperty.*;
-import Control.Color;
+import Control.Color.Color;
 
 import java.util.Objects;
 

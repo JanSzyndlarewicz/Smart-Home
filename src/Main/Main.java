@@ -1,7 +1,4 @@
-import Control.ColorHSL;
-import Control.ColorRGBW;
-import Device.Bulb.BulbRGBW;
-import Device.Device;
+package Main;
 
 public class Main {
     public static void main(String[] args) {

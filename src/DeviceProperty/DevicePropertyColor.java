@@ -1,6 +1,6 @@
 package DeviceProperty;
 
-import Control.Color;
+import Control.Color.Color;
 
 public class DevicePropertyColor extends DeviceProperty {
     private Color value;
