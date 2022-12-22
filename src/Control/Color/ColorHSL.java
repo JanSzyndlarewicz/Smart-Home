@@ -1,6 +1,6 @@
-package Control;
+package Control.Color;
 
-public class ColorHSL extends Color{
+public class ColorHSL extends Color {
     private int h, s, l;
 
     public ColorHSL(){

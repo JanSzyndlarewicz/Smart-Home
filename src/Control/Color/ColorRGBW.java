@@ -1,4 +1,4 @@
-package Control;
+package Control.Color;
 
 public class ColorRGBW extends Color {
     private int r, g, b, w;

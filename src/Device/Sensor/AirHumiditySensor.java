@@ -1,5 +1,6 @@
-package Device;
+package Device.Sensor;
 
+import Device.Device;
 import DeviceProperty.DevicePropertySensorSlider;
 
 public class AirHumiditySensor extends Device {
