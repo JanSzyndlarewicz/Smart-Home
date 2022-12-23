@@ -57,6 +57,7 @@ public abstract class Device {
         System.err.println("Error! Specified property does not exist. Aborting");
     }
 
+
     public void setProperty(String name, Color value) {
         for(int i=0; i<propertiesCount; i++) {
             if(Objects.equals(properties[i].getName(), name)) {

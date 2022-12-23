@@ -1,8 +1,13 @@
 package Main;
 
+import Control.Color.ColorHSL;
+import Control.Color.ColorRGBW;
+import Device.Bulb.BulbRGBW;
+import Device.Device;
+
 public class Main {
     public static void main(String[] args) {
-/*
+
         Device x;
         x = new BulbRGBW(10, 10, 20, 30);
         System.out.println(x);
@@ -16,7 +21,7 @@ public class Main {
         System.out.println(x);
         x.setProperty("Color", new ColorRGBW(5,6,3,56));
         System.out.println(x);
-*/
+
 
     }
 }
