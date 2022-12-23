@@ -3,7 +3,7 @@ package Device.Sensor;
 import Device.Device;
 import DeviceProperty.DevicePropertySensorToggle;
 
-public class SmokeSensor extends Device {
+public class SmokeSensor extends Sensor {
 
     public SmokeSensor(){
 
