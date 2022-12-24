@@ -5,8 +5,13 @@ import DeviceProperty.DevicePropertySensorSlider;
 
 public class AirHumiditySensor extends Sensor {
 
-    public AirHumiditySensor(){
-
+    public AirHumiditySensor(String alias){
+        super(alias);
         addProperty(new DevicePropertySensorSlider("Humidity level: "));
+    }
+
+    @Override
+    public void notifyObservers() {
+
     }
 }

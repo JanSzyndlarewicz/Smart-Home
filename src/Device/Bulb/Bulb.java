@@ -5,7 +5,8 @@ import DeviceProperty.DevicePropertyToggle;
 
 public abstract class Bulb extends Device {
 
-    public Bulb(){
+    public Bulb(String alias){
+        super(alias);
         addProperty(new DevicePropertyToggle("Is turned on", false));
     }
 

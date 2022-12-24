@@ -2,15 +2,29 @@ package Device;
 
 import DeviceProperty.*;
 import Control.Color.Color;
+import Obeserver.Observer;
+import Subject.Subject;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
-public abstract class Device {
+public abstract class Device implements Subject, Observer{
+
     final private int MAX_NUMBER_OF_PROPERTIES = 1000;
     private DeviceProperty [] properties = new DeviceProperty[MAX_NUMBER_OF_PROPERTIES];
     private int propertiesCount = 0;
     private String alias;
 
+    protected ArrayList<Observer> ObserverList = new ArrayList<>();
+
+    @Override
+    public ArrayList<Observer> getObserverList() {
+        return (ArrayList<Observer>) ObserverList;
+    }
+
+    public Device(String alias){
+        this.alias = alias;
+    }
     protected void addProperty(DeviceProperty prop) {
         if(propertiesCount == MAX_NUMBER_OF_PROPERTIES) {
             System.err.printf("Error! Property %s (%s) could not be created because parent object reached limit of contained properties. Aborting", prop.getName(), prop.getType());
@@ -72,6 +86,25 @@ public abstract class Device {
         System.err.println("Error! Specified property does not exist. Aborting");
     }
 
+    public int getMAX_NUMBER_OF_PROPERTIES() {
+        return MAX_NUMBER_OF_PROPERTIES;
+    }
+
+    public DeviceProperty[] getProperties() {
+        return properties;
+    }
+
+    public void setProperties(DeviceProperty[] properties) {
+        this.properties = properties;
+    }
+
+    public int getPropertiesCount() {
+        return propertiesCount;
+    }
+
+    public void setPropertiesCount(int propertiesCount) {
+        this.propertiesCount = propertiesCount;
+    }
 
     public String toString() {
         String res = "Device\n\tAlias: "+getAlias()+"\n\tProperties:";
@@ -79,4 +112,25 @@ public abstract class Device {
             res+="\n\t\t"+properties[i].toString();
         return res;
     }
+
+    public void registerObserver(Observer observer) {
+        ObserverList.add(observer);
+    }
+
+    public void removeObserver(Observer observer) {
+        ObserverList.remove(observer);
+    }
+
+    public void notifyObservers(DeviceProperty deviceProperty) {
+        for (int i = 0; i < ObserverList.size(); i++) {
+            ObserverList.get(i).update(deviceProperty);
+        }
+    }
+
+    @Override
+    public void update(DeviceProperty deviceProperty) {
+
+    }
+
+
 }
