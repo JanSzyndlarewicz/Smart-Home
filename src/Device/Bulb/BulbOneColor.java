@@ -1,5 +1,6 @@
 package Device.Bulb;
 
+import DeviceProperty.DeviceProperty;
 import DeviceProperty.DevicePropertySlider;
 
 public class BulbOneColor extends Bulb{
@@ -19,8 +20,4 @@ public class BulbOneColor extends Bulb{
         }
     }
 
-    @Override
-    public void notifyObservers() {
-
-    }
 }

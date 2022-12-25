@@ -1,6 +1,7 @@
 package Device.Sensor;
 
 import Device.Device;
+import DeviceProperty.DeviceProperty;
 import DeviceProperty.DevicePropertySensorToggle;
 
 public class GasSensor extends Sensor {
@@ -10,8 +11,4 @@ public class GasSensor extends Sensor {
         addProperty(new DevicePropertySensorToggle("Is gas detected?"));
     }
 
-    @Override
-    public void notifyObservers() {
-
-    }
 }

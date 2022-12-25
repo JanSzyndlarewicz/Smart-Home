@@ -1,16 +1,16 @@
 package Subject;
 
+import DeviceProperty.DeviceProperty;
 import Obeserver.Observer;
 
 import java.util.ArrayList;
 
 public interface Subject {
 
-    public ArrayList<Observer> getObserverList();
+    ArrayList<Observer> getObserverList();
 
-    public void registerObserver(Observer observer);
-    public void removeObserver(Observer observer);
-    public void notifyObservers();
+    void registerObserver(Observer observer);
+    void removeObserver(Observer observer);
 
-    //public Observer getObserver();
+    void notifyObservers(DeviceProperty deviceProperty);
 }

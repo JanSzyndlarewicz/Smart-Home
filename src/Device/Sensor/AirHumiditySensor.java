@@ -1,6 +1,7 @@
 package Device.Sensor;
 
 import Device.Device;
+import DeviceProperty.DeviceProperty;
 import DeviceProperty.DevicePropertySensorSlider;
 
 public class AirHumiditySensor extends Sensor {
@@ -10,8 +11,4 @@ public class AirHumiditySensor extends Sensor {
         addProperty(new DevicePropertySensorSlider("Humidity level: "));
     }
 
-    @Override
-    public void notifyObservers() {
-
-    }
 }

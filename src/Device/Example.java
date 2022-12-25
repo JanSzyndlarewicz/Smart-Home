@@ -10,8 +10,4 @@ public class Example extends Device {
         addProperty(new DevicePropertySensorSlider("Nazwa wlasciwosci 3"));
     }
 
-    @Override
-    public void notifyObservers() {
-
-    }
 }

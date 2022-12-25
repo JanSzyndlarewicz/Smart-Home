@@ -1,5 +1,6 @@
 package Device;
 
+import Device.Sensor.LightSensor;
 import DeviceProperty.*;
 import Control.Color.Color;
 import Obeserver.Observer;
@@ -16,10 +17,33 @@ public abstract class Device implements Subject, Observer{
     private String alias;
 
     protected ArrayList<Observer> ObserverList = new ArrayList<>();
+    protected Subject subject;
 
     @Override
     public ArrayList<Observer> getObserverList() {
         return (ArrayList<Observer>) ObserverList;
+    }
+
+    @Override
+    public void update(DeviceProperty deviceProperty) {
+        System.out.println("Update method");
+    }
+
+    @Override
+    public void registerObserver(Observer observer) {
+        ObserverList.add(observer);
+    }
+
+    @Override
+    public void removeObserver(Observer observer) {
+        ObserverList.remove(observer);
+    }
+
+    @Override
+    public void notifyObservers(DeviceProperty deviceProperty) {
+        for (int i = 0; i < ObserverList.size(); i++) {
+            ObserverList.get(i).update(deviceProperty);
+        }
     }
 
     public Device(String alias){
@@ -113,24 +137,6 @@ public abstract class Device implements Subject, Observer{
         return res;
     }
 
-    public void registerObserver(Observer observer) {
-        ObserverList.add(observer);
-    }
-
-    public void removeObserver(Observer observer) {
-        ObserverList.remove(observer);
-    }
-
-    public void notifyObservers(DeviceProperty deviceProperty) {
-        for (int i = 0; i < ObserverList.size(); i++) {
-            ObserverList.get(i).update(deviceProperty);
-        }
-    }
-
-    @Override
-    public void update(DeviceProperty deviceProperty) {
-
-    }
 
 
 }
