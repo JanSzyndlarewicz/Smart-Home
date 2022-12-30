@@ -15,40 +15,13 @@ public abstract class Device implements Subject, Observer{
     private DeviceProperty [] properties = new DeviceProperty[MAX_NUMBER_OF_PROPERTIES];
     private int propertiesCount = 0;
     private String alias;
-
-    protected ArrayList<Observer> ObserverList = new ArrayList<>();
+    protected ArrayList<Observer> observerList = new ArrayList<>();
     protected Subject subject;
-
-    @Override
-    public ArrayList<Observer> getObserverList() {
-        return (ArrayList<Observer>) ObserverList;
-    }
-
-    @Override
-    public void update(DeviceProperty deviceProperty) {
-        System.out.println("Update method");
-    }
-
-    @Override
-    public void registerObserver(Observer observer) {
-        ObserverList.add(observer);
-    }
-
-    @Override
-    public void removeObserver(Observer observer) {
-        ObserverList.remove(observer);
-    }
-
-    @Override
-    public void notifyObservers(DeviceProperty deviceProperty) {
-        for (int i = 0; i < ObserverList.size(); i++) {
-            ObserverList.get(i).update(deviceProperty);
-        }
-    }
 
     public Device(String alias){
         this.alias = alias;
     }
+
     protected void addProperty(DeviceProperty prop) {
         if(propertiesCount == MAX_NUMBER_OF_PROPERTIES) {
             System.err.printf("Error! Property %s (%s) could not be created because parent object reached limit of contained properties. Aborting", prop.getName(), prop.getType());
@@ -57,14 +30,6 @@ public abstract class Device implements Subject, Observer{
         properties[propertiesCount] = prop;
         propertiesCount++;
 
-    }
-
-    public String getAlias() {
-        return this.alias;
-    }
-
-    public void setAlias(String alias) {
-        this.alias = alias;
     }
 
     public void setProperty(String name, boolean value) {
@@ -109,6 +74,42 @@ public abstract class Device implements Subject, Observer{
         }
         System.err.println("Error! Specified property does not exist. Aborting");
     }
+    @Override
+    public ArrayList<Observer> getObserverList() {
+        return (ArrayList<Observer>) observerList;
+    }
+
+    @Override
+    public void update(DeviceProperty deviceProperty) {
+        String update = "Update method";
+    }
+
+    @Override
+    public void registerObserver(Observer observer) {
+        observerList.add(observer);
+    }
+
+    @Override
+    public void removeObserver(Observer observer) {
+        observerList.remove(observer);
+    }
+
+    @Override
+    public void notifyObservers(DeviceProperty deviceProperty) {
+        for (int i = 0; i < observerList.size(); i++) {
+            observerList.get(i).update(deviceProperty);
+        }
+    }
+
+    public String getAlias() {
+        return this.alias;
+    }
+
+    public void setAlias(String alias) {
+        this.alias = alias;
+    }
+
+
 
     public int getMAX_NUMBER_OF_PROPERTIES() {
         return MAX_NUMBER_OF_PROPERTIES;

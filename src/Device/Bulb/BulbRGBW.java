@@ -8,17 +8,13 @@ import DeviceProperty.DevicePropertyColor;
 public class BulbRGBW extends Bulb{
 
     public BulbRGBW(String alias, LightSensor lightSensor){
-        super(alias);
+        super(alias, lightSensor);
         addProperty(new DevicePropertyColor("Color", new ColorRGBW()));
-        this.subject = lightSensor;
-        if(alias.contains("Outside")){
-            this.subject.registerObserver(this);
-        }
     }
 
 
-    public BulbRGBW(String alias, int r, int g, int b, int w) {
-        super(alias);
+    public BulbRGBW(String alias, int r, int g, int b, int w, LightSensor lightSensor) {
+        super(alias, lightSensor);
         addProperty(new DevicePropertyColor("Color", new ColorRGBW(r, g, b, w)));
     }
 

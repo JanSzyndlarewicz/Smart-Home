@@ -27,7 +27,7 @@ public class Main {
         Home home = new Home("Wroclawska 33");
         home.addDevice(new LightSensor("Outside_frontdoor"));
         home.addDevice(new BulbRGBW("Outside_1", (LightSensor) home.getDeviceList().get(0)));
-        home.addDevice(new BulbOneColor("Inside_livingroom"));
+        home.addDevice(new BulbOneColor("Inside_livingroom", (LightSensor) home.getDeviceList().get(0)));
         home.addDevice(new BulbRGBW("Outside_garden1", (LightSensor) home.getDeviceList().get(0)));
         home.addDevice(new BulbRGBW("Inside_kitchen", (LightSensor) home.getDeviceList().get(0)));
         home.addDevice(new BulbRGBW("Outside_garden2", (LightSensor) home.getDeviceList().get(0)));
