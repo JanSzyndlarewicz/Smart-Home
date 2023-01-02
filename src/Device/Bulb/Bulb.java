@@ -8,15 +8,17 @@ import Subject.SubjectExtended;
 
 public abstract class Bulb extends Device {
 
-    public Bulb(String alias, SubjectExtended lightSensor){
+    public Bulb(String alias, SubjectExtended subjectExtended){
         super(alias);
         addProperty(new DevicePropertyToggle("Is turned on", false));
 
-        this.subjectExtendedList.addSubjectExtended(lightSensor, alias);
-        if(alias.contains("Outside")){
-            this.subjectExtendedList.getSubjectExtendedList().get(this.subjectExtendedList.getSubjectExtendedList().size()-1).registerObserver(this);
-            //System.out.println("Obiekt dodany");
-            System.out.println(this.subjectExtendedList.toString());
+        int i=-1;
+        do{
+            i++;
+        }while( subjectExtendedList.getSubjectExtendedList().get(i).getSubject() != subjectExtended.getSubject());
+
+        if(alias.contains(subjectExtended.getCheckAlias())){
+            subjectExtendedList.getSubjectExtendedList().get(i).registerObserver(this);
         }
 
     }

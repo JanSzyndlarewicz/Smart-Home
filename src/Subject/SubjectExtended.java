@@ -25,6 +25,17 @@ public class SubjectExtended implements Subject{
     }
 
 
+    public Subject getSubject() {
+        return subject;
+    }
+
+    public void setObserverList(ArrayList<Observer> observerList) {
+        this.observerList = observerList;
+    }
+
+    public String getCheckAlias() {
+        return checkAlias;
+    }
 
     @Override
     public ArrayList<Observer> getObserverList() {
@@ -43,8 +54,8 @@ public class SubjectExtended implements Subject{
 
     @Override
     public void notifyObservers(DeviceProperty deviceProperty) {
-        for (int i = 0; i < observerList.size(); i++) {
-            observerList.get(i).update(deviceProperty);
+        for (Observer observer : observerList) {
+            observer.update(deviceProperty);
         }
     }
 

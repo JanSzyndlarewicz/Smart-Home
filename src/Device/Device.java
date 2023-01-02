@@ -20,10 +20,11 @@ public abstract class Device implements Subject, Observer{
     //protected Subject subject;
     //protected ArrayList<SubjectExtended> subjectExtendedList = new ArrayList<SubjectExtended>(); //list of "subjects"
 
-    protected SubjectExtendedList subjectExtendedList = new SubjectExtendedList();
+    protected static SubjectExtendedList subjectExtendedList = new SubjectExtendedList();
 
     public Device(String alias){
         this.alias = alias;
+        subjectExtendedList.addSubjectExtended(this, alias);
     }
 
     protected void addProperty(DeviceProperty prop) {
@@ -80,7 +81,7 @@ public abstract class Device implements Subject, Observer{
     }
     @Override
     public ArrayList<Observer> getObserverList() {
-        return (ArrayList<Observer>) observerList;
+        return observerList;
     }
 
     @Override
