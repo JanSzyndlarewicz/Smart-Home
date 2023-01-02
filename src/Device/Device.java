@@ -17,9 +17,6 @@ public abstract class Device implements Subject, Observer{
     private int propertiesCount = 0;
     private String alias;
     protected ArrayList<Observer> observerList = new ArrayList<>();
-    //protected Subject subject;
-    //protected ArrayList<SubjectExtended> subjectExtendedList = new ArrayList<SubjectExtended>(); //list of "subjects"
-
     protected static SubjectExtendedList subjectExtendedList = new SubjectExtendedList();
 
     public Device(String alias){
@@ -79,6 +76,8 @@ public abstract class Device implements Subject, Observer{
         }
         System.err.println("Error! Specified property does not exist. Aborting");
     }
+
+
     @Override
     public ArrayList<Observer> getObserverList() {
         return observerList;
@@ -101,8 +100,8 @@ public abstract class Device implements Subject, Observer{
 
     @Override
     public void notifyObservers(DeviceProperty deviceProperty) {
-        for (int i = 0; i < observerList.size(); i++) {
-            observerList.get(i).update(deviceProperty);
+        for (Observer observer : observerList) {
+            observer.update(deviceProperty);
         }
     }
 
@@ -113,8 +112,6 @@ public abstract class Device implements Subject, Observer{
     public void setAlias(String alias) {
         this.alias = alias;
     }
-
-
 
     public int getMAX_NUMBER_OF_PROPERTIES() {
         return MAX_NUMBER_OF_PROPERTIES;
@@ -136,8 +133,6 @@ public abstract class Device implements Subject, Observer{
         this.propertiesCount = propertiesCount;
     }
 
-
-
     public void setObserverList(ArrayList<Observer> observerList) {
         this.observerList = observerList;
     }
@@ -147,16 +142,13 @@ public abstract class Device implements Subject, Observer{
     }
 
     public void setSubjectExtendedList(SubjectExtendedList subjectExtendedList) {
-        this.subjectExtendedList = subjectExtendedList;
+        Device.subjectExtendedList = subjectExtendedList;
     }
 
     public String toString() {
-        String res = "Device\n\tAlias: "+getAlias()+"\n\tProperties:";
+        StringBuilder res = new StringBuilder("Device\n\tAlias: " + getAlias() + "\n\tProperties:");
         for(int i=0; i<propertiesCount; i++)
-            res+="\n\t\t"+properties[i].toString();
-        return res;
+            res.append("\n\t\t").append(properties[i].toString());
+        return res.toString();
     }
-
-
-
 }

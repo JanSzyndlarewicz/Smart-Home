@@ -6,21 +6,25 @@ import DeviceProperty.DevicePropertyToggle;
 import Subject.Subject;
 import Subject.SubjectExtended;
 
+import java.util.ArrayList;
+
 public abstract class Bulb extends Device {
 
-    public Bulb(String alias, SubjectExtended subjectExtended){
+    public Bulb(String alias, ArrayList<SubjectExtended> subjectExtendedArrayList){
         super(alias);
         addProperty(new DevicePropertyToggle("Is turned on", false));
 
-        int i=-1;
-        do{
-            i++;
-        }while( subjectExtendedList.getSubjectExtendedList().get(i).getSubject() != subjectExtended.getSubject());
+        for (SubjectExtended subjectExtended : subjectExtendedArrayList) {
+            int j = 0;
 
-        if(alias.contains(subjectExtended.getCheckAlias())){
-            subjectExtendedList.getSubjectExtendedList().get(i).registerObserver(this);
+            while (subjectExtendedList.getSubjectExtendedList().get(j).getSubject() != subjectExtended.getSubject()){
+                j++;
+            }
+
+            if (alias.contains(subjectExtended.getCheckAlias())) {
+                subjectExtendedList.getSubjectExtendedList().get(j).registerObserver(this);
+            }
         }
-
     }
 
     public Bulb(String alias){

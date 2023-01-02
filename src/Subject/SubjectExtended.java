@@ -14,8 +14,13 @@ public class SubjectExtended implements Subject{
 
     public SubjectExtended(){
         subject = null;
-        observerList = null;
         checkAlias = "";
+
+    }
+
+    public SubjectExtended(Subject subject){
+        this.subject = subject;
+        checkAlias = null;
 
     }
 
@@ -37,7 +42,6 @@ public class SubjectExtended implements Subject{
         return checkAlias;
     }
 
-    @Override
     public ArrayList<Observer> getObserverList() {
         return observerList;
     }

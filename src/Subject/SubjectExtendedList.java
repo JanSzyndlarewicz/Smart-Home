@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class SubjectExtendedList{
     protected ArrayList<SubjectExtended> subjectExtendedList = new ArrayList<>(); //list of "subjects"
 
+
     public void addSubjectExtended(Subject subject ,String alias){
         subjectExtendedList.add(new SubjectExtended(subject, alias));
     }
