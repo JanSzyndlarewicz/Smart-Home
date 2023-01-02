@@ -2,14 +2,27 @@ package Device;
 
 import DeviceProperty.*;
 import Control.Color.Color;
+import Obeserver.Observer;
+import Subject.Subject;
+import Subject.SubjectExtended;
+import Subject.SubjectExtendedList;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
-public abstract class Device {
+public abstract class Device implements Subject, Observer{
+
     final private int MAX_NUMBER_OF_PROPERTIES = 1000;
     private DeviceProperty [] properties = new DeviceProperty[MAX_NUMBER_OF_PROPERTIES];
     private int propertiesCount = 0;
     private String alias;
+    protected ArrayList<Observer> observerList = new ArrayList<>();
+    protected static SubjectExtendedList subjectExtendedList = new SubjectExtendedList();
+
+    public Device(String alias){
+        this.alias = alias;
+        subjectExtendedList.addSubjectExtended(this, alias);
+    }
 
     protected void addProperty(DeviceProperty prop) {
         if(propertiesCount == MAX_NUMBER_OF_PROPERTIES) {
@@ -19,14 +32,6 @@ public abstract class Device {
         properties[propertiesCount] = prop;
         propertiesCount++;
 
-    }
-
-    public String getAlias() {
-        return this.alias;
-    }
-
-    public void setAlias(String alias) {
-        this.alias = alias;
     }
 
     public void setProperty(String name, boolean value) {
@@ -73,10 +78,77 @@ public abstract class Device {
     }
 
 
+    @Override
+    public ArrayList<Observer> getObserverList() {
+        return observerList;
+    }
+
+    @Override
+    public void update(DeviceProperty deviceProperty) {
+        String update = "Update method";
+    }
+
+    @Override
+    public void registerObserver(Observer observer) {
+        observerList.add(observer);
+    }
+
+    @Override
+    public void removeObserver(Observer observer) {
+        observerList.remove(observer);
+    }
+
+    @Override
+    public void notifyObservers(DeviceProperty deviceProperty) {
+        for (Observer observer : observerList) {
+            observer.update(deviceProperty);
+        }
+    }
+
+    public String getAlias() {
+        return this.alias;
+    }
+
+    public void setAlias(String alias) {
+        this.alias = alias;
+    }
+
+    public int getMAX_NUMBER_OF_PROPERTIES() {
+        return MAX_NUMBER_OF_PROPERTIES;
+    }
+
+    public DeviceProperty[] getProperties() {
+        return properties;
+    }
+
+    public void setProperties(DeviceProperty[] properties) {
+        this.properties = properties;
+    }
+
+    public int getPropertiesCount() {
+        return propertiesCount;
+    }
+
+    public void setPropertiesCount(int propertiesCount) {
+        this.propertiesCount = propertiesCount;
+    }
+
+    public void setObserverList(ArrayList<Observer> observerList) {
+        this.observerList = observerList;
+    }
+
+    public SubjectExtendedList getSubjectExtendedList() {
+        return subjectExtendedList;
+    }
+
+    public void setSubjectExtendedList(SubjectExtendedList subjectExtendedList) {
+        Device.subjectExtendedList = subjectExtendedList;
+    }
+
     public String toString() {
-        String res = "Device\n\tAlias: "+getAlias()+"\n\tProperties:";
+        StringBuilder res = new StringBuilder("Device\n\tAlias: " + getAlias() + "\n\tProperties:");
         for(int i=0; i<propertiesCount; i++)
-            res+="\n\t\t"+properties[i].toString();
-        return res;
+            res.append("\n\t\t").append(properties[i].toString());
+        return res.toString();
     }
 }
