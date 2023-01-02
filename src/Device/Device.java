@@ -1,10 +1,11 @@
 package Device;
 
-import Device.Sensor.LightSensor;
 import DeviceProperty.*;
 import Control.Color.Color;
 import Obeserver.Observer;
 import Subject.Subject;
+import Subject.SubjectExtended;
+import Subject.SubjectExtendedList;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -16,7 +17,10 @@ public abstract class Device implements Subject, Observer{
     private int propertiesCount = 0;
     private String alias;
     protected ArrayList<Observer> observerList = new ArrayList<>();
-    protected Subject subject;
+    //protected Subject subject;
+    //protected ArrayList<SubjectExtended> subjectExtendedList = new ArrayList<SubjectExtended>(); //list of "subjects"
+
+    protected SubjectExtendedList subjectExtendedList = new SubjectExtendedList();
 
     public Device(String alias){
         this.alias = alias;
@@ -129,6 +133,20 @@ public abstract class Device implements Subject, Observer{
 
     public void setPropertiesCount(int propertiesCount) {
         this.propertiesCount = propertiesCount;
+    }
+
+
+
+    public void setObserverList(ArrayList<Observer> observerList) {
+        this.observerList = observerList;
+    }
+
+    public SubjectExtendedList getSubjectExtendedList() {
+        return subjectExtendedList;
+    }
+
+    public void setSubjectExtendedList(SubjectExtendedList subjectExtendedList) {
+        this.subjectExtendedList = subjectExtendedList;
     }
 
     public String toString() {
