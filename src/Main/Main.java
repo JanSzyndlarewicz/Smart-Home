@@ -10,6 +10,7 @@ import Home.Home;
 import Subject.ExtendedSubject;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
 public class Main {
@@ -45,5 +46,6 @@ public class Main {
 
         //printDeviceObserver(home, 0);
         printDeviceObservers(home);
+
     }
 }
