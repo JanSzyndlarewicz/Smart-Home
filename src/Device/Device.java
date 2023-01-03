@@ -16,10 +16,12 @@ public abstract class Device implements ExtendedSubject, Observer{
     private DeviceProperty [] properties = new DeviceProperty[MAX_NUMBER_OF_PROPERTIES];
     private int propertiesCount = 0;
     private String alias;
-
     protected ArrayList<Observer> observerList = new ArrayList<>();
-    protected String checkAlias;
-    protected ExtendedSubject extendedSubject;
+    //protected String checkAlias;
+    //protected ExtendedSubject extendedSubject;
+
+    protected ArrayList<String> checkAliasArrayList = new ArrayList<>();
+    protected ArrayList<ExtendedSubject> extendedSubjectArrayList = new ArrayList<>();
 
     @Override
     public void update(DeviceProperty deviceProperty) {
@@ -30,8 +32,6 @@ public abstract class Device implements ExtendedSubject, Observer{
     public ArrayList<Observer> getObserverList() {
         return observerList;
     }
-
-
 
     @Override
     public void registerObserver(Observer observer) {
@@ -52,26 +52,35 @@ public abstract class Device implements ExtendedSubject, Observer{
 
     public Device(String alias){
         this.alias = alias;
-        checkAlias = null;
+        checkAliasArrayList = null;
     }
 
-    public Device(String alias, String checkAlias){
+ /*   public Device(String alias, ArrayList<String> checkAliasArrayList){
         this.alias = alias;
-        this.checkAlias = checkAlias;
-    }
-    public Device(String alias, ExtendedSubject subject){
+        this.checkAliasArrayList = checkAliasArrayList;
+    }*/
+    public Device(String alias, ArrayList<ExtendedSubject> extendedSubjectArrayList){
         this.alias = alias;
-        this.extendedSubject = subject;
-        checkAlias = null;
-        this.extendedSubject.registerObserver(this);
+        this.extendedSubjectArrayList = extendedSubjectArrayList;
+        checkAliasArrayList = null;
+        for(int i=0; i<extendedSubjectArrayList.size(); i++){
+            this.extendedSubjectArrayList.get(i).registerObserver(this);
+        }
     }
 
-    public Device(String alias, ExtendedSubject subject, String checkAlias){
+    public Device(String alias, ArrayList<ExtendedSubject> extendedSubjectArrayList, ArrayList<String> checkAliasArrayList){
         this.alias = alias;
-        this.extendedSubject = subject;
-        this.checkAlias = checkAlias;
-        this.extendedSubject.registerObserver(this);
+        this.extendedSubjectArrayList = extendedSubjectArrayList;
+        this.checkAliasArrayList = checkAliasArrayList;
+        for(int i=0; i<extendedSubjectArrayList.size(); i++){
+            if(checkAliasArrayList.get(i)!=null){
+                if(alias.contains(checkAliasArrayList.get(i))){
+                    this.extendedSubjectArrayList.get(i).registerObserver(this);
+                }
+            }
+        }
     }
+
     protected void addProperty(DeviceProperty prop) {
         if(propertiesCount == MAX_NUMBER_OF_PROPERTIES) {
             System.err.printf("Error! Property %s (%s) could not be created because parent object reached limit of contained properties. Aborting", prop.getName(), prop.getType());
@@ -80,14 +89,6 @@ public abstract class Device implements ExtendedSubject, Observer{
         properties[propertiesCount] = prop;
         propertiesCount++;
 
-    }
-
-    public String getAlias() {
-        return this.alias;
-    }
-
-    public void setAlias(String alias) {
-        this.alias = alias;
     }
 
     public void setProperty(String name, boolean value) {
@@ -133,6 +134,14 @@ public abstract class Device implements ExtendedSubject, Observer{
         System.err.println("Error! Specified property does not exist. Aborting");
     }
 
+
+    public String getAlias() {
+        return this.alias;
+    }
+
+    public void setAlias(String alias) {
+        this.alias = alias;
+    }
     public int getMAX_NUMBER_OF_PROPERTIES() {
         return MAX_NUMBER_OF_PROPERTIES;
     }
@@ -153,19 +162,30 @@ public abstract class Device implements ExtendedSubject, Observer{
         this.propertiesCount = propertiesCount;
     }
 
+    public void setObserverList(ArrayList<Observer> observerList) {
+        this.observerList = observerList;
+    }
+
+    public ArrayList<String> getCheckAliasArrayList() {
+        return checkAliasArrayList;
+    }
+
+    public void setCheckAliasArrayList(ArrayList<String> checkAliasArrayList) {
+        this.checkAliasArrayList = checkAliasArrayList;
+    }
+
+    public ArrayList<ExtendedSubject> getExtendedSubjectArrayList() {
+        return extendedSubjectArrayList;
+    }
+
+    public void setExtendedSubjectArrayList(ArrayList<ExtendedSubject> extendedSubjectArrayList) {
+        this.extendedSubjectArrayList = extendedSubjectArrayList;
+    }
+
     public String toString() {
-        String res = "Device\n\tAlias: "+getAlias()+"\n\tProperties:";
+        StringBuilder res = new StringBuilder("Device\n\tAlias: " + getAlias() + "\n\tProperties:");
         for(int i=0; i<propertiesCount; i++)
-            res+="\n\t\t"+properties[i].toString();
-        return res;
-    }
-
-
-    public ExtendedSubject getExtendedSubject() {
-        return extendedSubject;
-    }
-
-    public void setExtendedSubject(ExtendedSubject extendedSubject) {
-        this.extendedSubject = extendedSubject;
+            res.append("\n\t\t").append(properties[i].toString());
+        return res.toString();
     }
 }

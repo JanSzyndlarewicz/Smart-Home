@@ -9,6 +9,9 @@ import Device.Sensor.LightSensor;
 import Home.Home;
 import Subject.ExtendedSubject;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
 
@@ -27,11 +30,12 @@ public class Main {
         System.out.println(x);*/
         Home home = new Home("Wroclawska 33");
         home.addDevice(new LightSensor("Outside_frontdoor"));
-        home.addDevice(new BulbRGBW("Outside_1",home.getDeviceList().get(0)));
-        home.addDevice(new BulbOneColor("Inside_livingroom", home.getDeviceList().get(1)));
-        home.addDevice(new BulbRGBW("Outside_garden1",home.getDeviceList().get(0)));
-        home.addDevice(new BulbRGBW("Inside_kitchen", home.getDeviceList().get(0)));
-        home.addDevice(new BulbRGBW("Outside_garden2", home.getDeviceList().get(0)));
+        home.addDevice(new BulbRGBW("Outside_1", new ArrayList<>(List.of(home.getDeviceList().get(0)))));
+        home.addDevice(new BulbOneColor("Inside_livingroom", new ArrayList<>(List.of(home.getDeviceList().get(1)))));
+        home.addDevice(new BulbRGBW("Outside_garden1",new ArrayList<>(List.of(home.getDeviceList().get(0)))));
+        home.addDevice(new BulbRGBW("Inside_kitchen", new ArrayList<>(List.of(home.getDeviceList().get(0)))));
+        home.addDevice(new BulbRGBW("Outside_garden2", new ArrayList<>(List.of(home.getDeviceList().get(0), home.getDeviceList().get(3)))));
+        home.addDevice(new BulbRGBW("Inside_Kitchen3", new ArrayList<>(List.of(home.getDeviceList().get(2))), new ArrayList<>(List.of("Inside"))));
         home.addDevice(new LightSensor("Outside_2"));
         System.out.println(home.getDeviceList());
         //System.out.println(home.getDeviceList().get(6));
@@ -44,5 +48,6 @@ public class Main {
         System.out.println(home.getDeviceList().get(0).getObserverList());
         System.out.println(home.getDeviceList().get(1).getObserverList());
         System.out.println(home.getDeviceList().get(2).getObserverList());
+        System.out.println(home.getDeviceList().get(3).getObserverList());
     }
 }
