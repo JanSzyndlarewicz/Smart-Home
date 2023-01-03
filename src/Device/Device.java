@@ -5,24 +5,21 @@ import DeviceProperty.*;
 import Control.Color.Color;
 import Obeserver.Observer;
 import Subject.Subject;
+import Subject.ExtendedSubject;
 
 import java.util.ArrayList;
 import java.util.Objects;
 
-public abstract class Device implements Subject, Observer{
+public abstract class Device implements ExtendedSubject, Observer{
 
     final private int MAX_NUMBER_OF_PROPERTIES = 1000;
     private DeviceProperty [] properties = new DeviceProperty[MAX_NUMBER_OF_PROPERTIES];
     private int propertiesCount = 0;
     private String alias;
 
-    protected ArrayList<Observer> ObserverList = new ArrayList<>();
-    protected Subject subject;
-
-    @Override
-    public ArrayList<Observer> getObserverList() {
-        return (ArrayList<Observer>) ObserverList;
-    }
+    protected ArrayList<Observer> observerList = new ArrayList<>();
+    protected String checkAlias;
+    protected ExtendedSubject extendedSubject;
 
     @Override
     public void update(DeviceProperty deviceProperty) {
@@ -30,24 +27,50 @@ public abstract class Device implements Subject, Observer{
     }
 
     @Override
+    public ArrayList<Observer> getObserverList() {
+        return observerList;
+    }
+
+
+
+    @Override
     public void registerObserver(Observer observer) {
-        ObserverList.add(observer);
+        observerList.add(observer);
     }
 
     @Override
     public void removeObserver(Observer observer) {
-        ObserverList.remove(observer);
+        observerList.remove(observer);
     }
 
     @Override
     public void notifyObservers(DeviceProperty deviceProperty) {
-        for (int i = 0; i < ObserverList.size(); i++) {
-            ObserverList.get(i).update(deviceProperty);
+        for (int i = 0; i < observerList.size(); i++) {
+            observerList.get(i).update(deviceProperty);
         }
     }
 
     public Device(String alias){
         this.alias = alias;
+        checkAlias = null;
+    }
+
+    public Device(String alias, String checkAlias){
+        this.alias = alias;
+        this.checkAlias = checkAlias;
+    }
+    public Device(String alias, ExtendedSubject subject){
+        this.alias = alias;
+        this.extendedSubject = subject;
+        checkAlias = null;
+        this.extendedSubject.registerObserver(this);
+    }
+
+    public Device(String alias, ExtendedSubject subject, String checkAlias){
+        this.alias = alias;
+        this.extendedSubject = subject;
+        this.checkAlias = checkAlias;
+        this.extendedSubject.registerObserver(this);
     }
     protected void addProperty(DeviceProperty prop) {
         if(propertiesCount == MAX_NUMBER_OF_PROPERTIES) {
@@ -138,5 +161,11 @@ public abstract class Device implements Subject, Observer{
     }
 
 
+    public ExtendedSubject getExtendedSubject() {
+        return extendedSubject;
+    }
 
+    public void setExtendedSubject(ExtendedSubject extendedSubject) {
+        this.extendedSubject = extendedSubject;
+    }
 }
