@@ -4,25 +4,42 @@ import Device.Device;
 import DeviceProperty.DeviceProperty;
 import DeviceProperty.DevicePropertyToggle;
 import Subject.Subject;
-import Subject.SubjectExtended;
+
+import Subject.ExtendedSubject;
+
 
 import java.util.ArrayList;
 
 public abstract class Bulb extends Device {
 
-    public Bulb(String alias, ArrayList<SubjectExtended> subjectExtendedArrayList){
-        super(alias);
+
+    public Bulb(String alias, ArrayList<ExtendedSubject> extendedSubjectArrayList) {
+        super(alias, extendedSubjectArrayList);
         addProperty(new DevicePropertyToggle("Is turned on", false));
 
-        for (SubjectExtended subjectExtended : subjectExtendedArrayList) {
-            int j = 0;
-
-            while (subjectExtendedList.getSubjectExtendedList().get(j).getSubject() != subjectExtended.getSubject()){
-                j++;
+        this.extendedSubjectArrayList = extendedSubjectArrayList;
+        for(int i=0; i<extendedSubjectArrayList.size(); i++){
+            if(this.extendedSubjectArrayList.get(i).getObserverList()!=null){
+                if (!this.extendedSubjectArrayList.get(i).getObserverList().contains(this)) {
+                        this.extendedSubjectArrayList.get(i).registerObserver(this);
+                }
             }
+        }
+    }
 
-            if (alias.contains(subjectExtended.getCheckAlias())) {
-                subjectExtendedList.getSubjectExtendedList().get(j).registerObserver(this);
+    public Bulb(String alias, ArrayList<ExtendedSubject> extendedSubjectArrayList, ArrayList<String> checkAliasArrayList) {
+        super(alias, extendedSubjectArrayList);
+        addProperty(new DevicePropertyToggle("Is turned on", false));
+
+        this.extendedSubjectArrayList = extendedSubjectArrayList;
+        for(int i=0; i<extendedSubjectArrayList.size(); i++){
+            if(this.extendedSubjectArrayList.get(i).getObserverList()!=null){
+                if (!this.extendedSubjectArrayList.get(i).getObserverList().contains(this)) {
+                    if (alias.contains(checkAliasArrayList.get(i))) {
+                        this.extendedSubjectArrayList.get(i).registerObserver(this);
+                    }
+                }
+
             }
         }
     }

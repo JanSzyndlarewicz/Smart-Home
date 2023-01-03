@@ -4,25 +4,79 @@ import DeviceProperty.*;
 import Control.Color.Color;
 import Obeserver.Observer;
 import Subject.Subject;
-import Subject.SubjectExtended;
-import Subject.SubjectExtendedList;
+import Subject.ExtendedSubject;
+
 
 import java.util.ArrayList;
 import java.util.Objects;
 
-public abstract class Device implements Subject, Observer{
+public abstract class Device implements ExtendedSubject, Observer{
 
     final private int MAX_NUMBER_OF_PROPERTIES = 1000;
     private DeviceProperty [] properties = new DeviceProperty[MAX_NUMBER_OF_PROPERTIES];
     private int propertiesCount = 0;
     private String alias;
     protected ArrayList<Observer> observerList = new ArrayList<>();
-    protected static SubjectExtendedList subjectExtendedList = new SubjectExtendedList();
+    protected ArrayList<String> checkAliasArrayList = new ArrayList<>();
+    protected ArrayList<ExtendedSubject> extendedSubjectArrayList = new ArrayList<>();
+
 
     public Device(String alias){
         this.alias = alias;
-        subjectExtendedList.addSubjectExtended(this, alias);
+        checkAliasArrayList = null;
     }
+
+    public Device(String alias, ArrayList<ExtendedSubject> extendedSubjectArrayList){
+        this.alias = alias;
+        this.extendedSubjectArrayList = extendedSubjectArrayList;
+        checkAliasArrayList = null;
+        for(int i=0; i<extendedSubjectArrayList.size(); i++){
+            this.extendedSubjectArrayList.get(i).registerObserver(this);
+        }
+    }
+
+    public Device(String alias, ArrayList<ExtendedSubject> extendedSubjectArrayList, ArrayList<String> checkAliasArrayList){
+        this.alias = alias;
+        this.extendedSubjectArrayList = extendedSubjectArrayList;
+        this.checkAliasArrayList = checkAliasArrayList;
+        for(int i=0; i<extendedSubjectArrayList.size(); i++){
+            if(checkAliasArrayList.get(i)!=null){
+                if(alias.contains(checkAliasArrayList.get(i))){
+                    this.extendedSubjectArrayList.get(i).registerObserver(this);
+                }
+            }
+        }
+    }
+
+    @Override
+    public void update(DeviceProperty deviceProperty) {
+        System.out.println("Update method");
+    }
+
+    @Override
+    public ArrayList<Observer> getObserverList() {
+        return observerList;
+    }
+
+    @Override
+    public void registerObserver(Observer observer) {
+        observerList.add(observer);
+    }
+
+    @Override
+    public void removeObserver(Observer observer) {
+        observerList.remove(observer);
+    }
+
+    @Override
+    public void notifyObservers(DeviceProperty deviceProperty) {
+        for (int i = 0; i < observerList.size(); i++) {
+            observerList.get(i).update(deviceProperty);
+        }
+    }
+
+
+
 
     protected void addProperty(DeviceProperty prop) {
         if(propertiesCount == MAX_NUMBER_OF_PROPERTIES) {
@@ -78,32 +132,6 @@ public abstract class Device implements Subject, Observer{
     }
 
 
-    @Override
-    public ArrayList<Observer> getObserverList() {
-        return observerList;
-    }
-
-    @Override
-    public void update(DeviceProperty deviceProperty) {
-        String update = "Update method";
-    }
-
-    @Override
-    public void registerObserver(Observer observer) {
-        observerList.add(observer);
-    }
-
-    @Override
-    public void removeObserver(Observer observer) {
-        observerList.remove(observer);
-    }
-
-    @Override
-    public void notifyObservers(DeviceProperty deviceProperty) {
-        for (Observer observer : observerList) {
-            observer.update(deviceProperty);
-        }
-    }
 
     public String getAlias() {
         return this.alias;
@@ -137,12 +165,21 @@ public abstract class Device implements Subject, Observer{
         this.observerList = observerList;
     }
 
-    public SubjectExtendedList getSubjectExtendedList() {
-        return subjectExtendedList;
+    public ArrayList<String> getCheckAliasArrayList() {
+        return checkAliasArrayList;
     }
 
-    public void setSubjectExtendedList(SubjectExtendedList subjectExtendedList) {
-        Device.subjectExtendedList = subjectExtendedList;
+    public void setCheckAliasArrayList(ArrayList<String> checkAliasArrayList) {
+        this.checkAliasArrayList = checkAliasArrayList;
+    }
+
+    public ArrayList<ExtendedSubject> getExtendedSubjectArrayList() {
+        return extendedSubjectArrayList;
+    }
+
+    public void setExtendedSubjectArrayList(ArrayList<ExtendedSubject> extendedSubjectArrayList) {
+        this.extendedSubjectArrayList = extendedSubjectArrayList;
+
     }
 
     public String toString() {
