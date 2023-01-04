@@ -28,6 +28,7 @@ public class Main {
         }
     }
 
+
     public static void main(String[] args) {
 
 
@@ -45,5 +46,7 @@ public class Main {
 
         //printDeviceObserver(home, 0);
         printDeviceObservers(home);
+
+
     }
 }
