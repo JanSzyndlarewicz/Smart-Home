@@ -9,6 +9,7 @@ public interface Subject {
 
     ArrayList<Observer> getObserverList();
     void registerObserver(Observer observer);
+
     void removeObserver(Observer observer);
     void notifyObservers(DeviceProperty deviceProperty);
 }

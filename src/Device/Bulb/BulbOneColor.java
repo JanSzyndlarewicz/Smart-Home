@@ -1,9 +1,9 @@
 package Device.Bulb;
 
-import DeviceProperty.DeviceProperty;
 import DeviceProperty.DevicePropertySlider;
 import Subject.Subject;
 import Subject.ExtendedSubject;
+
 
 import java.util.ArrayList;
 
@@ -31,11 +31,13 @@ public class BulbOneColor extends Bulb{
 
     public BulbOneColor(String alias, int brightness, ArrayList<ExtendedSubject> extendedSubjectArrayList, ArrayList<String> checkAliasArrayList){
         super(alias, extendedSubjectArrayList, checkAliasArrayList);
+
         if(0<=brightness && brightness<=100){
             addProperty(new DevicePropertySlider("Brightness", brightness));
         }
         else {
             new BulbOneColor(alias, extendedSubjectArrayList);
+
         }
     }
 

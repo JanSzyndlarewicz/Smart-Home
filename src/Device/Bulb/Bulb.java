@@ -1,13 +1,17 @@
 package Device.Bulb;
 
 import Device.Device;
+import DeviceProperty.DeviceProperty;
 import DeviceProperty.DevicePropertyToggle;
 import Subject.Subject;
+
 import Subject.ExtendedSubject;
+
 
 import java.util.ArrayList;
 
 public abstract class Bulb extends Device {
+
 
     public Bulb(String alias, ArrayList<ExtendedSubject> extendedSubjectArrayList) {
         super(alias, extendedSubjectArrayList);
@@ -35,9 +39,18 @@ public abstract class Bulb extends Device {
                         this.extendedSubjectArrayList.get(i).registerObserver(this);
                     }
                 }
+
             }
         }
     }
 
+    public Bulb(String alias){
+        super(alias);
+        addProperty(new DevicePropertyToggle("Is turned on", false));
+    }
 
+    @Override
+    public void update(DeviceProperty deviceProperty) {
+        super.update(deviceProperty);
+    }
 }
