@@ -17,8 +17,10 @@ public abstract class Device implements ExtendedSubject, Observer{
     private int propertiesCount = 0;
     private String alias;
     protected ArrayList<Observer> observerList = new ArrayList<>();
-    protected ArrayList<String> checkAliasArrayList = new ArrayList<>();
+    //protected ArrayList<String> checkAliasArrayList = new ArrayList<>();
     protected ArrayList<ExtendedSubject> extendedSubjectArrayList = new ArrayList<>();
+
+    protected ArrayList<ArrayList<String>> checkAliasArrayList;
 
 
     public Device(String alias){
@@ -35,16 +37,19 @@ public abstract class Device implements ExtendedSubject, Observer{
         }
     }
 
-    public Device(String alias, ArrayList<ExtendedSubject> extendedSubjectArrayList, ArrayList<String> checkAliasArrayList){
+    public Device(String alias, ArrayList<ExtendedSubject> extendedSubjectArrayList, ArrayList<ArrayList<String>> checkAliasArrayList){
         this.alias = alias;
         this.extendedSubjectArrayList = extendedSubjectArrayList;
         this.checkAliasArrayList = checkAliasArrayList;
         for(int i=0; i<extendedSubjectArrayList.size(); i++){
-            if(checkAliasArrayList.get(i)!=null){
-                if(alias.contains(checkAliasArrayList.get(i))){
-                    this.extendedSubjectArrayList.get(i).registerObserver(this);
+            for(int j=0; j<checkAliasArrayList.get(i).size(); j++){
+                if(checkAliasArrayList.get(i)!=null){
+                    if(alias.contains(checkAliasArrayList.get(i).get(j))){
+                        this.extendedSubjectArrayList.get(i).registerObserver(this);
+                    }
                 }
             }
+
         }
     }
 
@@ -165,11 +170,11 @@ public abstract class Device implements ExtendedSubject, Observer{
         this.observerList = observerList;
     }
 
-    public ArrayList<String> getCheckAliasArrayList() {
+    public ArrayList<ArrayList<String>> getCheckAliasArrayList() {
         return checkAliasArrayList;
     }
 
-    public void setCheckAliasArrayList(ArrayList<String> checkAliasArrayList) {
+    public void setCheckAliasArrayList(ArrayList<ArrayList<String>> checkAliasArrayList) {
         this.checkAliasArrayList = checkAliasArrayList;
     }
 
