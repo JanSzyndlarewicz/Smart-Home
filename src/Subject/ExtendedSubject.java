@@ -19,7 +19,4 @@ public interface ExtendedSubject extends Subject {
     @Override
     void notifyObservers(DeviceProperty deviceProperty);
 
-
-
-
 }
