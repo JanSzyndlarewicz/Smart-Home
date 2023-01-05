@@ -3,7 +3,6 @@ package Device;
 import DeviceProperty.*;
 import Control.Color.Color;
 import Obeserver.Observer;
-import Subject.Subject;
 import Subject.ExtendedSubject;
 
 
@@ -17,9 +16,7 @@ public abstract class Device implements ExtendedSubject, Observer{
     private int propertiesCount = 0;
     private String alias;
     protected ArrayList<Observer> observerList = new ArrayList<>();
-    //protected ArrayList<String> checkAliasArrayList = new ArrayList<>();
     protected ArrayList<ExtendedSubject> extendedSubjectArrayList = new ArrayList<>();
-
     protected ArrayList<ArrayList<String>> checkAliasArrayList;
 
 
@@ -41,6 +38,7 @@ public abstract class Device implements ExtendedSubject, Observer{
         this.alias = alias;
         this.extendedSubjectArrayList = extendedSubjectArrayList;
         this.checkAliasArrayList = checkAliasArrayList;
+
         for(int i=0; i<extendedSubjectArrayList.size(); i++){
             for(int j=0; j<checkAliasArrayList.get(i).size(); j++){
                 if(checkAliasArrayList.get(i)!=null){
@@ -75,12 +73,10 @@ public abstract class Device implements ExtendedSubject, Observer{
 
     @Override
     public void notifyObservers(DeviceProperty deviceProperty) {
-        for (int i = 0; i < observerList.size(); i++) {
-            observerList.get(i).update(deviceProperty);
+        for (Observer observer : observerList) {
+            observer.update(deviceProperty);
         }
     }
-
-
 
 
     protected void addProperty(DeviceProperty prop) {
@@ -101,6 +97,7 @@ public abstract class Device implements ExtendedSubject, Observer{
                     return;
                 }
                 ((DevicePropertyToggle)properties[i]).set(value);
+                notifyObservers(properties[i]);
                 return;
             }
         }
@@ -115,12 +112,12 @@ public abstract class Device implements ExtendedSubject, Observer{
                     return;
                 }
                 ((DevicePropertySlider)properties[i]).set(value);
+                notifyObservers(properties[i]);
                 return;
             }
         }
         System.err.println("Error! Specified property does not exist. Aborting");
     }
-
 
     public void setProperty(String name, Color value) {
         for(int i=0; i<propertiesCount; i++) {
@@ -130,12 +127,12 @@ public abstract class Device implements ExtendedSubject, Observer{
                     return;
                 }
                 ((DevicePropertyColor)properties[i]).set(value);
+                notifyObservers(properties[i]);
                 return;
             }
         }
         System.err.println("Error! Specified property does not exist. Aborting");
     }
-
 
 
     public String getAlias() {

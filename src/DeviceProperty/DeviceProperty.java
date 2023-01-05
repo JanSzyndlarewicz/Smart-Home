@@ -19,7 +19,9 @@ public abstract class DeviceProperty {
 
     public abstract String getValueString();
 
+
     public String toString() {
         return type + " (\"" + name + "\") = " + getValueString();
     }
+
 }

@@ -14,7 +14,8 @@ public class DevicePropertySensorSlider extends DeviceProperty {
     }
 
     public String getValueString() {
-        return String.format("%.2f", value);
+        return String.valueOf(value);
+        //String.format("%.2f", value);
     }
 
 

@@ -48,6 +48,10 @@ public class Main {
         //printDeviceObserver(home, 0);
         printDeviceObservers(home);
 
+        home.getDeviceList().get(0).setProperty("Brightness", 0.49);
+        //System.out.println(home.getDeviceList().get(0));
+        System.out.println(home.getDeviceList().get(1));
+
 
 
 
