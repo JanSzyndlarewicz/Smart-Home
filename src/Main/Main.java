@@ -10,6 +10,7 @@ import Home.Home;
 import Subject.ExtendedSubject;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
 public class Main {
@@ -50,6 +51,8 @@ public class Main {
         home.getDeviceList().get(0).setProperty("Brightness", 0.49);
         //System.out.println(home.getDeviceList().get(0));
         System.out.println(home.getDeviceList().get(1));
+
+
 
 
     }

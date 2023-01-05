@@ -4,12 +4,15 @@ import Device.Device;
 import DeviceProperty.DeviceProperty;
 import DeviceProperty.DevicePropertyToggle;
 import Subject.Subject;
+
 import Subject.ExtendedSubject;
 import DeviceProperty.DevicePropertySensorSlider;
+
 
 import java.util.ArrayList;
 
 public abstract class Bulb extends Device {
+
 
     public Bulb(String alias, ArrayList<ExtendedSubject> extendedSubjectArrayList) {
         super(alias, extendedSubjectArrayList);
@@ -37,9 +40,11 @@ public abstract class Bulb extends Device {
                         this.extendedSubjectArrayList.get(i).registerObserver(this);
                     }
                 }
+
             }
         }
     }
+
 
     @Override
     public void update(DeviceProperty deviceProperty) {
@@ -51,6 +56,7 @@ public abstract class Bulb extends Device {
                 setProperty("Is turned on", true);
             }
         }
+
 
     }
 }

@@ -5,6 +5,7 @@ import Control.Color.Color;
 import Obeserver.Observer;
 import Subject.ExtendedSubject;
 
+
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -77,6 +78,7 @@ public abstract class Device implements ExtendedSubject, Observer{
         }
     }
 
+
     protected void addProperty(DeviceProperty prop) {
         if(propertiesCount == MAX_NUMBER_OF_PROPERTIES) {
             System.err.printf("Error! Property %s (%s) could not be created because parent object reached limit of contained properties. Aborting", prop.getName(), prop.getType());
@@ -132,6 +134,7 @@ public abstract class Device implements ExtendedSubject, Observer{
         System.err.println("Error! Specified property does not exist. Aborting");
     }
 
+
     public String getAlias() {
         return this.alias;
     }
@@ -139,6 +142,7 @@ public abstract class Device implements ExtendedSubject, Observer{
     public void setAlias(String alias) {
         this.alias = alias;
     }
+
     public int getMAX_NUMBER_OF_PROPERTIES() {
         return MAX_NUMBER_OF_PROPERTIES;
     }
@@ -177,6 +181,7 @@ public abstract class Device implements ExtendedSubject, Observer{
 
     public void setExtendedSubjectArrayList(ArrayList<ExtendedSubject> extendedSubjectArrayList) {
         this.extendedSubjectArrayList = extendedSubjectArrayList;
+
     }
 
     public String toString() {
