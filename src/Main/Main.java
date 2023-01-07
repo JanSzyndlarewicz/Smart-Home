@@ -7,6 +7,7 @@ import Device.Bulb.BulbRGBW;
 import Device.Device;
 import Device.Sensor.LightSensor;
 import Home.Home;
+import Obeserver.Observer;
 import Subject.ExtendedSubject;
 
 import java.util.ArrayList;
@@ -28,6 +29,17 @@ public class Main {
         }
     }
 
+    public static void registerObserver(Device device, Observer observer){
+        device.registerObserver(observer);
+    }
+
+    public static void removeObserver(Device device, Observer observer){
+        device.removeObserver(observer);
+    }
+
+
+
+
 
     public static void main(String[] args) {
 
@@ -45,12 +57,15 @@ public class Main {
 
 
         //printDeviceObserver(home, 0);
-        printDeviceObservers(home);
+
 
         home.getDeviceList().get(0).setProperty("Brightness", 0.49);
+        //home.getDeviceList().get(5).registerObserver(home.getDeviceList().get(4));
+        registerObserver(home.getDeviceList().get(5), home.getDeviceList().get(4));
+        removeObserver(home.getDeviceList().get(5), home.getDeviceList().get(4));
         //System.out.println(home.getDeviceList().get(0));
-        System.out.println(home.getDeviceList().get(1));
-
+        //System.out.println(home.getDeviceList().get(1));
+        printDeviceObservers(home);
 
     }
 }
