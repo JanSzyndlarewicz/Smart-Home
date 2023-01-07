@@ -5,18 +5,14 @@ import Obeserver.Observer;
 
 import java.util.ArrayList;
 
-public interface ExtendedSubject extends Subject {
+public interface ExtendedSubject  {
 
-    @Override
     ArrayList<Observer> getObserverList();
 
-    @Override
     void registerObserver(Observer observer);
 
-    @Override
     void removeObserver(Observer observer);
 
-    @Override
     void notifyObservers(DeviceProperty deviceProperty);
 
 }
