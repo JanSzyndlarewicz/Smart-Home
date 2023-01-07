@@ -5,7 +5,10 @@ import Control.Color.ColorRGBW;
 import Device.Bulb.BulbOneColor;
 import Device.Bulb.BulbRGBW;
 import Device.Device;
+import Device.Sensor.AirHumiditySensor;
+import Device.Sensor.GasSensor;
 import Device.Sensor.LightSensor;
+import Device.Sensor.SmokeSensor;
 import Home.Home;
 import Obeserver.Observer;
 import Subject.ExtendedSubject;
@@ -54,7 +57,12 @@ public class Main {
         home.addDevice(new BulbRGBW("Outside_garden2", new ArrayList<>(List.of(home.getDeviceList().get(0), home.getDeviceList().get(3)))));
         home.addDevice(new BulbRGBW("Inside_Kitchen3", new ArrayList<>(List.of(home.getDeviceList().get(2))), new ArrayList<>(List.of("Inside"))));
         home.addDevice(new LightSensor("Outside_2"));
+        home.addDevice(new GasSensor("Kitchen_Gas_Sensor"));
+        home.addDevice(new SmokeSensor("Kitchen_Smoke_Sensor"));
+        home.addDevice(new SmokeSensor("Boiler_Smoke_Sensor"));
+        home.addDevice(new AirHumiditySensor("Living_room_Air_Humidity_Sensor"));
         System.out.println(home.getDeviceList());
+
 
 
         //printDeviceObserver(home, 0);
