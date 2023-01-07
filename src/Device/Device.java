@@ -73,10 +73,17 @@ public abstract class Device implements ExtendedSubject, Observer{
     }
 
     @Override
+    public void removeObserver(Observer observer) {
+        observerList.remove(observer);
+    }
+
+    @Override
     public void removeObserver(Observer observer, ArrayList<String> checkAliasArrayList) {
         observerList.remove(observer);
         this.checkAliasArrayList.remove(observerList.indexOf(observer));
     }
+
+
 
     @Override
     public void notifyObservers(DeviceProperty deviceProperty) {
