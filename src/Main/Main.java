@@ -70,8 +70,8 @@ public class Main {
 
         home.getDeviceList().get(0).setProperty("Brightness", 0.49);
         //home.getDeviceList().get(5).registerObserver(home.getDeviceList().get(4));
-        registerObserver(home.getDeviceList().get(5), home.getDeviceList().get(4));
-        removeObserver(home.getDeviceList().get(5), home.getDeviceList().get(4));
+        registerObserver(home.getDeviceList().get(6), home.getDeviceList().get(5));
+        removeObserver(home.getDeviceList().get(6), home.getDeviceList().get(5));
         //System.out.println(home.getDeviceList().get(0));
         //System.out.println(home.getDeviceList().get(1));
         printDeviceObservers(home);

@@ -2,13 +2,14 @@ package Device.Bulb;
 
 import Control.Color.ColorRGBW;
 import DeviceProperty.DevicePropertyColor;
-import Subject.Subject;
+import Subject.SubjectExtended;
 import Subject.ExtendedSubject;
-
+import Subject.SubjectExtendedList;
 import java.util.ArrayList;
 
 
 import java.util.ArrayList;
+public class BulbRGBW extends Bulb{
 
     public BulbRGBW(String alias, ArrayList<ExtendedSubject> extendedSubjectArrayList){
         super(alias, extendedSubjectArrayList);
@@ -24,11 +25,6 @@ import java.util.ArrayList;
     public BulbRGBW(String alias, ArrayList<ExtendedSubject> extendedSubjectArrayList, ArrayList<String> checkAliasArrayList){
         super(alias, extendedSubjectArrayList, checkAliasArrayList);
 
-        addProperty(new DevicePropertyColor("Color", new ColorRGBW()));
-    }
-
-    public BulbRGBW(String alias, ArrayList<SubjectExtended> subjectExtendedArrayList){
-        super(alias, subjectExtendedArrayList);
         addProperty(new DevicePropertyColor("Color", new ColorRGBW()));
     }
 
