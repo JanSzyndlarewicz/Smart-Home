@@ -2,6 +2,7 @@ package Device.Bulb;
 
 import DeviceProperty.DeviceProperty;
 import DeviceProperty.DevicePropertySlider;
+import Obeserver.Observer;
 import Subject.Subject;
 import Subject.ExtendedSubject;
 
@@ -38,5 +39,6 @@ public class BulbOneColor extends Bulb{
             new BulbOneColor(alias, extendedSubjectArrayList);
         }
     }
+
 
 }
