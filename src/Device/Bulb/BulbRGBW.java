@@ -2,9 +2,7 @@ package Device.Bulb;
 
 import Control.Color.ColorRGBW;
 import DeviceProperty.DevicePropertyColor;
-import Subject.SubjectExtended;
 import Subject.ExtendedSubject;
-import Subject.SubjectExtendedList;
 import java.util.ArrayList;
 
 
