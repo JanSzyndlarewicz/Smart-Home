@@ -30,12 +30,27 @@ public class Main {
         }
     }
 
+    public static void printDevicesAlias(Home home){
+        System.out.println("\nList of all devices\n");
+        for(int i=0; i<home.getDeviceList().size(); i++){
+            System.out.println(i+1 + " - " + home.getDeviceList().get(i).getAlias());
+        }
+    }
+
     public static void registerObserver(Device device, Observer observer){
         device.registerObserver(observer);
     }
 
+    public static void registerObserver(Device device, Observer observer, ArrayList<String> checkAlias){
+        device.registerObserver(observer, checkAlias);
+    }
+
     public static void removeObserver(Device device, Observer observer){
         device.removeObserver(observer);
+    }
+
+    public static void removeObserver(Device device, Observer observer, ArrayList<String> checkAlias){
+        device.removeObserver(observer, checkAlias);
     }
 
 
@@ -46,24 +61,24 @@ public class Main {
 
 
         Home home = new Home("Wroclawska 33");
-        home.addDevice(new LightSensor("Outside_frontdoor"));
-        home.addDevice(new BulbRGBW("Outside_1", new ArrayList<>(List.of(home.getDeviceList().get(0)))));
-        home.addDevice(new BulbOneColor("Inside_livingroom", new ArrayList<>(List.of(home.getDeviceList().get(1)))));
-        home.addDevice(new BulbRGBW("Outside_garden1",new ArrayList<>(List.of(home.getDeviceList().get(0)))));
-        home.addDevice(new BulbRGBW("Inside_kitchen", new ArrayList<>(List.of(home.getDeviceList().get(0)))));
-        home.addDevice(new BulbRGBW("Outside_garden2", new ArrayList<>(List.of(home.getDeviceList().get(0), home.getDeviceList().get(3)))));
-        home.addDevice(new BulbRGBW("Inside_Kitchen3", new ArrayList<>(List.of(home.getDeviceList().get(2))), new ArrayList<>(List.of("Inside"))));
-        home.addDevice(new LightSensor("Outside_2"));
-        home.addDevice(new GasSensor("Kitchen_Gas_Sensor"));
-        home.addDevice(new SmokeSensor("Kitchen_Smoke_Sensor"));
-        home.addDevice(new SmokeSensor("Boiler_Smoke_Sensor"));
-        home.addDevice(new AirHumiditySensor("Living_room_Air_Humidity_Sensor"));
-        home.addDevice(new MotionSensor("Driveway"));
-        home.addDevice(new TemperatureSensor("Outdoors_temp"));
-        home.addDevice(new TemperatureSensor("Indoor_temp"));
-        System.out.println(home.getDeviceList());
+        home.addDevice(new LightSensor("LightSensor_Outside_frontdoor"));
+        home.addDevice(new BulbRGBW("BulbRBGW_Outside_1", new ArrayList<>(List.of(home.getDeviceList().get(0)))));
+        home.addDevice(new BulbOneColor("BulbOneColor_Inside_livingroom", new ArrayList<>(List.of(home.getDeviceList().get(1)))));
+        home.addDevice(new BulbRGBW("BulbRGBW_Outside_garden_1",new ArrayList<>(List.of(home.getDeviceList().get(0)))));
+        home.addDevice(new BulbRGBW("BulbRGBW_Inside_kitchen", new ArrayList<>(List.of(home.getDeviceList().get(0)))));
+        home.addDevice(new BulbRGBW("BulbRGBW_Outside_garden_2", new ArrayList<>(List.of(home.getDeviceList().get(0), home.getDeviceList().get(3)))));
+        home.addDevice(new BulbRGBW("BulbRGBW_Inside_Kitchen_3", new ArrayList<>(List.of(home.getDeviceList().get(2))), new ArrayList<>(List.of("Inside"))));
+        home.addDevice(new LightSensor("LightSensor_Outside_2"));
+        home.addDevice(new GasSensor("GasSensor_Kitchen"));
+        home.addDevice(new SmokeSensor("SmokeSensor_Kitchen"));
+        home.addDevice(new SmokeSensor("SmokeSensor_Boiler"));
+        home.addDevice(new AirHumiditySensor("AirHumiditySensor_Living_room"));
+        home.addDevice(new MotionSensor("MotionSensor_Driveway"));
+        home.addDevice(new TemperatureSensor("TemperatureSensor_Outdoors"));
+        home.addDevice(new TemperatureSensor("TemperatureSensor_Indoor_temp"));
+        //System.out.println(home.getDeviceList());
 
-
+        printDevicesAlias(home);
 
         //printDeviceObserver(home, 0);
 
