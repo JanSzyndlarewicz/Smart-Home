@@ -43,7 +43,7 @@ public class Date {
                     }
                 }
                 else {
-                    if(0<day && day<=20){
+                    if(0<day && day<=30){
                         this.day = day;
                         this.month = month;
                         this.year = year;
