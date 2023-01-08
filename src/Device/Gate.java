@@ -8,8 +8,8 @@ import java.util.ArrayList;
 public class Gate extends Device{
 
 
-    public Gate(String alias, ArrayList<ExtendedSubject> extendedSubjectArrayList) {
-        super(alias, extendedSubjectArrayList);
+    public Gate(String alias) {
+        super(alias);
         addProperty(new DevicePropertyToggle("Is closed", false));
 
     }
