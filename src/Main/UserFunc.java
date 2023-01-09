@@ -2,7 +2,7 @@ package Main;
 
 import Device.Device;
 import Home.Home;
-import Obeserver.Observer;
+import Observer.Observer;
 
 import java.util.ArrayList;
 

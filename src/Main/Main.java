@@ -1,19 +1,11 @@
 package Main;
 
-import Control.Color.ColorHSL;
-import Control.Color.ColorRGBW;
 import Device.Bulb.BulbOneColor;
 import Device.Bulb.BulbRGBW;
-import Device.Device;
 import Device.Sensor.*;
 import Home.Home;
-import Obeserver.Observer;
-import Subject.ExtendedSubject;
+
 import static Main.UserFunc.*;
-import java.util.ArrayList;
-
-import java.util.List;
-
 
 
 public class Main {
@@ -24,12 +16,12 @@ public class Main {
 
         Home home = new Home("Wroclawska 33");
         home.addDevice(new LightSensor("LightSensor_Outside_frontdoor"));
-        home.addDevice(new BulbRGBW("BulbRBGW_Outside_1", new ArrayList<>(List.of(home.getDeviceList().get(0)))));
-        home.addDevice(new BulbOneColor("BulbOneColor_Inside_livingroom", new ArrayList<>(List.of(home.getDeviceList().get(1)))));
-        home.addDevice(new BulbRGBW("BulbRGBW_Outside_garden_1",new ArrayList<>(List.of(home.getDeviceList().get(0)))));
-        home.addDevice(new BulbRGBW("BulbRGBW_Inside_kitchen", new ArrayList<>(List.of(home.getDeviceList().get(0)))));
-        home.addDevice(new BulbRGBW("BulbRGBW_Outside_garden_2", new ArrayList<>(List.of(home.getDeviceList().get(0), home.getDeviceList().get(3)))));
-        home.addDevice(new BulbRGBW("BulbRGBW_Inside_Kitchen_3", new ArrayList<>(List.of(home.getDeviceList().get(2))), new ArrayList<>(List.of("Inside"))));
+        home.addDevice(new BulbRGBW("BulbRBGW_Outside_1", (home.getDeviceList().get(0))));
+        home.addDevice(new BulbOneColor("BulbOneColor_Inside_livingroom", (home.getDeviceList().get(1))));
+        home.addDevice(new BulbRGBW("BulbRGBW_Outside_garden_1",home.getDeviceList().get(0)));
+        home.addDevice(new BulbRGBW("BulbRGBW_Inside_kitchen", (home.getDeviceList().get(0))));
+        home.addDevice(new BulbRGBW("BulbRGBW_Outside_garden_2", (home.getDeviceList().get(0))));
+        home.addDevice(new BulbRGBW("BulbRGBW_Inside_Kitchen_3", home.getDeviceList().get(2)));
         home.addDevice(new LightSensor("LightSensor_Outside_2"));
         home.addDevice(new GasSensor("GasSensor_Kitchen"));
         home.addDevice(new SmokeSensor("SmokeSensor_Kitchen"));

@@ -1,7 +1,7 @@
-package Subject;
+package Observable;
 
 import DeviceProperty.DeviceProperty;
-import Obeserver.Observer;
+import Observer.Observer;
 
 import java.util.ArrayList;
 

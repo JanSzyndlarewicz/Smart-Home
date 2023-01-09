@@ -3,10 +3,8 @@ package Device.Bulb;
 import Device.Device;
 import DeviceProperty.DeviceProperty;
 import DeviceProperty.DevicePropertyToggle;
-import Subject.Subject;
 
-import Subject.ExtendedSubject;
-import DeviceProperty.DevicePropertySensorSlider;
+import Observable.ExtendedSubject;
 
 
 import java.util.ArrayList;
@@ -14,7 +12,7 @@ import java.util.ArrayList;
 public abstract class Bulb extends Device {
 
 
-    public Bulb(String alias, ArrayList<ExtendedSubject> extendedSubjectArrayList) {
+    public Bulb(String alias, ExtendedSubject extendedSubjectArrayList) {
         super(alias, extendedSubjectArrayList);
         addProperty(new DevicePropertyToggle("Is turned on", false));
 
@@ -22,7 +20,7 @@ public abstract class Bulb extends Device {
 
     }
 
-    public Bulb(String alias, ArrayList<ExtendedSubject> extendedSubjectArrayList, ArrayList<String> checkAliasArrayList) {
+    public Bulb(String alias, ExtendedSubject extendedSubjectArrayList, ArrayList<String> checkAliasArrayList) {
         super(alias, extendedSubjectArrayList);
         addProperty(new DevicePropertyToggle("Is turned on", false));
 

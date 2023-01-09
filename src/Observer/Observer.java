@@ -1,4 +1,4 @@
-package Obeserver;
+package Observer;
 
 import DeviceProperty.DeviceProperty;
 

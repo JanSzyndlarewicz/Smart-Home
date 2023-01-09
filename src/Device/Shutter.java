@@ -2,11 +2,11 @@ package Device;
 
 import java.util.ArrayList;
 import DeviceProperty.DevicePropertySlider;
-import Subject.ExtendedSubject;
+import Observable.ExtendedSubject;
 
 public class Shutter extends Device {
 
-	public Shutter(String alias, ArrayList<ExtendedSubject> extendedSubjectArrayList) {
+	public Shutter(String alias, ExtendedSubject extendedSubjectArrayList) {
 		super(alias, extendedSubjectArrayList);
 
 		addProperty(new DevicePropertySlider("Length", 0));
@@ -15,7 +15,7 @@ public class Shutter extends Device {
 
 	}
 	
-	public Shutter(String alias, ArrayList<ExtendedSubject> extendedSubjectArrayList,
+	public Shutter(String alias, ExtendedSubject extendedSubjectArrayList,
 			ArrayList<ArrayList<String>> checkAliasArrayList) {
 		super(alias, extendedSubjectArrayList, checkAliasArrayList);
 

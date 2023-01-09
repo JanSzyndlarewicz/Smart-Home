@@ -1,9 +1,6 @@
 package Device.Sensor;
 
-import Device.Device;
-import DeviceProperty.DeviceProperty;
 import DeviceProperty.DevicePropertySensorToggle;
-import Subject.Subject;
 
 public class GasSensor extends Sensor {
 

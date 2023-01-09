@@ -1,9 +1,6 @@
 package Device;
 
 import DeviceProperty.DevicePropertyToggle;
-import Subject.ExtendedSubject;
-
-import java.util.ArrayList;
 
 public class Gate extends Device{
 
