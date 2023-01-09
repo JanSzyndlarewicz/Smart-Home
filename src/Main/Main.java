@@ -32,6 +32,7 @@ public class Main {
         home.addDevice(new TemperatureSensor("TemperatureSensor_Indoor_temp"));
         System.out.println(home.getDeviceList());
 
+
 //        printDevicesAlias(home);
 
         //printDeviceObserver(home, 0);
