@@ -19,7 +19,6 @@ public abstract class Device implements ExtendedSubject, Observer{
     ExtendedSubject extendedSubject;
     protected ArrayList<ArrayList<String>> checkAliasArrayList;
 
-
     public Device(String alias){
         this.alias = alias;
         checkAliasArrayList = null;

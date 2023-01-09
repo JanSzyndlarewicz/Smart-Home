@@ -8,6 +8,11 @@ import java.util.ArrayList;
 
 public class BulbOneColor extends Bulb{
 
+    public BulbOneColor(String alias) {
+        super(alias);
+        addProperty(new DevicePropertySlider("Brightness", 0));
+    }
+
     public BulbOneColor(String alias, ExtendedSubject extendedSubjectArrayList){
         super(alias, extendedSubjectArrayList);
         addProperty(new DevicePropertySlider("Brightness", 0));

@@ -7,6 +7,11 @@ import java.util.ArrayList;
 
 public class BulbRGBW extends Bulb{
 
+    public BulbRGBW(String alias) {
+        super(alias);
+        addProperty(new DevicePropertyColor("Color", new ColorRGBW()));
+    }
+
     public BulbRGBW(String alias, ExtendedSubject extendedSubjectArrayList){
         super(alias, extendedSubjectArrayList);
         addProperty(new DevicePropertyColor("Color", new ColorRGBW()));
