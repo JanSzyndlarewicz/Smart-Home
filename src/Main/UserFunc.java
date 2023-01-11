@@ -4,8 +4,6 @@ import Device.Device;
 import Home.Home;
 import Observer.Observer;
 
-import java.util.ArrayList;
-
 public abstract class UserFunc {
     public static void printDeviceObserver(Home home, int whichObserver){
         if(home.getDeviceList().size()>whichObserver && 0<=whichObserver){
@@ -33,16 +31,9 @@ public abstract class UserFunc {
         device.registerObserver(observer);
     }
 
-    public static void registerObserver(Device device, Observer observer, ArrayList<String> checkAlias){
-        device.registerObserver(observer, checkAlias);
-    }
-
     public static void removeObserver(Device device, Observer observer){
         device.removeObserver(observer);
     }
 
-    public static void removeObserver(Device device, Observer observer, ArrayList<String> checkAlias){
-        device.removeObserver(observer, checkAlias);
-    }
 
 }

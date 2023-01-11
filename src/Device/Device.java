@@ -3,30 +3,30 @@ package Device;
 import DeviceProperty.*;
 import Control.Color.Color;
 import Observer.Observer;
-import Observable.ExtendedSubject;
+import Observable.*;
 
 
 import java.util.ArrayList;
 import java.util.Objects;
 
-public abstract class Device implements ExtendedSubject, Observer{
+public abstract class Device implements Subject, Observer{
 
     final private int MAX_NUMBER_OF_PROPERTIES = 1000;
     private DeviceProperty [] properties = new DeviceProperty[MAX_NUMBER_OF_PROPERTIES];
     private int propertiesCount = 0;
     private String alias;
     protected ArrayList<Observer> observerList = new ArrayList<>();
-    ExtendedSubject extendedSubject;
+    Subject subject;
 
     public Device(String alias){
         this.alias = alias;
     }
 
-    public Device(String alias, ExtendedSubject extendedSubjectArrayList){
+    public Device(String alias, Subject subjectArrayList){
         this.alias = alias;
-        this.extendedSubject = extendedSubjectArrayList;
+        this.subject = subjectArrayList;
 
-            this.extendedSubject.registerObserver(this);
+            this.subject.registerObserver(this);
 
     }
 
@@ -147,12 +147,12 @@ public abstract class Device implements ExtendedSubject, Observer{
         this.observerList = observerList;
     }
 
-    public ExtendedSubject getExtendedSubject() {
-        return extendedSubject;
+    public Subject getSubject() {
+        return subject;
     }
 
-    public void setExtendedSubject(ExtendedSubject extendedSubject) {
-        this.extendedSubject = extendedSubject;
+    public void setSubject(Subject subject) {
+        this.subject = subject;
 
     }
 
