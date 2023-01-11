@@ -17,33 +17,16 @@ public abstract class Device implements ExtendedSubject, Observer{
     private String alias;
     protected ArrayList<Observer> observerList = new ArrayList<>();
     ExtendedSubject extendedSubject;
-    protected ArrayList<ArrayList<String>> checkAliasArrayList;
 
     public Device(String alias){
         this.alias = alias;
-        checkAliasArrayList = null;
     }
 
     public Device(String alias, ExtendedSubject extendedSubjectArrayList){
         this.alias = alias;
         this.extendedSubject = extendedSubjectArrayList;
-        checkAliasArrayList = null;
 
             this.extendedSubject.registerObserver(this);
-
-    }
-
-    public Device(String alias, ExtendedSubject extendedSubjectArrayList, ArrayList<ArrayList<String>> checkAliasArrayList){
-        this.alias = alias;
-        this.extendedSubject = extendedSubjectArrayList;
-        this.checkAliasArrayList = checkAliasArrayList;
-
-        for (ArrayList<String> strings : checkAliasArrayList) {
-            if (alias.contains(strings.get(0))) {
-                this.extendedSubject.registerObserver(this);
-            }
-        }
-
 
     }
 
@@ -62,21 +45,10 @@ public abstract class Device implements ExtendedSubject, Observer{
         observerList.add(observer);
     }
 
-    @Override
-    public void registerObserver(Observer observer, ArrayList<String> checkAliasArrayList) {
-        observerList.add(observer);
-        this.checkAliasArrayList.add(checkAliasArrayList);
-    }
 
     @Override
     public void removeObserver(Observer observer) {
         observerList.remove(observer);
-    }
-
-    @Override
-    public void removeObserver(Observer observer, ArrayList<String> checkAliasArrayList) {
-        observerList.remove(observer);
-        this.checkAliasArrayList.remove(observerList.indexOf(observer));
     }
 
 
@@ -87,7 +59,6 @@ public abstract class Device implements ExtendedSubject, Observer{
             observer.update(deviceProperty);
         }
     }
-
 
     protected void addProperty(DeviceProperty prop) {
         if(propertiesCount == MAX_NUMBER_OF_PROPERTIES) {
@@ -144,7 +115,6 @@ public abstract class Device implements ExtendedSubject, Observer{
         System.err.println("Error! Specified property does not exist. Aborting");
     }
 
-
     public String getAlias() {
         return this.alias;
     }
@@ -175,14 +145,6 @@ public abstract class Device implements ExtendedSubject, Observer{
 
     public void setObserverList(ArrayList<Observer> observerList) {
         this.observerList = observerList;
-    }
-
-    public ArrayList<ArrayList<String>> getCheckAliasArrayList() {
-        return checkAliasArrayList;
-    }
-
-    public void setCheckAliasArrayList(ArrayList<ArrayList<String>> checkAliasArrayList) {
-        this.checkAliasArrayList = checkAliasArrayList;
     }
 
     public ExtendedSubject getExtendedSubject() {
