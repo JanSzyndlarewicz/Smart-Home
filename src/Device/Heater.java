@@ -19,5 +19,5 @@ public class Heater extends Device {
 		addProperty(new DevicePropertySlider("Temperature", 0));
 		addProperty(new DevicePropertyToggle("Is turned on", false));
 	}
-//test
+//tests
 }
