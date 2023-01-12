@@ -11,22 +11,29 @@ public class UserDataBase {
         userHashMap = new HashMap<>();
     }
 
-    public static int login(String user, String password){
+    public static boolean login(String user, String password){
         if(userHashMap.containsKey(user)){
-            if(Objects.equals(password, userHashMap.get(user))) return 1;
-            else return 0;
+            return Objects.equals(password, userHashMap.get(user));
         }
-        else return 0;
+        else return false;
     }
 
-    public static int register(String user, String password){
+    public static boolean register(String user, String password){
         if(!userHashMap.containsKey(user)){
             userHashMap.put(user, password);
-            return 1;
+            return true;
         }
         else {
-            return 0;
+            return false;
         }
+    }
+
+    public static boolean remove(String user, String password){
+        if(userHashMap.containsKey(user)){
+            userHashMap.remove(user);
+            return true;
+        }
+        else return false;
     }
 
 

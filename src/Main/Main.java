@@ -5,6 +5,9 @@ import Device.Bulb.BulbRGBW;
 import Device.Sensor.*;
 import Home.Home;
 import UserLogin.UserDataBase;
+import UserLogin.UserService;
+
+import java.util.regex.MatchResult;
 
 import static Main.UserFunc.*;
 
@@ -48,13 +51,17 @@ public class Main {
         printDeviceObservers(home);
 
         UserDataBase userDataBase = new UserDataBase();
-
+        UserService userService = new UserService();
+        UserService.userRegistration();
+        UserService.userLogin();
         UserDataBase.register("Daniel", "haslo");
         UserDataBase.register("Marek", "dadsa");
-        System.out.println(UserDataBase.login("Daniel", "h"));
+        System.out.println(UserDataBase.login("XD", "xd"));
         System.out.println(UserDataBase.login("Daniel", "haslo"));
         System.out.println(UserDataBase.login("Daniiel", "hasło"));
         System.out.println(UserDataBase.register("Daniel", "hassło"));
+        System.out.println(UserDataBase.remove("Marek", "dadsa"));
+        System.out.println(UserDataBase.login("Marek", "dadsa"));
 
 
     }
