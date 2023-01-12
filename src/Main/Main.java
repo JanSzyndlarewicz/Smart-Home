@@ -4,6 +4,7 @@ import Device.Bulb.BulbOneColor;
 import Device.Bulb.BulbRGBW;
 import Device.Sensor.*;
 import Home.Home;
+import UserLogin.UserDataBase;
 
 import static Main.UserFunc.*;
 
@@ -30,10 +31,10 @@ public class Main {
         home.addDevice(new MotionSensor("MotionSensor_Driveway"));
         home.addDevice(new TemperatureSensor("TemperatureSensor_Outdoors"));
         home.addDevice(new TemperatureSensor("TemperatureSensor_Indoor_temp"));
-        System.out.println(home.getDeviceList());
+        //System.out.println(home.getDeviceList());
 
 
-//        printDevicesAlias(home);
+        printDevicesAlias(home);
 
         //printDeviceObserver(home, 0);
 
@@ -46,6 +47,14 @@ public class Main {
         //System.out.println(home.getDeviceList().get(1));
         printDeviceObservers(home);
 
+        UserDataBase userDataBase = new UserDataBase();
+
+        UserDataBase.register("Daniel", "haslo");
+        UserDataBase.register("Marek", "dadsa");
+        System.out.println(UserDataBase.login("Daniel", "h"));
+        System.out.println(UserDataBase.login("Daniel", "haslo"));
+        System.out.println(UserDataBase.login("Daniiel", "hasło"));
+        System.out.println(UserDataBase.register("Daniel", "hassło"));
 
 
     }
