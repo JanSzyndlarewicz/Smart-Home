@@ -1,14 +1,13 @@
 package Device.Bulb;
 
-import Control.Color.ColorRGBW;
-import DeviceProperty.DevicePropertyColor;
-import java.util.ArrayList;
+import DeviceProperty.DevicePropertySlider;
 
 public class BulbRGBW extends Bulb{
 
     public BulbRGBW(String alias) {
         super(alias);
-        addProperty(new DevicePropertyColor("Color", new ColorRGBW()));
+        addProperty(new DevicePropertySlider("Hue", 0));
+        addProperty(new DevicePropertySlider("Saturation", 0));
     }
 
 }
