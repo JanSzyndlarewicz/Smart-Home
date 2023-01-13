@@ -3,10 +3,6 @@ package Device;
 import DeviceProperty.*;
 import Control.Color.Color;
 import Observer.Observer;
-import Observable.*;
-
-
-import java.util.ArrayList;
 import java.util.Objects;
 
 public abstract class Device {
@@ -15,6 +11,8 @@ public abstract class Device {
     private DeviceProperty [] properties = new DeviceProperty[MAX_NUMBER_OF_PROPERTIES];
     private int propertiesCount = 0;
     private String alias;
+
+    
 
     public Device(String alias){
         this.alias = alias;

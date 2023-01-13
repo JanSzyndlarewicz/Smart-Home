@@ -8,8 +8,11 @@ import java.util.ArrayList;
 
 public abstract class Routine implements Subject,Observer{
 
-    protected ArrayList<Observer> observerList = new ArrayList<>();
+    private ArrayList<Observer> observerList = new ArrayList<>();
 
+    public Routine(Subject input, Observer output) {
+        
+    }
 
     @Override
     public ArrayList<Observer> getObserverList() {

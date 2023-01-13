@@ -3,7 +3,6 @@ package Device;
 import java.util.ArrayList;
 import DeviceProperty.DevicePropertySlider;
 import DeviceProperty.DevicePropertyToggle;
-import Observable.ExtendedSubject;
 
 public class Heater extends Device {
 

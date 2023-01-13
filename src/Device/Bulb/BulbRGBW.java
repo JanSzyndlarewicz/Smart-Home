@@ -2,7 +2,6 @@ package Device.Bulb;
 
 import Control.Color.ColorRGBW;
 import DeviceProperty.DevicePropertyColor;
-import Observable.ExtendedSubject;
 import java.util.ArrayList;
 
 public class BulbRGBW extends Bulb{
