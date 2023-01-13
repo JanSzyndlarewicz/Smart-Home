@@ -2,7 +2,6 @@ package Device;
 
 import java.util.ArrayList;
 import DeviceProperty.DevicePropertySlider;
-import Observable.ExtendedSubject;
 
 public class Shutter extends Device {
 

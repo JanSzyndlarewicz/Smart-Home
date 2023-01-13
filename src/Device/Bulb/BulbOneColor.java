@@ -1,7 +1,6 @@
 package Device.Bulb;
 
 import DeviceProperty.DevicePropertySlider;
-import Observable.ExtendedSubject;
 
 
 import java.util.ArrayList;

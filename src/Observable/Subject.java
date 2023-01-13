@@ -6,7 +6,6 @@ import Observer.Observer;
 import java.util.ArrayList;
 
 public interface Subject {
-    //Interface currently not used
 
     ArrayList<Observer> getObserverList();
     void registerObserver(Observer observer);
