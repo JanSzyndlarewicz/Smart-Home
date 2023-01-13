@@ -2,9 +2,10 @@ package Home;
 
 import Device.Device;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Home {
+public class Home implements Serializable {
     private ArrayList<Device> DeviceList = new ArrayList<>();
 
     private String label;

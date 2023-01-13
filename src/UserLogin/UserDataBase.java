@@ -1,10 +1,11 @@
 package UserLogin;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 
-public class UserDataBase {
+public class UserDataBase implements Serializable {
     public static HashMap<String, String> userHashMap;
 
     public UserDataBase(){

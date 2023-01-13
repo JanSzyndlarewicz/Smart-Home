@@ -1,8 +1,9 @@
 package UserLogin;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
-public class UserService {
+public class UserService implements Serializable {
 
     public UserService(){}
 

@@ -1,5 +1,7 @@
 package Control.Color;
 
-public abstract class Color {
+import java.io.Serializable;
+
+public abstract class Color implements Serializable {
 
 }

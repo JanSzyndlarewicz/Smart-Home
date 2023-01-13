@@ -6,10 +6,11 @@ import Observer.Observer;
 import Observable.ExtendedSubject;
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public abstract class Device implements ExtendedSubject, Observer{
+public abstract class Device implements ExtendedSubject, Observer, Serializable {
 
     final private int MAX_NUMBER_OF_PROPERTIES = 1000;
     private DeviceProperty [] properties = new DeviceProperty[MAX_NUMBER_OF_PROPERTIES];

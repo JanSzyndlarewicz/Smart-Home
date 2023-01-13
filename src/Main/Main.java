@@ -4,10 +4,9 @@ import Device.Bulb.BulbOneColor;
 import Device.Bulb.BulbRGBW;
 import Device.Sensor.*;
 import Home.Home;
+import Serialization.Serialization;
 import UserLogin.UserDataBase;
 import UserLogin.UserService;
-
-import java.util.regex.MatchResult;
 
 import static Main.UserFunc.*;
 
@@ -50,6 +49,16 @@ public class Main {
         //System.out.println(home.getDeviceList().get(1));
         printDeviceObservers(home);
 
+
+
+        //Serializacja
+        Serialization.serialize(home);
+        Serialization.deserialize();
+        System.out.println(Serialization.getDeserializedHome());
+        ///////////////////////////////////////////////////
+
+
+        //Logowanie
         UserDataBase userDataBase = new UserDataBase();
         UserService userService = new UserService();
         UserService.userRegistration();
