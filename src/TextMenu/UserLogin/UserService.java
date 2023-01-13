@@ -1,4 +1,4 @@
-package UserLogin;
+package TextMenu.UserLogin;
 
 import java.io.Serializable;
 import java.util.Scanner;

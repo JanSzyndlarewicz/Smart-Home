@@ -7,8 +7,9 @@ import java.util.ArrayList;
 
 public class Home implements Serializable {
     private ArrayList<Device> DeviceList = new ArrayList<>();
-
     private String label;
+    private String login;
+
 
     public Home(String label) {
         this.label = label;
@@ -49,6 +50,14 @@ public class Home implements Serializable {
 
     public void setLabel(String label) {
         this.label = label;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     @Override

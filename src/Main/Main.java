@@ -5,10 +5,10 @@ import Device.Bulb.BulbRGBW;
 import Device.Sensor.*;
 import Home.Home;
 import Serialization.Serialization;
-import UserLogin.UserDataBase;
-import UserLogin.UserService;
+import TextMenu.UserLogin.UserDataBase;
+import TextMenu.UserLogin.UserService;
 
-import static Main.UserFunc.*;
+import static TextMenu.UserFunc.*;
 
 
 public class Main {

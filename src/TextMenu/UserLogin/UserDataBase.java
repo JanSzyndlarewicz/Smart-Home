@@ -1,7 +1,6 @@
-package UserLogin;
+package TextMenu.UserLogin;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 
