@@ -1,6 +1,5 @@
 package Hub;
 
-import DeviceProperty.DeviceProperty;
 import Observable.Subject;
 import Observer.Observer;
 
@@ -8,10 +7,10 @@ import java.util.ArrayList;
 
 
 public abstract class Routine implements Subject,Observer{
-private String outputProperty, outputValue;
+protected String outputProperty, outputValue;
     private ArrayList<Observer> observerList = new ArrayList<>();
 
-    public Routine(Subject input, Observer output, String inputProperty, String outputProperty, String outputValue) {
+    public Routine(Subject input, Observer output, String outputProperty, String outputValue) {
         input.registerObserver(this);
         registerObserver(output);
         this.outputProperty=outputProperty;
@@ -25,7 +24,7 @@ private String outputProperty, outputValue;
     }
 
     @Override
-    public void notifyObservers(DeviceProperty deviceProperty) {
+    public void notifyObservers(String outputProperty, String outputValue) {
         for (Observer observer : observerList) {
             observer.update(outputProperty, outputValue);
         }

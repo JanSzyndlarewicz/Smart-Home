@@ -6,7 +6,7 @@ import java.util.Objects;
 public abstract class Device {
 
     final private int MAX_NUMBER_OF_PROPERTIES = 1000;
-    private DeviceProperty[] properties = new DeviceProperty[MAX_NUMBER_OF_PROPERTIES];
+    protected DeviceProperty[] properties = new DeviceProperty[MAX_NUMBER_OF_PROPERTIES];
     private int propertiesCount = 0;
     private String alias;
 
@@ -110,5 +110,9 @@ public abstract class Device {
         for (int i = 0; i < propertiesCount; i++)
             res.append("\n\t\t").append(properties[i].toString());
         return res.toString();
+    }
+
+    public void run() {
+
     }
 }

@@ -4,6 +4,10 @@ import Device.Bulb.BulbOneColor;
 import Device.Bulb.BulbRGBW;
 import Device.Sensor.*;
 import Home.Home;
+import Hub.Routine;
+import Hub.ToggleToToggleRoutine;
+import Observable.Subject;
+import Observer.Observer;
 
 
 public class Main {
@@ -29,6 +33,8 @@ public class Main {
         home.addDevice(new TemperatureSensor("TemperatureSensor_Outdoors"));
         home.addDevice(new TemperatureSensor("TemperatureSensor_Indoor_temp"));
         System.out.println(home.getDeviceList());
+
+        Routine test1routine = new ToggleToToggleRoutine((Subject) home.getDevice("SmokeSensor_Kitchen"), (Observer) home.getDevice("BulbOneColor_Inside_livingroom"), "Is turned on", "1");
 
     }
 }

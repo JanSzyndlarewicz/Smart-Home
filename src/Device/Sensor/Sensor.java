@@ -1,11 +1,49 @@
 package Device.Sensor;
 
 import Device.Device;
+import Observable.Subject;
+import Observer.Observer;
 
-public abstract class Sensor extends Device {
+import java.util.ArrayList;
+
+public abstract class Sensor extends Device implements Subject{
+
+    private ArrayList<Observer> observerList = new ArrayList<>();
     public Sensor(String alias){
         super(alias);
     }
 
+    public ArrayList<Observer> getObserverList() {
+        return observerList;
+    }
+
+    @Override
+    public void notifyObservers(String outputProperty, String outputValue) {
+        for (Observer observer : observerList) {
+            observer.update(outputProperty, outputValue);
+        }
+    }
+
+    @Override
+    public void removeObserver(Observer observer) {
+        observerList.remove(observer);
+    }
+
+    @Override
+    public void registerObserver(Observer observer) {
+        observerList.add(observer);
+    }
+
+    @Override
+    public void run(){
+        while(true){
+            try {
+                Thread.sleep(500);
+            }catch (Exception ex){}
+
+
+
+        }
+    }
 
 }

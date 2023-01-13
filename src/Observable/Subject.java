@@ -1,6 +1,5 @@
 package Observable;
 
-import DeviceProperty.DeviceProperty;
 import Observer.Observer;
 
 import java.util.ArrayList;
@@ -11,5 +10,5 @@ public interface Subject {
     void registerObserver(Observer observer);
 
     void removeObserver(Observer observer);
-    void notifyObservers(DeviceProperty deviceProperty);
+    void notifyObservers(String outputProperty, String outputValue);
 }

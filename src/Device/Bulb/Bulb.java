@@ -1,9 +1,9 @@
 package Device.Bulb;
 
-import Device.Device;
+import Device.OutputDevice;
 import DeviceProperty.*;
 
-public abstract class Bulb extends Device {
+public abstract class Bulb extends OutputDevice{
 
     public Bulb(String alias) {
         super(alias);

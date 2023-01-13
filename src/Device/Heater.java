@@ -2,7 +2,7 @@ package Device;
 import DeviceProperty.DevicePropertySlider;
 import DeviceProperty.DevicePropertyToggle;
 
-public class Heater extends Device {
+public class Heater extends OutputDevice {
 
 	public Heater(String alias) {
 		super(alias);
