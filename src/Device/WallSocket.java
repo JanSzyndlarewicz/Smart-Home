@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import DeviceProperty.DevicePropertyToggle;
 import Observable.ExtendedSubject;
 
-public class WallSocket extends Device {
+public class WallSocket extends OutputDevice {
 
 	public WallSocket(String alias) {
 		super(alias);
