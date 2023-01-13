@@ -11,7 +11,11 @@ public abstract class Routine implements Subject,Observer{
 private String outputProperty, outputValue;
     private ArrayList<Observer> observerList = new ArrayList<>();
 
-    public Routine(Subject input, Observer output) {
+    public Routine(Subject input, Observer output, String inputProperty, String outputProperty, String outputValue) {
+        input.registerObserver(this);
+        registerObserver(output);
+        this.outputProperty=outputProperty;
+        this.outputValue=outputValue;
 
     }
 

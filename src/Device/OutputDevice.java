@@ -10,6 +10,6 @@ public abstract class OutputDevice extends Device implements Observer{
 
     @Override
     public void update(String propertyName, String newValueForProperty) {
-        getProperies()
+        setProperty(propertyName, newValueForProperty);
     }
 }
