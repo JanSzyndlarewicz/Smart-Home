@@ -6,8 +6,9 @@ import Observer.Observer;
 
 import java.util.ArrayList;
 
-public abstract class Routine implements Subject,Observer{
 
+public abstract class Routine implements Subject,Observer{
+private String outputProperty, outputValue;
     private ArrayList<Observer> observerList = new ArrayList<>();
 
     public Routine(Subject input, Observer output) {
@@ -22,7 +23,7 @@ public abstract class Routine implements Subject,Observer{
     @Override
     public void notifyObservers(DeviceProperty deviceProperty) {
         for (Observer observer : observerList) {
-            observer.update(deviceProperty);
+            observer.update(outputProperty, outputValue);
         }
     }
 

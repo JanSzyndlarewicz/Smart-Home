@@ -1,6 +1,4 @@
 package Device;
-
-import java.util.ArrayList;
 import DeviceProperty.DevicePropertyToggle;
 
 public class WallSocket extends OutputDevice {

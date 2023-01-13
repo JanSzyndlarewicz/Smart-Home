@@ -1,6 +1,4 @@
 package Device;
-
-import java.util.ArrayList;
 import DeviceProperty.DevicePropertySlider;
 import DeviceProperty.DevicePropertyToggle;
 

@@ -1,8 +1,6 @@
 package Device;
 
 import DeviceProperty.*;
-import Control.Color.Color;
-import Observer.Observer;
 import java.util.Objects;
 
 public abstract class Device {
@@ -58,29 +56,10 @@ public abstract class Device {
         System.err.println("Error! Specified property does not exist. Aborting");
     }
 
-    public void setProperty(String name, Color value) {
-        for (int i = 0; i < propertiesCount; i++) {
-            if (Objects.equals(properties[i].getName(), name)) {
-                if (!Objects.equals(properties[i].getType(), "Color")) {
-                    System.err.println("Error! Types mismatch. Cannot assign color to DeviceProperty"
-                            + properties[i].getType() + "! Aborting");
-                    return;
-                }
-                ((DevicePropertyColor) properties[i]).set(value);
-                return;
-            }
-        }
-        System.err.println("Error! Specified property does not exist. Aborting");
-    }
-
     public void setProperty(String name, String value) {
         for (int i = 0; i < propertiesCount; i++) {
             if (Objects.equals(properties[i].getName(), name)) {
                 switch (properties[i].getType()) {
-                    case "Color":
-                        ((DevicePropertyColor) properties[i]).set();
-                        break;
-
                     case "Slider":
                         ((DevicePropertySlider) properties[i]).set(Double.valueOf(value));
                         break;
