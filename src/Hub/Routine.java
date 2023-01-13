@@ -11,7 +11,7 @@ public abstract class Routine implements Subject,Observer{
     private ArrayList<Observer> observerList = new ArrayList<>();
 
     public Routine(Subject input, Observer output) {
-        
+
     }
 
     @Override
@@ -37,5 +37,5 @@ public abstract class Routine implements Subject,Observer{
     }
 
     @Override
-    public void update(DeviceProperty deviceProperty) {}
+    public void update(String propertyName, String newValueForProperty) {}
 }
