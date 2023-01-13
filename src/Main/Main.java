@@ -4,8 +4,12 @@ import Device.Bulb.BulbOneColor;
 import Device.Bulb.BulbRGBW;
 import Device.Sensor.*;
 import Home.Home;
+import View.MainFrame;
 
 import static Main.UserFunc.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Main {
@@ -45,7 +49,15 @@ public class Main {
         //System.out.println(home.getDeviceList().get(1));
         printDeviceObservers(home);
 
-
+        MainFrame mainFrame = new MainFrame();
 
     }
+    public static List getListToGui() { // potem to usune, na chwile obecna nie wiem gdzie to powinno byc
+		ArrayList<String> locations = new ArrayList<String>();
+		locations.add("Kitchen");
+		locations.add("Garden");
+		locations.add("Room1");
+		locations.add("Add Location");
+		return locations;
+	}
 }
