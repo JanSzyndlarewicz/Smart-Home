@@ -10,6 +10,10 @@ public class DevicePropertyColor extends DeviceProperty {
         this.value = value;
     }
 
+    public Color getValue(){
+        return this.value;
+    }
+
     public Color get() {
         return this.value;
     }

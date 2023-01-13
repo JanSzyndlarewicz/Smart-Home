@@ -8,6 +8,10 @@ public class DevicePropertySlider extends DeviceProperty {
         this.value = value;
     }
 
+    public Double getValue(){
+        return this.value;
+    }
+
     public double get() {
         return this.value;
     }

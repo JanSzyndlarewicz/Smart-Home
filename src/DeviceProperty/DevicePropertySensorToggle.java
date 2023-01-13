@@ -9,6 +9,10 @@ public class DevicePropertySensorToggle extends DeviceProperty {
         value = false;
     }
 
+    public Boolean getValue(){
+        return this.value;
+    }
+
     public boolean get() {
         return this.value;
     }
