@@ -8,7 +8,7 @@ import Serialization.Serialization;
 import TextMenu.UserLogin.UserLoginBase;
 import TextMenu.UserLogin.UserService;
 import User.UserDataBase;
-import View.MainFrame;
+//import View.MainFrame;
 
 import static TextMenu.UserFunc.*;
 
@@ -54,7 +54,7 @@ public class Main {
         //System.out.println(home.getDeviceList().get(1));
         printDeviceObservers(home);
 
-        MainFrame mainFrame = new MainFrame();
+
 
 
         ///////////////////////////////////////////////////

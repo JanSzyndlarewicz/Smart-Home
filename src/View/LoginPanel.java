@@ -60,7 +60,7 @@ public class LoginPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// this will be different in final version
-				MainFrame.switchToFrame2();
+			//	MainFrame.switchToFrame2();
 
 			}
 		});
