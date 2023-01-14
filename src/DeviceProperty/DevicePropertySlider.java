@@ -1,11 +1,20 @@
 package DeviceProperty;
 
 public class DevicePropertySlider extends DeviceProperty {
-    private double value;
+    private double value, min, max;
 
     public DevicePropertySlider(String name, double value) {
         super(name, "Slider");
         this.value = value;
+        this.min = Double.MIN_VALUE;
+        this.max = Double.MAX_VALUE;
+    }
+
+    public DevicePropertySlider(String name, double value, double min, double max){
+        super(name, "Slider");
+        this.value=value;
+        this.min=min;
+        this.max=max;
     }
 
     public double get() {
@@ -13,7 +22,14 @@ public class DevicePropertySlider extends DeviceProperty {
     }
 
     public void set(double value) {
-        this.value = value;
+        if(value<min){
+            this.value = min;
+        } else if (value>max) {
+            this.value = max;
+        } else {
+            this.value = value;
+        }
+
     }
 
     public String getValueString() {
