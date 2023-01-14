@@ -8,6 +8,16 @@ import Hub.Routine;
 import Hub.ToggleToToggleRoutine;
 import Observable.Subject;
 import Observer.Observer;
+import Serialization.Serialization;
+import TextMenu.UserLogin.UserLoginBase;
+import TextMenu.UserLogin.UserService;
+import User.UserDataBase;
+import View.MainFrame;
+
+import static TextMenu.UserFunc.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Main {
@@ -32,9 +42,40 @@ public class Main {
         home.addDevice(new MotionSensor("MotionSensor_Driveway"));
         home.addDevice(new TemperatureSensor("TemperatureSensor_Outdoors"));
         home.addDevice(new TemperatureSensor("TemperatureSensor_Indoor_temp"));
-        System.out.println(home.getDeviceList());
+        //System.out.println(home.getDeviceList());
 
         Routine test1routine = new ToggleToToggleRoutine((Subject) home.getDevice("SmokeSensor_Kitchen"), (Observer) home.getDevice("BulbOneColor_Inside_livingroom"), "Is turned on", "1");
 
+
+        //Logowanie
+       // UserLoginBase userLoginBase = new UserLoginBase();
+        UserService userService = new UserService();
+        UserService.userRegistration();
+        if(UserLoginBase.login("Maciek", "Kok")){
+            System.out.println(UserDataBase.findUser("Maciek"));
+        }
+
+
+        UserLoginBase.register("Daniel", "haslo");
+        UserLoginBase.register("Marek", "dadsa");
+        System.out.println(UserLoginBase.login("XD", "xd"));
+        System.out.println(UserLoginBase.login("Daniel", "haslo"));
+        System.out.println(UserLoginBase.login("Daniiel", "hasło"));
+        System.out.println(UserLoginBase.register("Daniel", "hassło"));
+        System.out.println(UserLoginBase.remove("Marek", "dadsa"));
+        System.out.println(UserLoginBase.login("Marek", "dadsa"));
+
+        //Serializacja
+        Serialization.serialize(new UserDataBase());
+        Serialization.deserialize();
+        System.out.println(Serialization.getDeserializedHome());
     }
+    public static List getListToGui() { // potem to usune, na chwile obecna nie wiem gdzie to powinno byc
+		ArrayList<String> locations = new ArrayList<String>();
+		locations.add("Kitchen");
+		locations.add("Garden");
+		locations.add("Room1");
+		locations.add("Add Location");
+		return locations;
+	}
 }

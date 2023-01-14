@@ -2,23 +2,22 @@ package Device;
 
 import DeviceProperty.*;
 import java.util.Objects;
+import java.io.Serializable;
 
-public abstract class Device {
+public abstract class Device implements Serializable {
 
     final private int MAX_NUMBER_OF_PROPERTIES = 1000;
-    protected DeviceProperty[] properties = new DeviceProperty[MAX_NUMBER_OF_PROPERTIES];
+    private DeviceProperty [] properties = new DeviceProperty[MAX_NUMBER_OF_PROPERTIES];
     private int propertiesCount = 0;
     private String alias;
 
-    public Device(String alias) {
+    public Device(String alias){
         this.alias = alias;
     }
 
     protected void addProperty(DeviceProperty prop) {
         if (propertiesCount == MAX_NUMBER_OF_PROPERTIES) {
-            System.err.printf(
-                    "Error! Property %s (%s) could not be created because parent object reached limit of contained properties. Aborting",
-                    prop.getName(), prop.getType());
+            System.err.printf("Error! Property %s (%s) could not be created because parent object reached limit of contained properties. Aborting", prop.getName(), prop.getType());
             return;
         }
         properties[propertiesCount] = prop;

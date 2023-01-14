@@ -2,12 +2,15 @@ package Home;
 
 import Device.Device;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Home {
+public class Home implements Serializable{
     private ArrayList<Device> deviceList = new ArrayList<>();
 
     private String label;
+    private String login;
+
 
     public Home(String label) {
         this.label = label;
@@ -56,6 +59,14 @@ public class Home {
         }
         System.out.println("To urządzenie nie istnieje");
         return null;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     @Override

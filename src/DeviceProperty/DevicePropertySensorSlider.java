@@ -1,5 +1,7 @@
 package DeviceProperty;
 
+import Control.Color.Color;
+
 public class DevicePropertySensorSlider extends DeviceProperty {
     private double value;
 
@@ -10,6 +12,10 @@ public class DevicePropertySensorSlider extends DeviceProperty {
     }
 
     public double get() {
+        return this.value;
+    }
+
+    public Double getValue(){
         return this.value;
     }
 

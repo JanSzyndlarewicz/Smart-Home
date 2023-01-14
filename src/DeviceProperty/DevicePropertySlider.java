@@ -17,6 +17,10 @@ public class DevicePropertySlider extends DeviceProperty {
         this.max=max;
     }
 
+    public Double getValue(){
+        return this.value;
+    }
+
     public double get() {
         return this.value;
     }
