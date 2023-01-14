@@ -8,8 +8,12 @@ import Serialization.Serialization;
 import TextMenu.UserLogin.UserLoginBase;
 import TextMenu.UserLogin.UserService;
 import User.UserDataBase;
+import View.MainFrame;
 
 import static TextMenu.UserFunc.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Main {
@@ -50,7 +54,7 @@ public class Main {
         //System.out.println(home.getDeviceList().get(1));
         printDeviceObservers(home);
 
-
+        MainFrame mainFrame = new MainFrame();
 
 
         ///////////////////////////////////////////////////
@@ -79,4 +83,12 @@ public class Main {
         Serialization.deserialize();
         System.out.println(Serialization.getDeserializedHome());
     }
+    public static List getListToGui() { // potem to usune, na chwile obecna nie wiem gdzie to powinno byc
+		ArrayList<String> locations = new ArrayList<String>();
+		locations.add("Kitchen");
+		locations.add("Garden");
+		locations.add("Room1");
+		locations.add("Add Location");
+		return locations;
+	}
 }
