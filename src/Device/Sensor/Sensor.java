@@ -34,16 +34,5 @@ public abstract class Sensor extends Device implements Subject{
         observerList.add(observer);
     }
 
-    @Override
-    public void run(){
-        while(true){
-            try {
-                Thread.sleep(500);
-            }catch (Exception ex){}
-
-
-
-        }
-    }
 
 }

@@ -60,16 +60,10 @@ public abstract class Device {
         for (int i = 0; i < propertiesCount; i++) {
             if (Objects.equals(properties[i].getName(), name)) {
                 switch (properties[i].getType()) {
-                    case "Slider":
-                        ((DevicePropertySlider) properties[i]).set(Double.valueOf(value));
-                        break;
-
-                    case "Toggle":
-                        ((DevicePropertyToggle) properties[i]).set(value.charAt(0)=='1' | value=="true" | value=="True");
-                        break;
-
-                    default:
-                        break;
+                    case "Slider" -> ((DevicePropertySlider) properties[i]).set(Double.parseDouble(value));
+                    case "Toggle" -> ((DevicePropertyToggle) properties[i]).set(value.charAt(0) == '1' | value.equals("true") | value.equals("True"));
+                    default -> {
+                    }
                 }
                 return;
             }
@@ -110,9 +104,5 @@ public abstract class Device {
         for (int i = 0; i < propertiesCount; i++)
             res.append("\n\t\t").append(properties[i].toString());
         return res.toString();
-    }
-
-    public void run() {
-
     }
 }
