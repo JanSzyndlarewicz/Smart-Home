@@ -5,7 +5,9 @@ import java.util.Scanner;
 
 public class UserService implements Serializable {
 
-    public UserService(){}
+    public UserService(){
+        UserLoginBase userLoginBase = new UserLoginBase();
+    }
 
     public static void userRegistration(){
         Scanner scanner = new Scanner(System.in);
@@ -16,7 +18,7 @@ public class UserService implements Serializable {
         System.out.print("Enter the password: ");
         String password = scanner.nextLine();
 
-        if(UserDataBase.register(login, password)){
+        if(UserLoginBase.register(login, password)){
             System.out.println("Registration succeeded\n");
         }
         else {
@@ -33,7 +35,7 @@ public class UserService implements Serializable {
         System.out.print("Enter the password: ");
         String password = scanner.nextLine();
 
-        if(UserDataBase.login(login, password)){
+        if(UserLoginBase.login(login, password)){
             System.out.println("Login succeeded\n");
         }
         else {
@@ -50,7 +52,7 @@ public class UserService implements Serializable {
         System.out.print("Enter the password: ");
         String password = scanner.nextLine();
 
-        if(UserDataBase.remove(login, password)){
+        if(UserLoginBase.remove(login, password)){
             System.out.println("Removal succeeded\n");
         }
         else {

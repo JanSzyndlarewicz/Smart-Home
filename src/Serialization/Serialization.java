@@ -1,19 +1,20 @@
 package Serialization;
 
 import Home.Home;
+import User.UserDataBase;
 
 import java.io.*;
 
 public class Serialization {
 
-    private static Home deserializedHome;
+    private static UserDataBase deserializedUserDataBase;
 
 
 
-    public static void serialize(Home home){
-        try (ObjectOutputStream so = new ObjectOutputStream(new FileOutputStream("Serialization.ser")))
+    public static void serialize(UserDataBase userDataBase){
+        try (ObjectOutputStream so = new ObjectOutputStream(new FileOutputStream("UserSerialization.ser")))
         {
-            so.writeObject(home);
+            so.writeObject(userDataBase);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -21,11 +22,9 @@ public class Serialization {
     }
 
     public static void deserialize(){
-        try (ObjectInputStream is = new ObjectInputStream(new FileInputStream("Serialization.ser"))) {
+        try (ObjectInputStream is = new ObjectInputStream(new FileInputStream("UserSerialization.ser"))) {
 
-            Home home = (Home) is.readObject();
-
-            deserializedHome = home;
+            deserializedUserDataBase = (UserDataBase) is.readObject();
 
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
@@ -34,11 +33,11 @@ public class Serialization {
     }
 
 
-    public static Home getDeserializedHome() {
-        return deserializedHome;
+    public static UserDataBase getDeserializedHome() {
+        return deserializedUserDataBase;
     }
 
-    public static void setDeserializedHome(Home dehome) {
-        Serialization.deserializedHome = dehome;
+    public static void setDeserializedHome(UserDataBase userDataBase) {
+        Serialization.deserializedUserDataBase = userDataBase;
     }
 }

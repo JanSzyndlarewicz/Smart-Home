@@ -1,10 +1,13 @@
-package TextMenu.UserLogin;
+package User;
+
+import Home.Home;
 
 import java.io.Serializable;
 
 public class User implements Serializable {
     private String login;
     private String password;
+    private Home home;
 
     public User(String login, String password) {
         this.login = login;
@@ -25,6 +28,14 @@ public class User implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Home getHome() {
+        return home;
+    }
+
+    public void setHome(Home home) {
+        this.home = home;
     }
 
     @Override

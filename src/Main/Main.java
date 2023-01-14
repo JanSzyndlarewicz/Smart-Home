@@ -5,8 +5,9 @@ import Device.Bulb.BulbRGBW;
 import Device.Sensor.*;
 import Home.Home;
 import Serialization.Serialization;
-import TextMenu.UserLogin.UserDataBase;
+import TextMenu.UserLogin.UserLoginBase;
 import TextMenu.UserLogin.UserService;
+import User.UserDataBase;
 
 import static TextMenu.UserFunc.*;
 
@@ -51,27 +52,31 @@ public class Main {
 
 
 
-        //Serializacja
-        Serialization.serialize(home);
-        Serialization.deserialize();
-        System.out.println(Serialization.getDeserializedHome());
+
         ///////////////////////////////////////////////////
 
 
         //Logowanie
-        UserDataBase userDataBase = new UserDataBase();
+       // UserLoginBase userLoginBase = new UserLoginBase();
         UserService userService = new UserService();
         UserService.userRegistration();
-        UserService.userLogin();
-        UserDataBase.register("Daniel", "haslo");
-        UserDataBase.register("Marek", "dadsa");
-        System.out.println(UserDataBase.login("XD", "xd"));
-        System.out.println(UserDataBase.login("Daniel", "haslo"));
-        System.out.println(UserDataBase.login("Daniiel", "hasło"));
-        System.out.println(UserDataBase.register("Daniel", "hassło"));
-        System.out.println(UserDataBase.remove("Marek", "dadsa"));
-        System.out.println(UserDataBase.login("Marek", "dadsa"));
+        if(UserLoginBase.login("Maciek", "Kok")){
+            System.out.println(UserDataBase.findUser("Maciek"));
+        }
 
 
+        UserLoginBase.register("Daniel", "haslo");
+        UserLoginBase.register("Marek", "dadsa");
+        System.out.println(UserLoginBase.login("XD", "xd"));
+        System.out.println(UserLoginBase.login("Daniel", "haslo"));
+        System.out.println(UserLoginBase.login("Daniiel", "hasło"));
+        System.out.println(UserLoginBase.register("Daniel", "hassło"));
+        System.out.println(UserLoginBase.remove("Marek", "dadsa"));
+        System.out.println(UserLoginBase.login("Marek", "dadsa"));
+
+        //Serializacja
+        Serialization.serialize(new UserDataBase());
+        Serialization.deserialize();
+        System.out.println(Serialization.getDeserializedHome());
     }
 }
