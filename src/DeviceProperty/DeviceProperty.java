@@ -1,6 +1,8 @@
 package DeviceProperty;
 
-public abstract class DeviceProperty {
+import java.io.Serializable;
+
+public abstract class DeviceProperty implements Serializable {
     private String name, type;
     
     public DeviceProperty(String name, String type) {
@@ -18,6 +20,8 @@ public abstract class DeviceProperty {
     }
 
     public abstract String getValueString();
+
+    public abstract <T> T getValue();
 
 
     public String toString() {

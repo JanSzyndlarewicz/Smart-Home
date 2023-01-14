@@ -4,9 +4,13 @@ import Device.Bulb.BulbOneColor;
 import Device.Bulb.BulbRGBW;
 import Device.Sensor.*;
 import Home.Home;
+import Serialization.Serialization;
+import TextMenu.UserLogin.UserLoginBase;
+import TextMenu.UserLogin.UserService;
+import User.UserDataBase;
 import View.MainFrame;
 
-import static Main.UserFunc.*;
+import static TextMenu.UserFunc.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,9 +38,10 @@ public class Main {
         home.addDevice(new MotionSensor("MotionSensor_Driveway"));
         home.addDevice(new TemperatureSensor("TemperatureSensor_Outdoors"));
         home.addDevice(new TemperatureSensor("TemperatureSensor_Indoor_temp"));
-        System.out.println(home.getDeviceList());
+        //System.out.println(home.getDeviceList());
 
-//        printDevicesAlias(home);
+
+        printDevicesAlias(home);
 
         //printDeviceObserver(home, 0);
 
@@ -51,6 +56,32 @@ public class Main {
 
         MainFrame mainFrame = new MainFrame();
 
+
+        ///////////////////////////////////////////////////
+
+
+        //Logowanie
+       // UserLoginBase userLoginBase = new UserLoginBase();
+        UserService userService = new UserService();
+        UserService.userRegistration();
+        if(UserLoginBase.login("Maciek", "Kok")){
+            System.out.println(UserDataBase.findUser("Maciek"));
+        }
+
+
+        UserLoginBase.register("Daniel", "haslo");
+        UserLoginBase.register("Marek", "dadsa");
+        System.out.println(UserLoginBase.login("XD", "xd"));
+        System.out.println(UserLoginBase.login("Daniel", "haslo"));
+        System.out.println(UserLoginBase.login("Daniiel", "hasło"));
+        System.out.println(UserLoginBase.register("Daniel", "hassło"));
+        System.out.println(UserLoginBase.remove("Marek", "dadsa"));
+        System.out.println(UserLoginBase.login("Marek", "dadsa"));
+
+        //Serializacja
+        Serialization.serialize(new UserDataBase());
+        Serialization.deserialize();
+        System.out.println(Serialization.getDeserializedHome());
     }
     public static List getListToGui() { // potem to usune, na chwile obecna nie wiem gdzie to powinno byc
 		ArrayList<String> locations = new ArrayList<String>();

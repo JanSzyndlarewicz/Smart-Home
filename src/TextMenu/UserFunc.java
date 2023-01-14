@@ -1,4 +1,4 @@
-package Main;
+package TextMenu;
 
 import Device.Device;
 import Home.Home;

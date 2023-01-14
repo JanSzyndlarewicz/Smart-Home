@@ -5,7 +5,7 @@ import Observer.Observer;
 
 import java.util.ArrayList;
 
-public interface ExtendedSubject  {
+public interface ExtendedSubject {
 
     ArrayList<Observer> getObserverList();
 

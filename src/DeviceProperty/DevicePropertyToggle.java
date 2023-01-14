@@ -13,6 +13,10 @@ public class DevicePropertyToggle extends DeviceProperty {
         return this.value;
     }
 
+    public Boolean getValue(){
+        return this.value;
+    }
+
     public boolean get() {
         return this.value;
     }
