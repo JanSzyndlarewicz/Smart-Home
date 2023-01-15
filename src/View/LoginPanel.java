@@ -1,16 +1,12 @@
 package View;
 
+import TextMenu.UserLogin.UserLoginBase;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 public class LoginPanel extends JFrame {
 	private JPanel panel;
@@ -108,8 +104,15 @@ public class LoginPanel extends JFrame {
 		setVisible(true);
 	}
 	private void loginButtonActionPerformed() {
+
+		if(UserLoginBase.login(loginTextField.getText(), new String(passTextField.getPassword()))){
+			dispose();
+		}
+		else{
+			JOptionPane.showMessageDialog(null, "Nieprawidłowe hasło", "", JOptionPane.ERROR_MESSAGE);
+		}
 		// stuff
-		dispose();
+
 	}
 
 }

@@ -4,6 +4,8 @@
  */
 package View;
 
+import TextMenu.UserLogin.UserLoginBase;
+
 import java.awt.event.ActionEvent;
 
 /**
@@ -497,7 +499,10 @@ public class NaprawdeMainFrame extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-      new NaprawdeMainFrame().setVisible(true);
+
+        UserLoginBase userLoginBase = new UserLoginBase();
+        UserLoginBase.register("Daniel", "haslo");
+        new NaprawdeMainFrame().setVisible(true);
     }
 
     // Variables declaration - do not modify
