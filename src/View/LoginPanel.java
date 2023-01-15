@@ -1,17 +1,15 @@
 package View;
 
+import TextMenu.UserLogin.UserLoginBase;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
+import javax.swing.*;
 
-public class LoginPanel extends JPanel {
+public class LoginPanel extends JFrame {
+	private JPanel panel;
 	private static JButton loginButton;
 	private static JLabel welcomeMess;
 	private static JLabel loginLabel;
@@ -30,6 +28,7 @@ public class LoginPanel extends JPanel {
 	}
 
 	private void initialize() {
+		panel = new JPanel();
 		loginButton = new JButton("Login");
 		welcomeMess = new JLabel("Login Page");
 		loginLabel = new JLabel("Login: ");
@@ -44,8 +43,8 @@ public class LoginPanel extends JPanel {
 		designPanelColor = new Color(139, 42, 163);
 
 		//
-		setLayout(null);
-		setBackground(new Color(223, 237, 245));
+		panel.setLayout(null);
+		panel.setBackground(new Color(223, 237, 245));
 		//
 		hidePassword.addActionListener(new ActionListener() {
 			@Override
@@ -59,8 +58,7 @@ public class LoginPanel extends JPanel {
 		loginButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// this will be different in final version
-				MainFrame.switchToFrame2();
+				loginButtonActionPerformed();
 
 			}
 		});
@@ -87,17 +85,34 @@ public class LoginPanel extends JPanel {
 		passTextField.setBounds(150, 250, 175, 25);
 		hidePassword.setBounds(325, 250, 25, 25);
 		//
-		add(designPanel1);
-		add(designPanel2);
-		add(designPanel3);
-		add(designPanel4);
-		add(loginLabel);
-		add(loginTextField);
-		add(passLabel);
-		add(passTextField);
-		add(loginButton);
-		add(welcomeMess);
-		add(hidePassword);
+		panel.add(designPanel1);
+		panel.add(designPanel2);
+		panel.add(designPanel3);
+		panel.add(designPanel4);
+		panel.add(loginLabel);
+		panel.add(loginTextField);
+		panel.add(passLabel);
+		panel.add(passTextField);
+		panel.add(loginButton);
+		panel.add(welcomeMess);
+		panel.add(hidePassword);
+		add(panel);
+
+		setSize(500, 500);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setResizable(false);
+		setVisible(true);
+	}
+	private void loginButtonActionPerformed() {
+
+		if(UserLoginBase.login(loginTextField.getText(), new String(passTextField.getPassword()))){
+			dispose();
+		}
+		else{
+			JOptionPane.showMessageDialog(null, "Nieprawidłowe hasło", "", JOptionPane.ERROR_MESSAGE);
+		}
+		// stuff
+
 	}
 
 }

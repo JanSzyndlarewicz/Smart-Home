@@ -6,7 +6,7 @@ import javax.swing.JPanel;
 public class MainFrame {
 	private static JFrame mainFrame;
 	private static JFrame mainFrame2;
-	private static JPanel loginPanel = new LoginPanel();
+	private static JPanel loginPanel = new JPanel();
 	private static JPanel addDevPanel = new AddDevicePanel();
 
 	public MainFrame() {
@@ -17,7 +17,7 @@ public class MainFrame {
 		// initializing objects
 		mainFrame = new JFrame();
 		mainFrame2 = new JFrame();
-		loginPanel = new LoginPanel();
+		loginPanel = new JPanel();
 		addDevPanel = new AddDevicePanel();
 		// configuring options
 		mainFrame.setTitle("Smart Home");
