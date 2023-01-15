@@ -2,7 +2,7 @@ package Device;
 
 import DeviceProperty.DevicePropertyToggle;
 
-public class Gate extends Device{
+public class Gate extends OutputDevice{
 
 
     public Gate(String alias) {

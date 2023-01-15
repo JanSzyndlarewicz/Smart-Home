@@ -1,18 +1,24 @@
-package Device.Sensor;
+package Hub;
 
-import Device.Device;
 import Observable.Subject;
 import Observer.Observer;
 
 import java.util.ArrayList;
 
-public abstract class Sensor extends Device implements Subject{
 
+public abstract class Routine implements Subject,Observer{
+protected String outputProperty, outputValue;
     private ArrayList<Observer> observerList = new ArrayList<>();
-    public Sensor(String alias){
-        super(alias);
+
+    public Routine(Subject input, Observer output, String outputProperty, String outputValue) {
+        input.registerObserver(this);
+        registerObserver(output);
+        this.outputProperty=outputProperty;
+        this.outputValue=outputValue;
+
     }
 
+    @Override
     public ArrayList<Observer> getObserverList() {
         return observerList;
     }
@@ -34,5 +40,6 @@ public abstract class Sensor extends Device implements Subject{
         observerList.add(observer);
     }
 
-
+    @Override
+    public void update(String propertyName, String newValueForProperty) {}
 }

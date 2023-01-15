@@ -4,6 +4,10 @@ import Device.Bulb.BulbOneColor;
 import Device.Bulb.BulbRGBW;
 import Device.Sensor.*;
 import Home.Home;
+import Hub.Routine;
+import Hub.ToggleToToggleRoutine;
+import Observable.Subject;
+import Observer.Observer;
 import Serialization.Serialization;
 import TextMenu.UserLogin.UserLoginBase;
 import TextMenu.UserLogin.UserService;
@@ -24,12 +28,12 @@ public class Main {
 
         Home home = new Home("Wroclawska 33");
         home.addDevice(new LightSensor("LightSensor_Outside_frontdoor"));
-        home.addDevice(new BulbRGBW("BulbRBGW_Outside_1", (home.getDeviceList().get(0))));
-        home.addDevice(new BulbOneColor("BulbOneColor_Inside_livingroom", (home.getDeviceList().get(1))));
-        home.addDevice(new BulbRGBW("BulbRGBW_Outside_garden_1",home.getDeviceList().get(0)));
-        home.addDevice(new BulbRGBW("BulbRGBW_Inside_kitchen", (home.getDeviceList().get(0))));
-        home.addDevice(new BulbRGBW("BulbRGBW_Outside_garden_2", (home.getDeviceList().get(0))));
-        home.addDevice(new BulbRGBW("BulbRGBW_Inside_Kitchen_3", home.getDeviceList().get(2)));
+        home.addDevice(new BulbRGBW("BulbRBGW_Outside_1"));
+        home.addDevice(new BulbOneColor("BulbOneColor_Inside_livingroom"));
+        home.addDevice(new BulbRGBW("BulbRGBW_Outside_garden_1"));
+        home.addDevice(new BulbRGBW("BulbRGBW_Inside_kitchen"));
+        home.addDevice(new BulbRGBW("BulbRGBW_Outside_garden_2"));
+        home.addDevice(new BulbRGBW("BulbRGBW_Inside_Kitchen_3"));
         home.addDevice(new LightSensor("LightSensor_Outside_2"));
         home.addDevice(new GasSensor("GasSensor_Kitchen"));
         home.addDevice(new SmokeSensor("SmokeSensor_Kitchen"));
@@ -40,24 +44,7 @@ public class Main {
         home.addDevice(new TemperatureSensor("TemperatureSensor_Indoor_temp"));
         //System.out.println(home.getDeviceList());
 
-
-        printDevicesAlias(home);
-
-        //printDeviceObserver(home, 0);
-
-
-        home.getDeviceList().get(0).setProperty("Brightness", 0.49);
-        //home.getDeviceList().get(5).registerObserver(home.getDeviceList().get(4));
-        registerObserver(home.getDeviceList().get(6), home.getDeviceList().get(5));
-        removeObserver(home.getDeviceList().get(6), home.getDeviceList().get(5));
-        //System.out.println(home.getDeviceList().get(0));
-        //System.out.println(home.getDeviceList().get(1));
-        printDeviceObservers(home);
-
-        MainFrame mainFrame = new MainFrame();
-
-
-        ///////////////////////////////////////////////////
+        Routine test1routine = new ToggleToToggleRoutine((Subject) home.getDevice("SmokeSensor_Kitchen"), (Observer) home.getDevice("BulbOneColor_Inside_livingroom"), "Is turned on", "1");
 
 
         //Logowanie

@@ -5,8 +5,9 @@ import Device.Device;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Home implements Serializable {
-    private ArrayList<Device> DeviceList = new ArrayList<>();
+public class Home implements Serializable{
+    private ArrayList<Device> deviceList = new ArrayList<>();
+
     private String label;
     private String login;
 
@@ -16,12 +17,12 @@ public class Home implements Serializable {
     }
 
     public void addDevice(Device device){
-        DeviceList.add(device);
+        deviceList.add(device);
     }
 
     public void removeDevice(Device device){
-        if(DeviceList.contains(device)){
-            DeviceList.remove(device);
+        if(deviceList.contains(device)){
+            deviceList.remove(device);
         }
         else{
             System.err.println("The specified device is not registered in the system!");
@@ -29,19 +30,19 @@ public class Home implements Serializable {
     }
 
     public void removeDevice(String alias){
-        for(int i=0; i< DeviceList.size(); i++){
-            if(alias.equals(DeviceList.get(i).getAlias())){
-                DeviceList.remove(i);
+        for(int i=0; i< deviceList.size(); i++){
+            if(alias.equals(deviceList.get(i).getAlias())){
+                deviceList.remove(i);
             }
         }
     }
 
     public String getDeviceListString(){
-        return DeviceList.toString();
+        return deviceList.toString();
     }
 
     public ArrayList<Device> getDeviceList(){
-        return DeviceList;
+        return deviceList;
     }
 
     public String getLabel() {
@@ -50,6 +51,14 @@ public class Home implements Serializable {
 
     public void setLabel(String label) {
         this.label = label;
+    }
+
+    public Device getDevice(String alias) {
+        for(int i=0; i<deviceList.size(); i++) {
+            if(deviceList.get(i).getAlias() == alias) return deviceList.get(i);
+        }
+        System.out.println("To urządzenie nie istnieje");
+        return null;
     }
 
     public String getLogin() {
@@ -63,7 +72,7 @@ public class Home implements Serializable {
     @Override
     public String toString() {
         return "Home{" +
-                "DeviceList=" + DeviceList +
+                "DeviceList=" + deviceList +
                 ", label='" + label + '\'' +
                 '}';
     }
