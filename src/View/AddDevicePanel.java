@@ -79,8 +79,7 @@ public class AddDevicePanel extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(panel,"The Device was added successfully (NOT YET)");
-				dispose();
+				addButtonActionPerformed();
 			}
 			
 		});
@@ -114,6 +113,10 @@ public class AddDevicePanel extends JFrame {
 
 		return Main.getListToGui();
 
+	}
+	private void addButtonActionPerformed() {
+		JOptionPane.showMessageDialog(panel,"The Device was added successfully.");
+		dispose();
 	}
 	
 }

@@ -79,5 +79,6 @@ public class DebugConditionFrame extends JFrame{
 		setVisible(true);
 		
 	}
+	
 
 }

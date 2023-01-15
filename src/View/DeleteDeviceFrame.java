@@ -33,11 +33,7 @@ public class DeleteDeviceFrame extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				int result = JOptionPane.showConfirmDialog(panel, "Are you sure that you want to delete " + deviceList.getSelectedItem(), "Deletion", JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
-				if(result == JOptionPane.YES_OPTION){
-		             JOptionPane.showMessageDialog(panel, "Device deleted successfully");  
-		            dispose();
-		            }
+				deleteDeviceActionPerformed();
 			}
 			
 		});
@@ -61,6 +57,13 @@ public class DeleteDeviceFrame extends JFrame{
 		devList.add("Device2");
 		devList.add("Device3");
 		return devList;
+	}
+	private void deleteDeviceActionPerformed() {
+		int result = JOptionPane.showConfirmDialog(panel, "Are you sure that you want to delete " + deviceList.getSelectedItem(), "Deletion", JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+		if(result == JOptionPane.YES_OPTION){
+             JOptionPane.showMessageDialog(panel, "Device deleted successfully");  
+            dispose();
+            }
 	}
 	
 }

@@ -4,6 +4,8 @@
  */
 package View;
 
+import java.awt.event.ActionEvent;
+
 /**
  *
  * @author karol
@@ -347,7 +349,7 @@ public class NaprawdeMainFrame extends javax.swing.JFrame {
         jMenuItem4.setText("Account settings");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
+                AccountSettingsActionPerformed(evt);
             }
         });
         jMenu1.add(jMenuItem4);
@@ -366,6 +368,11 @@ public class NaprawdeMainFrame extends javax.swing.JFrame {
 
 
         jMenuItem3.setText("Routine");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener(){
+        	public void actionPerformed(java.awt.event.ActionEvent evt) {
+        		AddRoutineActionPerformed(evt);
+        	}
+        });
         jMenu2.add(jMenuItem3);
 
         jMenuItem1.setText("Location");
@@ -381,6 +388,11 @@ public class NaprawdeMainFrame extends javax.swing.JFrame {
         jMenu3.setText("Delete");
 
         jMenuItem6.setText("Device");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+        	public void actionPerformed(java.awt.event.ActionEvent evt) {
+        		DeleteDeviceActionPerformed();
+        	}
+        });
         jMenu3.add(jMenuItem6);
 
         jMenuItem7.setText("Routine");
@@ -427,7 +439,11 @@ public class NaprawdeMainFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>
 
-    private void DeviceTableMouseClicked(java.awt.event.MouseEvent evt) {
+    
+
+	
+
+	private void DeviceTableMouseClicked(java.awt.event.MouseEvent evt) {
         // TODO add your handling code here:
     }
 
@@ -455,8 +471,8 @@ public class NaprawdeMainFrame extends javax.swing.JFrame {
         SidePanel.revalidate();  // TODO add your handling code here:
     }
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+    private void AccountSettingsActionPerformed(java.awt.event.ActionEvent evt) {
+        new UserSettingsFrame().setVisible(true);
     }
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {
@@ -465,11 +481,16 @@ public class NaprawdeMainFrame extends javax.swing.JFrame {
     private void AddDeviceActionPerformed(java.awt.event.ActionEvent evt) {
         System.out.println("ESDSA");
         new AddDevicePanel().setVisible(true);
-        new DeleteDeviceFrame().setVisible(true);
-        new DebugConditionFrame().setVisible(true);
-        new UserSettingsFrame().setVisible(true);
+        //new DebugConditionFrame().setVisible(true);
     }
-
+    protected void AddRoutineActionPerformed(ActionEvent evt) {
+		new AddRoutineFrame().setVisible(true);
+		
+	}
+    private void DeleteDeviceActionPerformed() {
+		new DeleteDeviceFrame().setVisible(true);
+		
+	}
 
     /**
      * @param args the command line arguments
