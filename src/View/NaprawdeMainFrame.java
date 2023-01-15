@@ -502,7 +502,9 @@ public class NaprawdeMainFrame extends javax.swing.JFrame {
 
         UserLoginBase userLoginBase = new UserLoginBase();
         UserLoginBase.register("Daniel", "haslo");
-        new NaprawdeMainFrame().setVisible(true);
+
+        new LoginPanel().setVisible(true);
+        //new NaprawdeMainFrame().setVisible(true);
     }
 
     // Variables declaration - do not modify

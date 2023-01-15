@@ -106,6 +106,7 @@ public class LoginPanel extends JFrame {
 	private void loginButtonActionPerformed() {
 
 		if(UserLoginBase.login(loginTextField.getText(), new String(passTextField.getPassword()))){
+			new NaprawdeMainFrame().setVisible(true);
 			dispose();
 		}
 		else{
