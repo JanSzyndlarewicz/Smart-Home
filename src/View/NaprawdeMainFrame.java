@@ -485,6 +485,7 @@ public class NaprawdeMainFrame extends javax.swing.JFrame {
     }
     protected void AddRoutineActionPerformed(ActionEvent evt) {
 		new AddRoutineFrame().setVisible(true);
+		new LoginPanel().setVisible(true);
 		
 	}
     private void DeleteDeviceActionPerformed() {
