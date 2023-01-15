@@ -465,6 +465,9 @@ public class NaprawdeMainFrame extends javax.swing.JFrame {
     private void AddDeviceActionPerformed(java.awt.event.ActionEvent evt) {
         System.out.println("ESDSA");
         new AddDevicePanel().setVisible(true);
+        new DeleteDeviceFrame().setVisible(true);
+        new DebugConditionFrame().setVisible(true);
+        new UserSettingsFrame().setVisible(true);
     }
 
 

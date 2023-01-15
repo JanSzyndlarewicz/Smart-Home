@@ -55,7 +55,7 @@ public class AddDevicePanel extends JFrame {
 		panel = new JPanel();
 //
 		panel.setLayout(null);
-		panel.setBackground(Color.decode("#F6FFF6"));
+		
 		//
 		deviceTypeIOList.addItemListener(new ItemListener() {
 
