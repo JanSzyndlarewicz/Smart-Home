@@ -4,7 +4,10 @@ public class RunShowDevicePropertiesFrame {
 
     public static void main(String[] args) {
 
-        ShowDevicePropertiesFrame devicePropertiesGui = new ShowDevicePropertiesFrame();
+
+//        new MainFrame();
+//        ShowDevicePropertiesFrame devicePropertiesGui = new ShowDevicePropertiesFrame();
+
 
 
         }

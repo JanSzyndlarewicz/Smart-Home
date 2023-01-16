@@ -4,9 +4,10 @@
  */
 package View;
 
+import Device.Device;
 import TextMenu.UserLogin.UserLoginBase;
 
-import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 
 /**
  *
@@ -16,7 +17,16 @@ public class NaprawdeMainFrame extends javax.swing.JFrame {
 
     /**
      * Creates new form DoMeczek
+     *
      */
+    public void RefreshTableData(ArrayList<Device> devices){
+        DeviceTable.setModel(new javax.swing.table.DefaultTableModel(
+                null,
+                new String [] {
+                        "ID", "NAME"
+                }
+        ){public boolean isCellEditable(int row, int column){return false;}});
+    }
     public NaprawdeMainFrame() {
         initComponents();
 
@@ -67,31 +77,21 @@ public class NaprawdeMainFrame extends javax.swing.JFrame {
         CancelButton = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        MainPanelMButton = new javax.swing.JMenuItem();
+        AccountSetMButton = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        AddDevice = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        AddDevMButton = new javax.swing.JMenuItem();
+        AddRoutMButton = new javax.swing.JMenuItem();
+        AddLocMButton = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
+        DelDevMButton = new javax.swing.JMenuItem();
+        DelRoutMButton = new javax.swing.JMenuItem();
+        DelLocMButton = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        DeviceTable.setModel(new javax.swing.table.DefaultTableModel(
-                new Object [][] {
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null}
-                },
-                new String [] {
-                        "Title 1", "Title 2", "Title 3", "Title 4"
-                }
-        ){public boolean isCellEditable(int row, int column){return false;}});
+
         DeviceTable.setFocusable(false);
         DeviceTable.getTableHeader().setReorderingAllowed(false);
         DeviceTable.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -340,73 +340,82 @@ public class NaprawdeMainFrame extends javax.swing.JFrame {
 
         jMenu1.setText("Smart Home");
 
-        jMenuItem5.setText("Main Panel");
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+        MainPanelMButton.setText("Main Panel");
+        MainPanelMButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
+                MainPanelMButtonActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem5);
+        jMenu1.add(MainPanelMButton);
 
-        jMenuItem4.setText("Account settings");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+        AccountSetMButton.setText("Account settings");
+        AccountSetMButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AccountSettingsActionPerformed(evt);
+                AccountSetMButtonActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem4);
+        jMenu1.add(AccountSetMButton);
 
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Add");
-
-        AddDevice.setText("Device");
-        AddDevice.addActionListener(new java.awt.event.ActionListener() {
+        jMenu2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AddDeviceActionPerformed(evt);
+                jMenu2ActionPerformed(evt);
             }
         });
-        jMenu2.add(AddDevice);
 
-
-        jMenuItem3.setText("Routine");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener(){
-        	public void actionPerformed(java.awt.event.ActionEvent evt) {
-        		AddRoutineActionPerformed(evt);
-        	}
-        });
-        jMenu2.add(jMenuItem3);
-
-        jMenuItem1.setText("Location");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        AddDevMButton.setText("Device");
+        AddDevMButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                AddDevMButtonActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem1);
+        jMenu2.add(AddDevMButton);
+
+        AddRoutMButton.setText("Routine");
+        AddRoutMButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddRoutMButtonActionPerformed(evt);
+            }
+        });
+        jMenu2.add(AddRoutMButton);
+
+        AddLocMButton.setText("Location");
+        AddLocMButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddLocMButtonActionPerformed(evt);
+            }
+        });
+        jMenu2.add(AddLocMButton);
 
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Delete");
 
-        jMenuItem6.setText("Device");
-        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
-        	public void actionPerformed(java.awt.event.ActionEvent evt) {
-        		DeleteDeviceActionPerformed();
-        	}
-        });
-        jMenu3.add(jMenuItem6);
-
-        jMenuItem7.setText("Routine");
-        jMenu3.add(jMenuItem7);
-
-        jMenuItem8.setText("Location");
-        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+        DelDevMButton.setText("Device");
+        DelDevMButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem8ActionPerformed(evt);
+                DelDevMButtonActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem8);
+        jMenu3.add(DelDevMButton);
+
+        DelRoutMButton.setText("Routine");
+        DelRoutMButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DelRoutMButtonActionPerformed(evt);
+            }
+        });
+        jMenu3.add(DelRoutMButton);
+
+        DelLocMButton.setText("Location");
+        DelLocMButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DelLocMButtonActionPerformed(evt);
+            }
+        });
+        jMenu3.add(DelLocMButton);
 
         jMenuBar1.add(jMenu3);
 
@@ -441,16 +450,11 @@ public class NaprawdeMainFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>
 
-    
-
-	
-
-	private void DeviceTableMouseClicked(java.awt.event.MouseEvent evt) {
+    private void DeviceTableMouseClicked(java.awt.event.MouseEvent evt) {
         // TODO add your handling code here:
     }
 
     private void DeviceTableMousePressed(java.awt.event.MouseEvent evt) {
-        //       DodajStanowisko Okienkone= new DodajStanowisko();
         SidePanel.removeAll();
         SidePanel.add(DeviceSidePanel);
         SidePanel.repaint();
@@ -462,56 +466,65 @@ public class NaprawdeMainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {
+    private void AddLocMButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     }
 
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {
+    private void MainPanelMButtonActionPerformed(java.awt.event.ActionEvent evt) {
         SidePanel.removeAll();
         SidePanel.add(MainSidePanel);
         SidePanel.repaint();
         SidePanel.revalidate();  // TODO add your handling code here:
     }
 
-    private void AccountSettingsActionPerformed(java.awt.event.ActionEvent evt) {
-        new UserSettingsFrame().setVisible(true);
+    private void AccountSetMButtonActionPerformed(java.awt.event.ActionEvent evt) {
+      new UserSettingsFrame().setVisible(true);
     }
 
-    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {
+    private void DelLocMButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     }
-    private void AddDeviceActionPerformed(java.awt.event.ActionEvent evt) {
-        System.out.println("ESDSA");
-        new AddDevicePanel().setVisible(true);
-        //new DebugConditionFrame().setVisible(true);
-    }
-    protected void AddRoutineActionPerformed(ActionEvent evt) {
-		new AddRoutineFrame().setVisible(true);
-		new LoginPanel().setVisible(true);
-		
-	}
-    private void DeleteDeviceActionPerformed() {
-		new DeleteDeviceFrame().setVisible(true);
-		
-	}
 
-    /**
-     * @param args the command line arguments
-     */
+    private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+    }
+
+    private void AddRoutMButtonActionPerformed(java.awt.event.ActionEvent evt) {
+       new AddRoutineFrame().setVisible(true);
+    }
+
+    private void DelDevMButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        new DeleteDeviceFrame().setVisible(true);
+    }
+
+    private void DelRoutMButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+    }
+    private void AddDevMButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        new AddDeviceFrame().setVisible(true);
+        // TODO add your handling code here:
+    }
     public static void main(String args[]) {
 
-        UserLoginBase userLoginBase = new UserLoginBase();
-        UserLoginBase.register("Daniel", "haslo");
-
-        new LoginPanel().setVisible(true);
+//        UserLoginBase userLoginBase = new UserLoginBase();
+//        UserLoginBase.register("", "");
+//
+//        new LoginFrame().setVisible(true);
         //new NaprawdeMainFrame().setVisible(true);
     }
 
     // Variables declaration - do not modify
-    private javax.swing.JMenuItem AddDevice;
+    private javax.swing.JMenuItem AccountSetMButton;
+    private javax.swing.JMenuItem AddDevMButton;
+    private javax.swing.JMenuItem AddLocMButton;
+    private javax.swing.JMenuItem AddRoutMButton;
     private javax.swing.JButton CancelButton;
+    private javax.swing.JMenuItem DelDevMButton;
+    private javax.swing.JMenuItem DelLocMButton;
+    private javax.swing.JMenuItem DelRoutMButton;
     private javax.swing.JPanel DeviceSidePanel;
     private javax.swing.JTable DeviceTable;
+    private javax.swing.JMenuItem MainPanelMButton;
     private javax.swing.JPanel MainSidePanel;
     private javax.swing.JButton SaveButton;
     private javax.swing.JPanel SidePanel;
@@ -537,13 +550,6 @@ public class NaprawdeMainFrame extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSlider jSlider1;
     private javax.swing.JSlider jSlider2;
