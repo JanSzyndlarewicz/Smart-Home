@@ -1,23 +1,10 @@
 package Device;
-
-import java.util.ArrayList;
 import DeviceProperty.DevicePropertySlider;
-import Observable.ExtendedSubject;
 
-public class Shutter extends Device {
+public class Shutter extends OutputDevice {
 
-	public Shutter(String alias, ExtendedSubject extendedSubjectArrayList) {
-		super(alias, extendedSubjectArrayList);
-
-		addProperty(new DevicePropertySlider("Length", 0));
-		addProperty(new DevicePropertySlider("Angle", 0));
-		addProperty(new DevicePropertySlider("Speed", 0));
-
-	}
-	
-	public Shutter(String alias, ExtendedSubject extendedSubjectArrayList,
-			ArrayList<ArrayList<String>> checkAliasArrayList) {
-		super(alias, extendedSubjectArrayList, checkAliasArrayList);
+	public Shutter(String alias) {
+		super(alias);
 
 		addProperty(new DevicePropertySlider("Length", 0));
 		addProperty(new DevicePropertySlider("Angle", 0));

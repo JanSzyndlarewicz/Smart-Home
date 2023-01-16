@@ -1,13 +1,5 @@
 package View;
 
-import Device.Bulb.BulbOneColor;
-import Device.Bulb.BulbRGBW;
-import Device.Sensor.LightSensor;
-import Home.Home;
-import Main.Test;
-import TextMenu.UserLogin.UserLoginBase;
-import User.UserDataBase;
-
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -103,7 +95,7 @@ public class LoginFrame extends JFrame {
 		panel.add(welcomeMess);
 		panel.add(hidePassword);
 		add(panel);
-		
+
 		setSize(500, 500);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setResizable(false);

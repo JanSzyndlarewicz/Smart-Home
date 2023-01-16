@@ -1,6 +1,5 @@
 package DeviceProperty;
 
-import Control.Color.Color;
 
 public class DevicePropertySensorSlider extends DeviceProperty {
     private double value;
