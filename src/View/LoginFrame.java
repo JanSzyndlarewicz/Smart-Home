@@ -1,6 +1,7 @@
 package View;
 
 import TextMenu.UserLogin.UserLoginBase;
+import User.UserDataBase;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -106,6 +107,7 @@ public class LoginFrame extends JFrame {
 	private void loginButtonActionPerformed() {
 
 		if(UserLoginBase.login(loginTextField.getText(), new String(passTextField.getPassword()))){
+			System.out.println(UserDataBase.findUser("User").getPassword());
 			NaprawdeMainFrame home= new NaprawdeMainFrame();
 			home.setVisible(true);
 			home.RefreshTableData(UserLoginBase.getCurrentUser().getHome().getDeviceList());

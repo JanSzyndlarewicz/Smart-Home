@@ -1,6 +1,7 @@
 package View;
 
 import TextMenu.UserLogin.UserLoginBase;
+import User.UserDataBase;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -48,8 +49,8 @@ public class UserSettingsFrame extends JFrame {
 		deleteAccButton = new JButton("Delete Account");
 		logoutButton = new JButton("Logout");
 		passButton = new JButton("Change");
-		phoneButton = new JButton("Add");
-		mailButton = new JButton("Add");
+		phoneButton = new JButton("Change");
+		mailButton = new JButton("Change");
 		yourAccountLabel = new JLabel("Your Account");
 
 		userPanel.setLayout(null);
@@ -155,10 +156,14 @@ public class UserSettingsFrame extends JFrame {
 			passButton.setText("Save");
 			passField.setEditable(true);
 		}
+
+		TextMenu.UserLogin.UserLoginBase.getCurrentUser().setPassword(passField.getText());
+		System.out.println(TextMenu.UserLogin.UserLoginBase.getCurrentUser().getPassword());
+		System.out.println(UserDataBase.findUser("User").getPassword());
 	}
 
 	private void phoneButtonActionPerformed() {
-		if(phoneField.isEditable()) {
+		/*if(phoneField.isEditable()) {
 			if(phoneField.getText().isBlank()==false)
 				phoneButton.setText("Change");
 			else
@@ -168,21 +173,27 @@ public class UserSettingsFrame extends JFrame {
 		}else {
 			phoneButton.setText("Save");
 			phoneField.setEditable(true);
-		}
+		}*/
+
+		TextMenu.UserLogin.UserLoginBase.getCurrentUser().setPhoneNumber(phoneField.getText());
+
+
 	}
 
 	private void mailButtonActionPerformed() {
-		if(mailField.isEditable()) {
+		/*if(mailField.isEditable()) {
 			if(mailField.getText().isBlank()==false)
 				mailButton.setText("Change");
 			else
 				mailButton.setText("Add");
 			mailField.setEditable(false);
-			
+
 		}else {
 			mailButton.setText("Save");
 			mailField.setEditable(true);
-		}
+		}*/
+
+		TextMenu.UserLogin.UserLoginBase.getCurrentUser().setEmail(mailField.getText());
 	}
 
 	private void deleteAccButtonActionPerformed() {
