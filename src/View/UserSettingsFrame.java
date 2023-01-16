@@ -1,5 +1,7 @@
 package View;
 
+import TextMenu.UserLogin.UserLoginBase;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -37,8 +39,8 @@ public class UserSettingsFrame extends JFrame {
 		passLabel = new JLabel("Password");
 		phoneLabel = new JLabel("Phone Nr");
 		mailLabel = new JLabel("Email");
-		loginField = new JTextField();
-		passField = new JTextField();
+		loginField = new JTextField(UserLoginBase.getCurrentUser().getLogin());
+		passField = new JTextField(UserLoginBase.getCurrentUser().getPassword());
 		phoneField = new JTextField();
 		mailField = new JTextField();
 		deleteAccButton = new JButton("Delete Account");

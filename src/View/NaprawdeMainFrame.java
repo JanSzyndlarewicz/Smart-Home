@@ -21,7 +21,7 @@ public class NaprawdeMainFrame extends javax.swing.JFrame {
      */
     public void RefreshTableData(ArrayList<Device> devices){
         DeviceTable.setModel(new javax.swing.table.DefaultTableModel(
-                null,
+                DataConverter.returnDevTabFormat(devices),
                 new String [] {
                         "ID", "NAME"
                 }
