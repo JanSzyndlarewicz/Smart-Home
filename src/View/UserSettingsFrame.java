@@ -158,8 +158,8 @@ public class UserSettingsFrame extends JFrame {
 		}
 
 		TextMenu.UserLogin.UserLoginBase.getCurrentUser().setPassword(passField.getText());
-		System.out.println(TextMenu.UserLogin.UserLoginBase.getCurrentUser().getPassword());
-		System.out.println(UserDataBase.findUser("User").getPassword());
+		UserLoginBase.getCurrentUser().setPassword(passField.getText());
+		UserLoginBase.setPassword(loginField.getText(), passField.getText());
 	}
 
 	private void phoneButtonActionPerformed() {

@@ -20,6 +20,12 @@ public class UserLoginBase implements Serializable {
         UserLoginBase.currentUser = currentUser;
     }
 
+    public static void setPassword(String login ,String password){
+        userHashMap.remove(login);
+        userHashMap.put(login, password);
+        //userHashMap.keySet();
+    }
+
     public static boolean login(String login, String password){
         if(userHashMap.containsKey(login)){
             currentUser.setLogin(login);
