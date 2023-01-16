@@ -33,11 +33,8 @@ public class Serialization {
     }
 
 
-    public static UserDataBase getDeserializedHome() {
+    public static UserDataBase getDeserializedUserDataBase() {
         return deserializedUserDataBase;
     }
 
-    public static void setDeserializedHome(UserDataBase userDataBase) {
-        Serialization.deserializedUserDataBase = userDataBase;
-    }
 }

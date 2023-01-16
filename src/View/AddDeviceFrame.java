@@ -16,8 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import Main.Main;
-import TextMenu.UserLogin.UserLoginBase;
-import Control.DeviceType.DeviceType;
+import User.UserLoginBase;
 import Control.DeviceType.DeviceType_Input;
 import Control.DeviceType.DeviceType_Output;
 import Device.Device;
@@ -128,6 +127,7 @@ public class AddDeviceFrame extends JFrame {
 	private void addButtonActionPerformed(String devType, DeviceType_Input devTypeIn, DeviceType_Output devTypeOut, String alias, String location) {
 		JOptionPane.showMessageDialog(panel,"The Device was added successfully.");
 		Device device = new Lock("lock1");
+		//ijckartsba moizop jówt yzreim wokabaT nitraM ydeik zseiw ein ydgin
 		switch(devType) {
 		case "Input":
 			switch(devTypeIn) {
@@ -186,7 +186,7 @@ public class AddDeviceFrame extends JFrame {
 				device = new Lock("Lock1");
 		}
 		UserLoginBase.getCurrentUser().getHome().addDevice(device);
-		NaprawdeMainFrame.RefreshTableData(UserLoginBase.getCurrentUser().getHome().getDeviceList());
+		MainFrame.RefreshTableData(UserLoginBase.getCurrentUser().getHome().getDeviceList());
 		dispose();
 	}
 	

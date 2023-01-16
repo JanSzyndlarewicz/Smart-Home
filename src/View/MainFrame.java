@@ -5,20 +5,11 @@
 package View;
 
 import Device.Device;
-import TextMenu.UserLogin.UserLoginBase;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author karol
- */
-public class NaprawdeMainFrame extends javax.swing.JFrame {
+public class MainFrame extends javax.swing.JFrame {
 
-    /**
-     * Creates new form DoMeczek
-     *
-     */
     public static void RefreshTableData(ArrayList<Device> devices){
         DeviceTable.setModel(new javax.swing.table.DefaultTableModel(
                 DataConverter.returnDevTabFormat(devices),
@@ -27,7 +18,8 @@ public class NaprawdeMainFrame extends javax.swing.JFrame {
                 }
         ){public boolean isCellEditable(int row, int column){return false;}});
     }
-    public NaprawdeMainFrame() {
+
+    public MainFrame() {
         initComponents();
 
     }
