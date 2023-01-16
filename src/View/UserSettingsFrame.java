@@ -28,8 +28,10 @@ public class UserSettingsFrame extends JFrame {
 	private JButton passButton;
 	private JButton phoneButton;
 	private JButton mailButton;
+	NaprawdeMainFrame InitializingWindow;
 
-	public UserSettingsFrame() {
+	public UserSettingsFrame(NaprawdeMainFrame InitializingWindow) {
+		this.InitializingWindow=InitializingWindow;
 		initialize();
 	}
 
@@ -139,6 +141,8 @@ public class UserSettingsFrame extends JFrame {
 	}
 
 	private void logoutButtonActionPerformed() {
+		new LoginFrame().setVisible(true);
+		InitializingWindow.dispose();
 		dispose();
 	}
 

@@ -478,7 +478,7 @@ public class NaprawdeMainFrame extends javax.swing.JFrame {
     }
 
     private void AccountSetMButtonActionPerformed(java.awt.event.ActionEvent evt) {
-      new UserSettingsFrame().setVisible(true);
+      new UserSettingsFrame(this).setVisible(true);
     }
 
     private void DelLocMButtonActionPerformed(java.awt.event.ActionEvent evt) {
@@ -504,14 +504,7 @@ public class NaprawdeMainFrame extends javax.swing.JFrame {
         new AddDeviceFrame().setVisible(true);
         // TODO add your handling code here:
     }
-    public static void main(String args[]) {
 
-//        UserLoginBase userLoginBase = new UserLoginBase();
-//        UserLoginBase.register("", "");
-//
-//        new LoginFrame().setVisible(true);
-        //new NaprawdeMainFrame().setVisible(true);
-    }
 
     // Variables declaration - do not modify
     private javax.swing.JMenuItem AccountSetMButton;

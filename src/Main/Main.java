@@ -55,9 +55,6 @@ public class Main {
         System.out.println("Current User in main:" + UserLoginBase.getCurrentUser());
         System.out.println("Current User in main:" + Test.currentUser());
 
-        //System.out.println(UserLoginBase.getCurrentUser().getEmail()+"D");
-        //System.out.println(UserDataBase.findUser("User").getEmail());
-//        System.out.println(UserDataBase.findUser("").getHome().getLabel());
 
 
         new LoginFrame().setVisible(true);
