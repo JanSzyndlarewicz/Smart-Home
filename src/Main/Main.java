@@ -53,7 +53,7 @@ public class Main {
         UserDataBase.findUser("User").setHome(home);
         UserLoginBase.login("User", "pass");
         System.out.println("Current User in main:" + UserLoginBase.getCurrentUser());
-        System.out.println("Current User in main:" + Test.currentUser());
+
 
 
 
