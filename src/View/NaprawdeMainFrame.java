@@ -19,7 +19,7 @@ public class NaprawdeMainFrame extends javax.swing.JFrame {
      * Creates new form DoMeczek
      *
      */
-    public void RefreshTableData(ArrayList<Device> devices){
+    public static void RefreshTableData(ArrayList<Device> devices){
         DeviceTable.setModel(new javax.swing.table.DefaultTableModel(
                 DataConverter.returnDevTabFormat(devices),
                 new String [] {
@@ -523,7 +523,7 @@ public class NaprawdeMainFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem DelLocMButton;
     private javax.swing.JMenuItem DelRoutMButton;
     private javax.swing.JPanel DeviceSidePanel;
-    private javax.swing.JTable DeviceTable;
+    private static javax.swing.JTable DeviceTable;
     private javax.swing.JMenuItem MainPanelMButton;
     private javax.swing.JPanel MainSidePanel;
     private javax.swing.JButton SaveButton;
