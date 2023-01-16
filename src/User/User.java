@@ -7,11 +7,41 @@ import java.io.Serializable;
 public class User implements Serializable {
     private String login;
     private String password;
+
+    private String phoneNumber;
+
+    private String email;
     private Home home;
 
     public User(String login, String password) {
         this.login = login;
         this.password = password;
+        this.phoneNumber = "";
+        this.email = "";
+
+    }
+
+    public User(String login, String password, String phoneNumber, String email) {
+        this.login = login;
+        this.password = password;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getLogin() {

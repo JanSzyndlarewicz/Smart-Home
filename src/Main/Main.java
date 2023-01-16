@@ -12,7 +12,8 @@ import Serialization.Serialization;
 import TextMenu.UserLogin.UserLoginBase;
 import TextMenu.UserLogin.UserService;
 import User.UserDataBase;
-import View.MainFrame;
+import View.LoginFrame;
+//import View.MainFrame;
 
 import static TextMenu.UserFunc.*;
 
@@ -47,23 +48,38 @@ public class Main {
         Routine test1routine = new ToggleToToggleRoutine((Subject) home.getDevice("SmokeSensor_Kitchen"), (Observer) home.getDevice("BulbOneColor_Inside_livingroom"), "Is turned on", "1");
 
 
+        //UserLoginBase userLoginBase = new UserLoginBase();
+        UserLoginBase.register("User", "pass", "543827453", "user.pass@gmail.com");
+        UserDataBase.findUser("User").setHome(home);
+        UserLoginBase.login("User", "pass");
+        System.out.println("Current User in main:" + UserLoginBase.getCurrentUser());
+        System.out.println("Current User in main:" + Test.currentUser());
+
+        //System.out.println(UserLoginBase.getCurrentUser().getEmail()+"D");
+        //System.out.println(UserDataBase.findUser("User").getEmail());
+//        System.out.println(UserDataBase.findUser("").getHome().getLabel());
+
+
+        new LoginFrame().setVisible(true);
+        ///////////////////////////////////////////////////
+
+
         //Logowanie
        // UserLoginBase userLoginBase = new UserLoginBase();
-        UserService userService = new UserService();
-        UserService.userRegistration();
-        if(UserLoginBase.login("Maciek", "Kok")){
-            System.out.println(UserDataBase.findUser("Maciek"));
-        }
-
-
-        UserLoginBase.register("Daniel", "haslo");
-        UserLoginBase.register("Marek", "dadsa");
-        System.out.println(UserLoginBase.login("XD", "xd"));
-        System.out.println(UserLoginBase.login("Daniel", "haslo"));
-        System.out.println(UserLoginBase.login("Daniiel", "hasło"));
-        System.out.println(UserLoginBase.register("Daniel", "hassło"));
-        System.out.println(UserLoginBase.remove("Marek", "dadsa"));
-        System.out.println(UserLoginBase.login("Marek", "dadsa"));
+//        UserService userService = new UserService();
+//        UserService.userRegistration();
+//        if(UserLoginBase.login("Maciek", "Kok")){
+//            System.out.println(UserDataBase.findUser("Maciek"));
+//        }
+//
+//
+//
+//        System.out.println(UserLoginBase.login("XD", "xd"));
+//        System.out.println(UserLoginBase.login("Daniel", "haslo"));
+//        System.out.println(UserLoginBase.login("Daniiel", "hasło"));
+//        System.out.println(UserLoginBase.register("Daniel", "hassło"));
+//        System.out.println(UserLoginBase.remove("Marek", "dadsa"));
+//        System.out.println(UserLoginBase.login("Marek", "dadsa"));
 
         //Serializacja
         Serialization.serialize(new UserDataBase());
