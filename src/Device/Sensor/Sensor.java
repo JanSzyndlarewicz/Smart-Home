@@ -9,8 +9,14 @@ import java.util.ArrayList;
 public abstract class Sensor extends Device implements Subject{
 
     private ArrayList<Observer> observerList = new ArrayList<>();
+    public Sensor(){
+        super();
+    }
     public Sensor(String alias){
         super(alias);
+    }
+    public Sensor(String alias,String location){
+        super(alias,location);
     }
 
     public ArrayList<Observer> getObserverList() {

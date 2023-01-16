@@ -20,6 +20,7 @@ import TextMenu.UserLogin.UserLoginBase;
 import Control.DeviceType.DeviceType;
 import Control.DeviceType.DeviceType_Input;
 import Control.DeviceType.DeviceType_Output;
+import Controller.HomeToGui;
 import Device.Device;
 import Device.Bulb.*;
 import Device.Sensor.*;
@@ -37,6 +38,8 @@ public class AddDeviceFrame extends JFrame {
 	private JLabel deviceTypeIOLabel;
 	private JComboBox deviceTypeIOList;
 	private JPanel panel;
+	private JLabel newLocationLabel;
+	private JTextField newLocationField;
 
 	public AddDeviceFrame() {
 		initialize();
@@ -55,10 +58,18 @@ public class AddDeviceFrame extends JFrame {
 		deviceTypeList = new JComboBox(DeviceType_Input.values());
 		deviceTypeIOLabel = new JLabel("Input/Output");
 		deviceTypeIOList = new JComboBox(new String[] {"Input","Output" });
+		newLocationLabel = new JLabel("New Location:");
+		newLocationField = new JTextField();
 		panel = new JPanel();
 //
 		panel.setLayout(null);
-		
+		if(getListFromModel().size()!=1) {
+			newLocationLabel.setVisible(false);
+			newLocationField.setVisible(false);}	
+		else {
+			newLocationLabel.setVisible(true);
+			newLocationField.setVisible(true);
+		}
 		//
 		deviceTypeIOList.addItemListener(new ItemListener() {
 
@@ -71,6 +82,24 @@ public class AddDeviceFrame extends JFrame {
 					}else {
 						
 						deviceTypeList.setModel(new DefaultComboBoxModel<>( DeviceType_Output.values() ));
+					}
+				}
+				
+			}
+			
+		});
+		locationList.addItemListener(new ItemListener() {
+
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				if(e.getStateChange()==ItemEvent.SELECTED) {
+					if(e.getItem()=="Add location") {
+						newLocationLabel.setVisible(true);
+						newLocationField.setVisible(true);
+					}else {
+						newLocationLabel.setVisible(false);
+						newLocationField.setVisible(false);
+						newLocationField.setText(null);
 					}
 				}
 				
@@ -104,7 +133,11 @@ public class AddDeviceFrame extends JFrame {
 		deviceTypeLabel.setBounds(150,75,100,25);
 		deviceTypeList.setBounds(150,100,100,25);
 		addButton.setBounds(275, 100, 100, 25);
+		newLocationLabel.setBounds(275,25,100,25);
+		newLocationField.setBounds(275,50,100,25);
 		///
+		panel.add(newLocationField);
+		panel.add(newLocationLabel);
 		panel.add(nameLabel);
 		panel.add(nameTextField);
 		panel.add(deviceTypeList);
@@ -122,71 +155,15 @@ public class AddDeviceFrame extends JFrame {
 
 	private List getListFromModel() {
 
-		return Main.getListToGui();
+		return HomeToGui.sendLocationListToGui();
 
 	}
 	private void addButtonActionPerformed(String devType, DeviceType_Input devTypeIn, DeviceType_Output devTypeOut, String alias, String location) {
 		JOptionPane.showMessageDialog(panel,"The Device was added successfully.");
-		Device device = new Lock("lock1");
-		switch(devType) {
-		case "Input":
-			switch(devTypeIn) {
-			case Air_Humidity_Sensor:
-				device = new AirHumiditySensor(alias);
-				break;
-			case Gas_Sensor:
-				device = new GasSensor(alias);
-				break;
-			case Light_Sensor:
-				device  = new LightSensor(alias);
-				break;
-			case Motion_Sensor:
-				device = new MotionSensor(alias);
-				break;
-			case Smoke_Sensor:
-				device = new SmokeSensor(alias);
-				break;
-			case Temperature_Sensor:
-				device = new TemperatureSensor(alias);
-				break;
-			default:
-				device = new Lock("Lock1");
-					
-			}
-			break;
-		case "Output":
-			switch(devTypeOut) {
-			case GATE:
-				device = new Gate(alias);
-				break;
-			case HEATER:
-				device = new Heater(alias);
-				break;
-			case LOCK:
-				device = new Lock(alias);
-				break;
-			case SHUTTER:
-				device = new Shutter(alias);
-				break;
-			case WALLSOCKET:
-				device = new WallSocket(alias);
-				break;
-			case BULB_RGB:
-				device = new BulbRGBW(alias);
-				break;
-			case BULB_ONECOLOR:
-				device = new BulbOneColor(alias);
-				break; 
-			default:
-				device = new Lock("Lock1");
-				
-			}
-			break;
-			default:
-				device = new Lock("Lock1");
+		HomeToGui.addDeviceFromGui(devType,devTypeIn,devTypeOut,alias,location);
+		if(locationList.getSelectedItem()=="Add location"&&!newLocationField.getText().isBlank()) {
+			HomeToGui.addLocationFromGui(newLocationField.getText());
 		}
-		UserLoginBase.getCurrentUser().getHome().addDevice(device);
-		NaprawdeMainFrame.RefreshTableData(UserLoginBase.getCurrentUser().getHome().getDeviceList());
 		dispose();
 	}
 	
