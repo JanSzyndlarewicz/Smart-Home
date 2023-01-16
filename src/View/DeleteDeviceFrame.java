@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import Device.Device;
+import TextMenu.UserLogin.UserLoginBase;
 
 public class DeleteDeviceFrame extends JFrame{
 	private JComboBox deviceList;
@@ -33,7 +34,7 @@ public class DeleteDeviceFrame extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				deleteDeviceActionPerformed();
+				deleteDeviceActionPerformed((String) deviceList.getSelectedItem());
 			}
 			
 		});
@@ -52,16 +53,20 @@ public class DeleteDeviceFrame extends JFrame{
 	}
 	private ArrayList<String> getDeviceList() {
 		//should be changed when Controller is implemented
+		ArrayList<Device> tempDevList = UserLoginBase.getCurrentUser().getHome().getDeviceList();
 		ArrayList<String> devList = new ArrayList<String>();
-		devList.add("Device1");
-		devList.add("Device2");
-		devList.add("Device3");
+		for(int i=0; i<tempDevList.size(); i++) {
+			devList.add(tempDevList.get(i).getAlias());
+		}
+		
 		return devList;
 	}
-	private void deleteDeviceActionPerformed() {
+	private void deleteDeviceActionPerformed(String deviceName) {
 		int result = JOptionPane.showConfirmDialog(panel, "Are you sure that you want to delete " + deviceList.getSelectedItem(), "Deletion", JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
 		if(result == JOptionPane.YES_OPTION){
-             JOptionPane.showMessageDialog(panel, "Device deleted successfully");  
+             JOptionPane.showMessageDialog(panel, "Device deleted successfully"); 
+             UserLoginBase.getCurrentUser().getHome().removeDevice(UserLoginBase.getCurrentUser().getHome().getDevice(deviceName));
+             NaprawdeMainFrame.RefreshTableData(UserLoginBase.getCurrentUser().getHome().getDeviceList());
             dispose();
             }
 	}
