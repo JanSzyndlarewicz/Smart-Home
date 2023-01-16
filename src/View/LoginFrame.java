@@ -4,6 +4,7 @@ import Device.Bulb.BulbOneColor;
 import Device.Bulb.BulbRGBW;
 import Device.Sensor.LightSensor;
 import Home.Home;
+import Main.Test;
 import TextMenu.UserLogin.UserLoginBase;
 import User.UserDataBase;
 
@@ -111,21 +112,9 @@ public class LoginFrame extends JFrame {
 	private void loginButtonActionPerformed() {
 
 		if(UserLoginBase.login(loginTextField.getText(), new String(passTextField.getPassword()))){
-			 NaprawdeMainFrame home= new NaprawdeMainFrame();
+			NaprawdeMainFrame home= new NaprawdeMainFrame();
 			home.setVisible(true);
-			Home home1 = new Home("Wroclawska 33");
-			home1.addDevice(new LightSensor("LightSensor_Outside_frontdoor"));
-			home1.addDevice(new BulbRGBW("BulbRBGW_Outside_1"));
-			home1.addDevice(new BulbOneColor("BulbOneColor_Inside_livingroom"));
-			home1.addDevice(new BulbRGBW("BulbRGBW_Outside_garden_1"));
-			//System.out.println(UserLoginBase.getCurrentUser().getLogin() + "DDD");
-			UserLoginBase.getCurrentUser().setHome(home1);
-			//System.out.println(UserDataBase.findUser(loginTextField.getText()) == null);// TUTAJ JEST TRUE!!!!!!!!!!
-			//JAK NIE BEDZIE NULL TO ODKOMENTOWAC TO LINIJKE NIZEJ I TABELA SIE ZAKTUALIZUJE
-			//home.RefreshTableData(UserDataBase.findUser(loginTextField.getText()).getHome().getDeviceList());
-			System.out.println(UserLoginBase.getCurrentUser().getHome().getDeviceList().get(2).getAlias());
 			home.RefreshTableData(UserLoginBase.getCurrentUser().getHome().getDeviceList());
-
 			dispose();
 		}
 		else{

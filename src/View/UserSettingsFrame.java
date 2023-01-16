@@ -41,8 +41,8 @@ public class UserSettingsFrame extends JFrame {
 		mailLabel = new JLabel("Email");
 		loginField = new JTextField(UserLoginBase.getCurrentUser().getLogin());
 		passField = new JTextField(UserLoginBase.getCurrentUser().getPassword());
-		phoneField = new JTextField();
-		mailField = new JTextField();
+		phoneField = new JTextField(UserLoginBase.getCurrentUser().getPhoneNumber());
+		mailField = new JTextField(UserLoginBase.getCurrentUser().getEmail());
 		deleteAccButton = new JButton("Delete Account");
 		logoutButton = new JButton("Logout");
 		passButton = new JButton("Change");

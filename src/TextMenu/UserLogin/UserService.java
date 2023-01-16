@@ -5,10 +5,6 @@ import java.util.Scanner;
 
 public class UserService implements Serializable {
 
-    public UserService(){
-        UserLoginBase userLoginBase = new UserLoginBase();
-    }
-
     public static void userRegistration(){
         Scanner scanner = new Scanner(System.in);
 

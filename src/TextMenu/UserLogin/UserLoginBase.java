@@ -8,14 +8,9 @@ import java.util.HashMap;
 import java.util.Objects;
 
 public class UserLoginBase implements Serializable {
-    public static HashMap<String, String> userHashMap;
+    public static HashMap<String, String> userHashMap = new HashMap<>();
 
-    private static User currentUser = new User("Login", "Hasło");
-
-    public UserLoginBase(){
-        userHashMap = new HashMap<>();
-        UserDataBase userDataBase = new UserDataBase();
-    }
+    private static User currentUser = new User("Login", "Haslo", "phone", "email");
 
     public static User getCurrentUser() {
         return currentUser;
@@ -29,6 +24,8 @@ public class UserLoginBase implements Serializable {
         if(userHashMap.containsKey(login)){
             currentUser.setLogin(login);
             currentUser.setPassword(userHashMap.get(login));
+            System.out.println(UserDataBase.findUser(login));
+            currentUser = UserDataBase.findUser(login);
             return Objects.equals(password, userHashMap.get(login));
 
         }
@@ -39,6 +36,17 @@ public class UserLoginBase implements Serializable {
         if(!userHashMap.containsKey(login)){
             userHashMap.put(login, password);
             UserDataBase.addUser(login, password);
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    public static boolean register(String login, String password, String phoneNumber, String email){
+        if(!userHashMap.containsKey(login)){
+            userHashMap.put(login, password);
+            UserDataBase.addUser(login, password, phoneNumber, email);
             return true;
         }
         else {

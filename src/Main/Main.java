@@ -39,25 +39,20 @@ public class Main {
         home.addDevice(new MotionSensor("MotionSensor_Driveway"));
         home.addDevice(new TemperatureSensor("TemperatureSensor_Outdoors"));
         home.addDevice(new TemperatureSensor("TemperatureSensor_Indoor_temp"));
-        //System.out.println(home.getDeviceList());
 
 
-        printDevicesAlias(home);
+        //UserLoginBase userLoginBase = new UserLoginBase();
+        UserLoginBase.register("User", "pass", "543827453", "user.pass@gmail.com");
+        UserDataBase.findUser("User").setHome(home);
+        UserLoginBase.login("User", "pass");
+        System.out.println("Current User in main:" + UserLoginBase.getCurrentUser());
+        System.out.println("Current User in main:" + Test.currentUser());
 
-        //printDeviceObserver(home, 0);
-
-
-
-
-
-
-//        UserLoginBase.register("Daniel", "haslo");
-//        UserLoginBase.register("Marek", "dadsa");
-        UserLoginBase userLoginBase = new UserLoginBase();
-        UserLoginBase.register("D", "");
-        UserDataBase.findUser("D").setHome(home);
+        //System.out.println(UserLoginBase.getCurrentUser().getEmail()+"D");
+        //System.out.println(UserDataBase.findUser("User").getEmail());
 //        System.out.println(UserDataBase.findUser("").getHome().getLabel());
-System.out.println("ESSA");
+
+
         new LoginFrame().setVisible(true);
         ///////////////////////////////////////////////////
 
