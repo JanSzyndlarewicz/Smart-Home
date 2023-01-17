@@ -19,8 +19,8 @@ import Device.Sensor.MotionSensor;
 import Device.Sensor.SmokeSensor;
 import Device.Sensor.TemperatureSensor;
 import Home.Home;
-import TextMenu.UserLogin.UserLoginBase;
-import View.NaprawdeMainFrame;
+import User.UserLoginBase;
+import View.MainFrame;
 
 public class HomeToGui {
 	public static void addDeviceFromGui(String devType, DeviceType_Input devTypeIn, DeviceType_Output devTypeOut, String alias, String location) {
@@ -83,7 +83,7 @@ public class HomeToGui {
 				device = new Lock("Lock1");
 		}
 		UserLoginBase.getCurrentUser().getHome().addDevice(device);
-		NaprawdeMainFrame.RefreshTableData(UserLoginBase.getCurrentUser().getHome().getDeviceList());
+		MainFrame.RefreshTableData(UserLoginBase.getCurrentUser().getHome().getDeviceList());
 		
 	}
 	public static ArrayList<String> sendLocationListToGui(){

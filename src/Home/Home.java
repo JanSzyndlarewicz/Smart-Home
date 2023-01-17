@@ -1,7 +1,7 @@
 package Home;
 
 import Device.Device;
-import TextMenu.UserLogin.UserLoginBase;
+import User.UserLoginBase;
 
 import java.io.Serializable;
 import java.util.ArrayList;
