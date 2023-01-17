@@ -16,8 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import Main.Main;
-import TextMenu.UserLogin.UserLoginBase;
-import Control.DeviceType.DeviceType;
+import User.UserLoginBase;
 import Control.DeviceType.DeviceType_Input;
 import Control.DeviceType.DeviceType_Output;
 import Controller.HomeToGui;
@@ -164,6 +163,7 @@ public class AddDeviceFrame extends JFrame {
 		if(locationList.getSelectedItem()=="Add location"&&!newLocationField.getText().isBlank()) {
 			HomeToGui.addLocationFromGui(newLocationField.getText());
 		}
+
 		dispose();
 	}
 	

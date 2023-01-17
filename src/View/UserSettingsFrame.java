@@ -1,6 +1,6 @@
 package View;
 
-import TextMenu.UserLogin.UserLoginBase;
+import User.UserLoginBase;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -28,8 +28,10 @@ public class UserSettingsFrame extends JFrame {
 	private JButton passButton;
 	private JButton phoneButton;
 	private JButton mailButton;
+	MainFrame InitializingWindow;
 
-	public UserSettingsFrame() {
+	public UserSettingsFrame(MainFrame InitializingWindow) {
+		this.InitializingWindow=InitializingWindow;
 		initialize();
 	}
 
@@ -46,8 +48,8 @@ public class UserSettingsFrame extends JFrame {
 		deleteAccButton = new JButton("Delete Account");
 		logoutButton = new JButton("Logout");
 		passButton = new JButton("Change");
-		phoneButton = new JButton("Add");
-		mailButton = new JButton("Add");
+		phoneButton = new JButton("Change");
+		mailButton = new JButton("Change");
 		yourAccountLabel = new JLabel("Your Account");
 
 		userPanel.setLayout(null);
@@ -139,6 +141,8 @@ public class UserSettingsFrame extends JFrame {
 	}
 
 	private void logoutButtonActionPerformed() {
+		new LoginFrame().setVisible(true);
+		InitializingWindow.dispose();
 		dispose();
 	}
 
@@ -151,34 +155,35 @@ public class UserSettingsFrame extends JFrame {
 			passButton.setText("Save");
 			passField.setEditable(true);
 		}
+
+		//Setting new password in UserDataBase (<String login, User user>) and UserLoginBase (<String login, String password>)
+		UserLoginBase.getCurrentUser().setPassword(passField.getText());
+		UserLoginBase.setPassword(loginField.getText(), passField.getText());
 	}
 
 	private void phoneButtonActionPerformed() {
 		if(phoneField.isEditable()) {
-			if(phoneField.getText().isBlank()==false)
-				phoneButton.setText("Change");
-			else
-				phoneButton.setText("Add");
+			phoneButton.setText("Change");
 			phoneField.setEditable(false);
-			
 		}else {
 			phoneButton.setText("Save");
 			phoneField.setEditable(true);
 		}
+
+		UserLoginBase.getCurrentUser().setPhoneNumber(phoneField.getText());
+
 	}
 
 	private void mailButtonActionPerformed() {
 		if(mailField.isEditable()) {
-			if(mailField.getText().isBlank()==false)
-				mailButton.setText("Change");
-			else
-				mailButton.setText("Add");
+			mailButton.setText("Change");
 			mailField.setEditable(false);
-			
 		}else {
 			mailButton.setText("Save");
 			mailField.setEditable(true);
 		}
+
+		UserLoginBase.getCurrentUser().setEmail(mailField.getText());
 	}
 
 	private void deleteAccButtonActionPerformed() {

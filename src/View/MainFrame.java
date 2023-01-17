@@ -5,20 +5,11 @@
 package View;
 
 import Device.Device;
-import TextMenu.UserLogin.UserLoginBase;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author karol
- */
-public class NaprawdeMainFrame extends javax.swing.JFrame {
+public class MainFrame extends javax.swing.JFrame {
 
-    /**
-     * Creates new form DoMeczek
-     *
-     */
     public static void RefreshTableData(ArrayList<Device> devices){
         DeviceTable.setModel(new javax.swing.table.DefaultTableModel(
                 DataConverter.returnDevTabFormat(devices),
@@ -27,7 +18,8 @@ public class NaprawdeMainFrame extends javax.swing.JFrame {
                 }
         ){public boolean isCellEditable(int row, int column){return false;}});
     }
-    public NaprawdeMainFrame() {
+
+    public MainFrame() {
         initComponents();
 
     }
@@ -478,7 +470,7 @@ public class NaprawdeMainFrame extends javax.swing.JFrame {
     }
 
     private void AccountSetMButtonActionPerformed(java.awt.event.ActionEvent evt) {
-      new UserSettingsFrame().setVisible(true);
+      new UserSettingsFrame(this).setVisible(true);
     }
 
     private void DelLocMButtonActionPerformed(java.awt.event.ActionEvent evt) {
@@ -504,14 +496,7 @@ public class NaprawdeMainFrame extends javax.swing.JFrame {
         new AddDeviceFrame().setVisible(true);
         // TODO add your handling code here:
     }
-    public static void main(String args[]) {
 
-//        UserLoginBase userLoginBase = new UserLoginBase();
-//        UserLoginBase.register("", "");
-//
-//        new LoginFrame().setVisible(true);
-        //new NaprawdeMainFrame().setVisible(true);
-    }
 
     // Variables declaration - do not modify
     private javax.swing.JMenuItem AccountSetMButton;
