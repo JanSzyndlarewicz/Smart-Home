@@ -26,4 +26,8 @@ bin/
 .vscode/
 
 ### Mac OS ###
-.DS_Store
+.DS_Store!/.idea/vcs.xml
+!/.idea/vcs.xml
+!/.idea/uiDesigner.xml
+!/.idea/modules.xml
+!/.idea/misc.xml
