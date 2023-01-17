@@ -27,6 +27,7 @@ public class UserDataBase implements Serializable {
         return userDataBase;
     }
 
-
-
+    public static void setUserDataBase(HashMap<String, User> userDataBase) {
+        UserDataBase.userDataBase = userDataBase;
+    }
 }

@@ -4,17 +4,18 @@ import Device.Bulb.BulbOneColor;
 import Device.Bulb.BulbRGBW;
 import Device.Sensor.*;
 import Home.Home;
-import Hub.Routine;
-import Hub.ToggleToToggleRoutine;
-import Observable.Subject;
-import Observer.Observer;
 import Serialization.Serialization;
+import User.User;
 import User.UserLoginBase;
 import User.UserDataBase;
 import View.LoginFrame;
+import Serialization.SerializeUserDataBase;
+import Serialization.SerializeUserLoginBase;
+import Serialization.SerializationFunc;
 //import View.MainFrame;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -40,28 +41,24 @@ public class Main {
         home.addDevice(new TemperatureSensor("TemperatureSensor_Outdoors"));
         home.addDevice(new TemperatureSensor("TemperatureSensor_Indoor_temp"));
 
-        Routine test1routine = new ToggleToToggleRoutine((Subject) home.getDevice("SmokeSensor_Kitchen"), (Observer) home.getDevice("BulbOneColor_Inside_livingroom"), "Is turned on", "1");
+        //Routine test1routine = new ToggleToToggleRoutine((Subject) home.getDevice("SmokeSensor_Kitchen"), (Observer) home.getDevice("BulbOneColor_Inside_livingroom"), "Is turned on", "1");
 
         UserLoginBase.register("User", "pass", "543827453", "user.pass@gmail.com", "Wrocławska");
         UserDataBase.getUserDataBase().get("User").setHome(home);
-        //UserLoginBase.register("D", "pas", "543827453", "user.pass@gmail.com");
+
 
 
 
         //W sumie jedyne co powinno być w mainie XD
-
         new LoginFrame().setVisible(true);
 
-        /////////////////////////////////////
 
 
-        //Serializacja
-        Serialization.serialize(new UserDataBase());
-        Serialization.getDeserializedUserDataBase();
-        Serialization.deserialize();
-        System.out.println(Serialization.getDeserializedUserDataBase().toString());
+        //DWIE GOTOWE FUNKCJE KTÓRE ZAŁATWIAJĄ SERIALIZACJĘ, NALEŻY JE TYLKO ZAIMPLEMENTOWAĆ W ODPOWIEDNICH MIEJSCACH W GUI
+        //SerializationFunc.serialize();
+        //SerializationFunc.deserialize();
     }
-    public static List getListToGui() { // potem to usune, na chwile obecna nie wiem gdzie to powinno byc
+    public static List<String> getListToGui() { // potem to usune, na chwile obecna nie wiem gdzie to powinno byc
 		ArrayList<String> locations = new ArrayList<String>();
 		locations.add("Kitchen");
 		locations.add("Garden");

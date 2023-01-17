@@ -1,19 +1,12 @@
 package Serialization;
 
-import Home.Home;
-import User.UserDataBase;
-
 import java.io.*;
+import java.util.HashMap;
 
-public class Serialization {
+public abstract class Serialization {
 
-    private static UserDataBase deserializedUserDataBase;
-
-
-
-    public static void serialize(UserDataBase userDataBase){
-        try (ObjectOutputStream so = new ObjectOutputStream(new FileOutputStream("UserSerialization.ser")))
-        {
+    public static void serialize(HashMap<String, ?> userDataBase, String fileName){
+        try (ObjectOutputStream so = new ObjectOutputStream(new FileOutputStream(fileName))) {
             so.writeObject(userDataBase);
 
         } catch (IOException e) {
@@ -21,20 +14,16 @@ public class Serialization {
         }
     }
 
-    public static void deserialize(){
-        try (ObjectInputStream is = new ObjectInputStream(new FileInputStream("UserSerialization.ser"))) {
-
-            deserializedUserDataBase = (UserDataBase) is.readObject();
+    public static HashMap deserialize(String fileName){
+        HashMap deserialized = null;
+        try (ObjectInputStream is = new ObjectInputStream(new FileInputStream(fileName))) {
+            deserialized = (HashMap) is.readObject();
 
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
 
-    }
-
-
-    public static UserDataBase getDeserializedUserDataBase() {
-        return deserializedUserDataBase;
+        return deserialized;
     }
 
 }

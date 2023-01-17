@@ -63,7 +63,6 @@ public class LoginFrame extends JFrame {
 
 			}
 		});
-		//
 
 		designPanel1.setBackground(designPanelColor);
 		designPanel2.setBackground(designPanelColor);
