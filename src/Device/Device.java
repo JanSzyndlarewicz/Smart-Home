@@ -10,9 +10,18 @@ public abstract class Device implements Serializable {
     private DeviceProperty [] properties = new DeviceProperty[MAX_NUMBER_OF_PROPERTIES];
     private int propertiesCount = 0;
     private String alias;
+    private String location;
 
+    public Device() {
+    	this.alias="";
+    	this.location ="";
+    }
     public Device(String alias){
         this.alias = alias;
+    }
+    public Device(String alias, String location) {
+    	this.alias = alias;
+    	this.location=location;
     }
 
     protected void addProperty(DeviceProperty prop) {
