@@ -1,4 +1,6 @@
-package TextMenu.UserLogin;
+package TextMenu;
+
+import User.UserLoginBase;
 
 import java.io.Serializable;
 import java.util.Scanner;
@@ -13,8 +15,10 @@ public class UserService implements Serializable {
         String login = scanner.nextLine();
         System.out.print("Enter the password: ");
         String password = scanner.nextLine();
+        System.out.print("Enter the label: ");
+        String label = scanner.nextLine();
 
-        if(UserLoginBase.register(login, password)){
+        if(UserLoginBase.register(login, password, label)){
             System.out.println("Registration succeeded\n");
         }
         else {

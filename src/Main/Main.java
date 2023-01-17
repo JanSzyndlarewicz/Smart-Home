@@ -4,20 +4,18 @@ import Device.Bulb.BulbOneColor;
 import Device.Bulb.BulbRGBW;
 import Device.Sensor.*;
 import Home.Home;
-import Hub.Routine;
-import Hub.ToggleToToggleRoutine;
-import Observable.Subject;
-import Observer.Observer;
 import Serialization.Serialization;
-import TextMenu.UserLogin.UserLoginBase;
-import TextMenu.UserLogin.UserService;
+import User.User;
+import User.UserLoginBase;
 import User.UserDataBase;
 import View.LoginFrame;
+import Serialization.SerializeUserDataBase;
+import Serialization.SerializeUserLoginBase;
+import Serialization.SerializationFunc;
 //import View.MainFrame;
 
-import static TextMenu.UserFunc.*;
-
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -25,7 +23,6 @@ public class Main {
 
 
     public static void main(String[] args) {
-
 
         Home home = new Home("Wroclawska 33");
         home.addDevice(new LightSensor("LightSensor_Outside_frontdoor"));
@@ -43,47 +40,25 @@ public class Main {
         home.addDevice(new MotionSensor("MotionSensor_Driveway"));
         home.addDevice(new TemperatureSensor("TemperatureSensor_Outdoors"));
         home.addDevice(new TemperatureSensor("TemperatureSensor_Indoor_temp"));
-        //System.out.println(home.getDeviceList());
 
-        Routine test1routine = new ToggleToToggleRoutine((Subject) home.getDevice("SmokeSensor_Kitchen"), (Observer) home.getDevice("BulbOneColor_Inside_livingroom"), "Is turned on", "1");
+        //Routine test1routine = new ToggleToToggleRoutine((Subject) home.getDevice("SmokeSensor_Kitchen"), (Observer) home.getDevice("BulbOneColor_Inside_livingroom"), "Is turned on", "1");
 
-
-        //UserLoginBase userLoginBase = new UserLoginBase();
-        UserLoginBase.register("User", "pass", "543827453", "user.pass@gmail.com");
-        UserDataBase.findUser("User").setHome(home);
-        UserLoginBase.login("User", "pass");
-        System.out.println("Current User in main:" + UserLoginBase.getCurrentUser());
+        UserLoginBase.register("User", "pass", "543827453", "user.pass@gmail.com", "Wrocławska");
+        UserDataBase.getUserDataBase().get("User").setHome(home);
 
 
 
 
+        //W sumie jedyne co powinno być w mainie XD
         new LoginFrame().setVisible(true);
-        ///////////////////////////////////////////////////
 
 
-        //Logowanie
-       // UserLoginBase userLoginBase = new UserLoginBase();
-//        UserService userService = new UserService();
-//        UserService.userRegistration();
-//        if(UserLoginBase.login("Maciek", "Kok")){
-//            System.out.println(UserDataBase.findUser("Maciek"));
-//        }
-//
-//
-//
-//        System.out.println(UserLoginBase.login("XD", "xd"));
-//        System.out.println(UserLoginBase.login("Daniel", "haslo"));
-//        System.out.println(UserLoginBase.login("Daniiel", "hasło"));
-//        System.out.println(UserLoginBase.register("Daniel", "hassło"));
-//        System.out.println(UserLoginBase.remove("Marek", "dadsa"));
-//        System.out.println(UserLoginBase.login("Marek", "dadsa"));
 
-        //Serializacja
-        Serialization.serialize(new UserDataBase());
-        Serialization.deserialize();
-        System.out.println(Serialization.getDeserializedHome());
+        //DWIE GOTOWE FUNKCJE KTÓRE ZAŁATWIAJĄ SERIALIZACJĘ, NALEŻY JE TYLKO ZAIMPLEMENTOWAĆ W ODPOWIEDNICH MIEJSCACH W GUI
+        //SerializationFunc.serialize();
+        //SerializationFunc.deserialize();
     }
-    public static List getListToGui() { // potem to usune, na chwile obecna nie wiem gdzie to powinno byc
+    public static List<String> getListToGui() { // potem to usune, na chwile obecna nie wiem gdzie to powinno byc
 		ArrayList<String> locations = new ArrayList<String>();
 		locations.add("Kitchen");
 		locations.add("Garden");

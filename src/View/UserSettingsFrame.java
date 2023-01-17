@@ -1,7 +1,6 @@
 package View;
 
-import TextMenu.UserLogin.UserLoginBase;
-import User.UserDataBase;
+import User.UserLoginBase;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -29,9 +28,9 @@ public class UserSettingsFrame extends JFrame {
 	private JButton passButton;
 	private JButton phoneButton;
 	private JButton mailButton;
-	NaprawdeMainFrame InitializingWindow;
+	MainFrame InitializingWindow;
 
-	public UserSettingsFrame(NaprawdeMainFrame InitializingWindow) {
+	public UserSettingsFrame(MainFrame InitializingWindow) {
 		this.InitializingWindow=InitializingWindow;
 		initialize();
 	}
@@ -157,43 +156,34 @@ public class UserSettingsFrame extends JFrame {
 			passField.setEditable(true);
 		}
 
-		TextMenu.UserLogin.UserLoginBase.getCurrentUser().setPassword(passField.getText());
+		//Setting new password in UserDataBase (<String login, User user>) and UserLoginBase (<String login, String password>)
 		UserLoginBase.getCurrentUser().setPassword(passField.getText());
 		UserLoginBase.setPassword(loginField.getText(), passField.getText());
 	}
 
 	private void phoneButtonActionPerformed() {
-		/*if(phoneField.isEditable()) {
-			if(phoneField.getText().isBlank()==false)
-				phoneButton.setText("Change");
-			else
-				phoneButton.setText("Add");
+		if(phoneField.isEditable()) {
+			phoneButton.setText("Change");
 			phoneField.setEditable(false);
-			
 		}else {
 			phoneButton.setText("Save");
 			phoneField.setEditable(true);
-		}*/
+		}
 
-		TextMenu.UserLogin.UserLoginBase.getCurrentUser().setPhoneNumber(phoneField.getText());
-
+		UserLoginBase.getCurrentUser().setPhoneNumber(phoneField.getText());
 
 	}
 
 	private void mailButtonActionPerformed() {
-		/*if(mailField.isEditable()) {
-			if(mailField.getText().isBlank()==false)
-				mailButton.setText("Change");
-			else
-				mailButton.setText("Add");
+		if(mailField.isEditable()) {
+			mailButton.setText("Change");
 			mailField.setEditable(false);
-
 		}else {
 			mailButton.setText("Save");
 			mailField.setEditable(true);
-		}*/
+		}
 
-		TextMenu.UserLogin.UserLoginBase.getCurrentUser().setEmail(mailField.getText());
+		UserLoginBase.getCurrentUser().setEmail(mailField.getText());
 	}
 
 	private void deleteAccButtonActionPerformed() {

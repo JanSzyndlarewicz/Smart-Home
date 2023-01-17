@@ -4,7 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import javax.swing.ComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -13,7 +12,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import Device.Device;
-import TextMenu.UserLogin.UserLoginBase;
+import User.UserLoginBase;
 
 public class DeleteDeviceFrame extends JFrame{
 	private JComboBox deviceList;
@@ -66,7 +65,7 @@ public class DeleteDeviceFrame extends JFrame{
 		if(result == JOptionPane.YES_OPTION){
              JOptionPane.showMessageDialog(panel, "Device deleted successfully"); 
              UserLoginBase.getCurrentUser().getHome().removeDevice(UserLoginBase.getCurrentUser().getHome().getDevice(deviceName));
-             NaprawdeMainFrame.RefreshTableData(UserLoginBase.getCurrentUser().getHome().getDeviceList());
+             MainFrame.RefreshTableData(UserLoginBase.getCurrentUser().getHome().getDeviceList());
             dispose();
             }
 	}
