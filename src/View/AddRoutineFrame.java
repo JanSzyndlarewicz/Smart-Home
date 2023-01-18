@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class AddRoutineFrame extends JFrame{
-	private JPanel routinePanel;
+	private static JPanel routinePanel;
 	private JLabel nameLabel;
 	private JTextField nameTextField;
 	private JLabel sensorLabel;
@@ -68,4 +68,8 @@ public class AddRoutineFrame extends JFrame{
 		JOptionPane.showMessageDialog(routinePanel,"The Routine was added successfully.");
 		dispose();
 	}
-}	
+
+	public static JPanel getRoutinePanel() {
+		return routinePanel;
+	}
+}
