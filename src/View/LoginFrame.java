@@ -104,7 +104,6 @@ public class LoginFrame extends JFrame {
 		setVisible(true);
 	}
 	private void loginButtonActionPerformed() {
-
 		if(UserLoginBase.login(loginTextField.getText(), new String(passTextField.getPassword()))){
 
 			MainFrame home = new MainFrame();
@@ -115,8 +114,7 @@ public class LoginFrame extends JFrame {
 		else{
 			JOptionPane.showMessageDialog(null, "Nieprawidłowe hasło", "", JOptionPane.ERROR_MESSAGE);
 		}
-		// stuff
-
 	}
+
 
 }

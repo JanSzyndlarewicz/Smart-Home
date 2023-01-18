@@ -36,7 +36,7 @@ public class AddDeviceFrame extends JFrame {
 	private JComboBox deviceTypeList;
 	private JLabel deviceTypeIOLabel;
 	private JComboBox deviceTypeIOList;
-	private JPanel panel;
+	private static JPanel panel;
 	private JLabel newLocationLabel;
 	private JTextField newLocationField;
 
@@ -166,5 +166,8 @@ public class AddDeviceFrame extends JFrame {
 
 		dispose();
 	}
-	
+
+	public static JPanel getPanel() {
+		return panel;
+	}
 }

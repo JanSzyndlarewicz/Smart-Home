@@ -4,6 +4,7 @@ import User.UserLoginBase;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -13,7 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class UserSettingsFrame extends JFrame {
-	private JPanel userPanel;
+	private static JPanel userPanel;
 	private JLabel loginLabel;
 	private JLabel passLabel;
 	private JLabel phoneLabel;
@@ -29,6 +30,8 @@ public class UserSettingsFrame extends JFrame {
 	private JButton phoneButton;
 	private JButton mailButton;
 	MainFrame InitializingWindow;
+
+
 
 	public UserSettingsFrame(MainFrame InitializingWindow) {
 		this.InitializingWindow=InitializingWindow;
@@ -194,4 +197,7 @@ public class UserSettingsFrame extends JFrame {
 		}
 	}
 
+	public static JPanel getUserPanel() {
+		return userPanel;
+	}
 }
