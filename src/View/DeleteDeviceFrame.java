@@ -18,7 +18,7 @@ public class DeleteDeviceFrame extends JFrame{
 	private JComboBox deviceList;
 	private JLabel deviceListLabel;
 	private JButton deleteButton;
-	private JPanel panel;
+	private static JPanel panel;
 	public DeleteDeviceFrame() {
 		initialize();
 	}
@@ -69,5 +69,8 @@ public class DeleteDeviceFrame extends JFrame{
             dispose();
             }
 	}
-	
+
+	public static JPanel getPanel() {
+		return panel;
+	}
 }

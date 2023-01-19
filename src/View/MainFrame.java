@@ -470,7 +470,10 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     private void AccountSetMButtonActionPerformed(java.awt.event.ActionEvent evt) {
-      new UserSettingsFrame(this).setVisible(true);
+        //Zablokowanie wyświetlania kilku tych samych okien
+        if(UserSettingsFrame.getUserPanel() == null || !UserSettingsFrame.getUserPanel().isShowing()){
+            new UserSettingsFrame(this).setVisible(true);
+        }
     }
 
     private void DelLocMButtonActionPerformed(java.awt.event.ActionEvent evt) {
@@ -482,18 +485,30 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     private void AddRoutMButtonActionPerformed(java.awt.event.ActionEvent evt) {
-       new AddRoutineFrame().setVisible(true);
+        //Zablokowanie wyświetlania kilku tych samych okien
+        if(AddRoutineFrame.getRoutinePanel() == null || !AddRoutineFrame.getRoutinePanel().isShowing()){
+            new AddRoutineFrame().setVisible(true);
+        }
+
     }
 
     private void DelDevMButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        new DeleteDeviceFrame().setVisible(true);
+        //Zablokowanie wyświetlania kilku tych samych okien
+        if(DeleteDeviceFrame.getPanel() == null || !DeleteDeviceFrame.getPanel().isShowing()){
+            new DeleteDeviceFrame().setVisible(true);
+        }
+
     }
 
     private void DelRoutMButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     }
     private void AddDevMButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        new AddDeviceFrame().setVisible(true);
+        //Zablokowanie wyświetlania kilku tych samych okien
+        if(AddDeviceFrame.getPanel() == null || !AddDeviceFrame.getPanel().isShowing()){
+            new AddDeviceFrame().setVisible(true);
+        }
+
         // TODO add your handling code here:
     }
 
