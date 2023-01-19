@@ -27,6 +27,7 @@ public class RegisterFrame extends JFrame {
         private static JLabel repeatPasswordLabel;
         private static JPasswordField repeatPasswordTextField;
         private static JCheckBox hidePassword;
+        private static JCheckBox hidePassword2;
         private static JPanel designPanel1;
         private static JPanel designPanel2;
         private static JPanel designPanel3;
@@ -48,6 +49,7 @@ public class RegisterFrame extends JFrame {
             repeatPasswordLabel = new JLabel("Repeat password: ");
             repeatPasswordTextField = new JPasswordField();
             hidePassword = new JCheckBox();
+            hidePassword2 = new JCheckBox();
             designPanel1 = new JPanel();
             designPanel2 = new JPanel();
             designPanel3 = new JPanel();
@@ -67,10 +69,21 @@ public class RegisterFrame extends JFrame {
                         passwordTextField.setEchoChar('\u0000');
                 }
             });
+
+
+            hidePassword2.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    if (repeatPasswordTextField.getEchoChar() == '\u0000') {
+                        repeatPasswordTextField.setEchoChar('*');
+                    } else
+                        repeatPasswordTextField.setEchoChar('\u0000');
+                }
+            });
             signUpButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    loginButtonActionPerformed();
+                    registerButtonActionPerformed();
 
                 }
             });
@@ -91,12 +104,14 @@ public class RegisterFrame extends JFrame {
             welcomeMess.setBounds(180, 50, 200, 50);
             signUpButton.setBounds(200, 350, 100, 25);
             usernameLabel.setBounds(150, 150, 100, 25);
-            passwordLabel.setBounds(150, 225, 100, 25);
-            repeatPasswordLabel.setBounds(150, 200, 100, 25);
-            UsernameTextField.setBounds(150, 200 , 175, 25);
-            passwordTextField.setBounds(150, 175, 175, 25);
-            hidePassword.setBounds(325, 250, 25, 25);
-            //
+            UsernameTextField.setBounds(150, 180 , 175, 25);
+            passwordLabel.setBounds(150,200, 100, 25);
+            passwordTextField.setBounds(150, 230, 175, 25);
+            repeatPasswordLabel.setBounds(150, 250, 175, 25);
+            repeatPasswordTextField.setBounds(150, 280, 175, 25);
+            hidePassword.setBounds(325, 230, 25, 25);
+            hidePassword2.setBounds(325, 280, 175, 25);
+
             panel.add(designPanel1);
             panel.add(designPanel2);
             panel.add(designPanel3);
@@ -106,9 +121,11 @@ public class RegisterFrame extends JFrame {
             panel.add(passwordLabel);
             panel.add(passwordTextField);
             panel.add(repeatPasswordLabel);
+            panel.add(repeatPasswordTextField);
             panel.add(signUpButton);
             panel.add(welcomeMess);
             panel.add(hidePassword);
+            panel.add(hidePassword2);
             add(panel);
 
             setSize(500, 500);
@@ -116,7 +133,7 @@ public class RegisterFrame extends JFrame {
             setResizable(false);
             setVisible(true);
         }
-        private void loginButtonActionPerformed() {
+        private void registerButtonActionPerformed() {
 
             if(UserLoginBase.login(UsernameTextField.getText(), new String(passwordTextField.getPassword()))){
 
