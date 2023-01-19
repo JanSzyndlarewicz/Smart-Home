@@ -7,14 +7,16 @@ import java.util.ArrayList;
 
 
 public abstract class Routine implements Subject,Observer{
-protected String outputProperty, outputValue;
+
+    private String alias;
+    protected String outputProperty;
     private ArrayList<Observer> observerList = new ArrayList<>();
 
-    public Routine(Subject input, Observer output, String outputProperty, String outputValue) {
+    public Routine(String alias, Subject input, Observer output, String outputProperty) {
+        this.alias=alias;
+        this.outputProperty=outputProperty;
         input.registerObserver(this);
         registerObserver(output);
-        this.outputProperty=outputProperty;
-        this.outputValue=outputValue;
 
     }
 
