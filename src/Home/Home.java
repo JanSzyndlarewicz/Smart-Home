@@ -78,6 +78,10 @@ public class Home implements Serializable{
         System.out.println("To urządzenie nie istnieje");
         return null;
     }
+    public Device getDevice(int index) {
+
+        return deviceList.get(index);
+    }
 
     public String getLogin() {
         return login;

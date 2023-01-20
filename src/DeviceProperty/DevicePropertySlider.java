@@ -1,6 +1,6 @@
 package DeviceProperty;
 
-public class DevicePropertySlider extends DeviceProperty {
+public class DevicePropertySlider extends DeviceProperty implements Slider {
     private double value, min, max;
 
     public DevicePropertySlider(String name, double value) {

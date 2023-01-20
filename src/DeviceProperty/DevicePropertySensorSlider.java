@@ -1,7 +1,7 @@
 package DeviceProperty;
 
 
-public class DevicePropertySensorSlider extends DeviceProperty {
+public class DevicePropertySensorSlider extends DeviceProperty implements Slider{
     private double value;
 
 

@@ -44,6 +44,8 @@ public class Main {
         //Routine test1routine = new ToggleToToggleRoutine((Subject) home.getDevice("SmokeSensor_Kitchen"), (Observer) home.getDevice("BulbOneColor_Inside_livingroom"), "Is turned on", "1");
 
         UserLoginBase.register("User", "pass", "543827453", "user.pass@gmail.com", "Wrocławska");
+        UserLoginBase.register("", "", "543827453", "user.pass@gmail.com", "Wrocławska");
+        UserDataBase.getUserDataBase().get("").setHome(home);
         UserDataBase.getUserDataBase().get("User").setHome(home);
 
 

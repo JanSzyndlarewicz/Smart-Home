@@ -1,6 +1,6 @@
 package DeviceProperty;
 
-public class DevicePropertyToggle extends DeviceProperty {
+public class DevicePropertyToggle extends DeviceProperty implements Toggle{
     private boolean value;
 
 
