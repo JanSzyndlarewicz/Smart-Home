@@ -16,6 +16,7 @@ public class AddRoutineFrame extends JFrame {
 
 	private static boolean isOpen = false;
 
+	private JPanel startPanel;
 	private JLabel RoutineNameLabel;
 	private JTextField RoutineNameField;
 	private JPanel DeviceSelectionPanel;
@@ -88,7 +89,10 @@ public class AddRoutineFrame extends JFrame {
 
 
 		RoutineSettingsPanel = new JPanel();
+		CardLayout cards = new CardLayout();
+		RoutineSettingsPanel.setLayout(cards);
 		//elementy panelu ustawien rutyny
+		startPanel = new JPanel();
 		ToggleSensorPanel = new JPanel();
 		SliderSensorPanel = new JPanel();
 
@@ -243,6 +247,22 @@ public class AddRoutineFrame extends JFrame {
 
 		SensorLabel.setText("Sensor:");
 		DeviceSelectionPanel.add(SensorLabel);
+		SensorComboBox.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String deviceType = (String) UserLoginBase.getCurrentUser().getHome().getDevice((String) SensorComboBox.getSelectedItem()).getSensorType();
+				switch (deviceType){
+					case "toggle":
+						cards.show(RoutineSettingsPanel, "card1");
+						break;
+					case "slider":
+						cards.show(RoutineSettingsPanel, "card2");
+						break;
+					default:
+						cards.show(RoutineSettingsPanel, "card0");
+				}
+			}
+		});
 		DeviceSelectionPanel.add(SensorComboBox);
 
 		outputDeviceLabel.setText("Output device:");
@@ -255,9 +275,9 @@ public class AddRoutineFrame extends JFrame {
 
 		getContentPane().add(DeviceSelectionPanel);
 
-		CardLayout cards = new CardLayout();
 
-		RoutineSettingsPanel.setLayout(cards);
+
+		RoutineSettingsPanel.add(startPanel, "card0");
 
 		ToggleSensorPanel.setLayout(new GridLayout(2, 2, 0, 20));
 
@@ -450,7 +470,7 @@ public class AddRoutineFrame extends JFrame {
 
 		SliderSensorPanel.add(SliderStatePanel);
 
-		RoutineSettingsPanel.add(SliderSensorPanel, "card3");
+		RoutineSettingsPanel.add(SliderSensorPanel, "card2");
 
 		getContentPane().add(RoutineSettingsPanel);
 
