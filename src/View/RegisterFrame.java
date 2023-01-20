@@ -163,11 +163,18 @@ public class RegisterFrame extends JFrame {
             setVisible(true);
         }
 
-
-//        this method should be rewritten to save data of the registered user in the ArrayList
         private void registerButtonActionPerformed() {
             if(UserLoginBase.getUserHashMap().get(UsernameTextField.getText()) == null){
                 if(isPasswordTheSame()) {
+                    StringBuilder sb = new StringBuilder();
+
+                    for (Character ch : passwordTextField.getPassword()) {
+                        sb.append(ch);
+                    }
+                    String password = sb.toString();
+
+                    UserLoginBase.register(UsernameTextField.getText(), password, emailTextField.getText() ,phoneNumberTextField.getText(), "LABEL");
+
                     MainFrame home = new MainFrame();
                     home.setVisible(true);
                     dispose();
@@ -188,12 +195,5 @@ public class RegisterFrame extends JFrame {
             return Arrays.toString(passwordTextField.getPassword()).equals(Arrays.toString(repeatPasswordTextField.getPassword()));
         }
 
-//        this method is not working as it should
-        private void passwordIsNotTheSame(){
-            if(!Objects.equals(passwordTextField.getPassword(), repeatPasswordTextField.getPassword())){
-                JOptionPane.showMessageDialog(null, "Passwords are not the same", "ERROR", JOptionPane.ERROR_MESSAGE);
-            }
-        }
-
-    }
+}
 
