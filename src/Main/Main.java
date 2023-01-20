@@ -4,19 +4,10 @@ import Device.Bulb.BulbOneColor;
 import Device.Bulb.BulbRGBW;
 import Device.Sensor.*;
 import Home.Home;
-import Serialization.Serialization;
-import User.User;
 import User.UserLoginBase;
 import User.UserDataBase;
 import View.LoginFrame;
-import Serialization.SerializeUserDataBase;
-import Serialization.SerializeUserLoginBase;
-import Serialization.SerializationFunc;
-import View.RegisterFrame;
-//import View.MainFrame;
-
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 
@@ -27,7 +18,6 @@ public class Main {
 
         Home home = new Home("Wroclawska 33");
         home.addDevice(new LightSensor("LightSensor_Outside_frontdoor"));
-        home.getDevice(0).setProperty("Brightness",2000);
         home.addDevice(new BulbRGBW("BulbRBGW_Outside_1"));
         home.addDevice(new BulbOneColor("BulbOneColor_Inside_livingroom"));
         home.addDevice(new BulbRGBW("BulbRGBW_Outside_garden_1"));
@@ -54,8 +44,8 @@ public class Main {
 
 
 
-//        new LoginFrame().setVisible(true);
-        new RegisterFrame().setVisible(true);
+         new LoginFrame().setVisible(true);
+        //new RegisterFrame().setVisible(true);
 
 
 
@@ -64,7 +54,7 @@ public class Main {
         //SerializationFunc.deserialize();
     }
     public static List<String> getListToGui() { // potem to usune, na chwile obecna nie wiem gdzie to powinno byc
-		ArrayList<String> locations = new ArrayList<String>();
+		ArrayList<String> locations = new ArrayList<>();
 		locations.add("Kitchen");
 		locations.add("Garden");
 		locations.add("Room1");

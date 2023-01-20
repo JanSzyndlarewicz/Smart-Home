@@ -1,23 +1,23 @@
 package Device.Sensor;
 
-import DeviceProperty.DevicePropertySlider;
+import DeviceProperty.DevicePropertySensorSlider;
 
 
 public class LightSensor extends Sensor{
 
     public LightSensor(){
         super();
-        addProperty(new DevicePropertySlider("Brightness", 0));
+        addProperty(new DevicePropertySensorSlider("Brightness", 0, 100));
 
     }
     public LightSensor(String alias){
         super(alias);
-        addProperty(new DevicePropertySlider("Brightness", 0));
+        addProperty(new DevicePropertySensorSlider("Brightness", 0, 100));
 
     }
     public LightSensor(String alias,String location){
         super(alias, location);
-        addProperty(new DevicePropertySlider("Brightness", 0));
+        addProperty(new DevicePropertySensorSlider("Brightness", 0, 100));
 
     }
 

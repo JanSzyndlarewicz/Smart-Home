@@ -7,8 +7,8 @@ import java.io.Serializable;
 public abstract class Device implements Serializable {
 
     final private int MAX_NUMBER_OF_PROPERTIES = 1000;
-    private DeviceProperty [] properties = new DeviceProperty[MAX_NUMBER_OF_PROPERTIES];
-    private int propertiesCount = 0;
+    protected DeviceProperty [] properties = new DeviceProperty[MAX_NUMBER_OF_PROPERTIES];
+    protected int propertiesCount = 0;
     private String alias;
     private String location;
 
@@ -46,38 +46,6 @@ public abstract class Device implements Serializable {
                     return;
                 }
                 ((DevicePropertyToggle) properties[i]).set(value);
-                return;
-            }
-        }
-        System.err.println("Error! Specified property does not exist. Aborting");
-    }
-
-
-
-    public void setProperty(String name, double value) {
-        for (int i = 0; i < propertiesCount; i++) {
-            if (Objects.equals(properties[i].getName(), name)) {
-                if (!Objects.equals(properties[i].getType(), "Slider")) {
-                    System.err.println("Error! Types mismatch. Cannot assign double value to DeviceProperty"
-                            + properties[i].getType() + "! Aborting");
-                    return;
-                }
-                ((DevicePropertySlider) properties[i]).set(value);
-                return;
-            }
-        }
-        System.err.println("Error! Specified property does not exist. Aborting");
-    }
-
-    public void setProperty(String name, String value) {
-        for (int i = 0; i < propertiesCount; i++) {
-            if (Objects.equals(properties[i].getName(), name)) {
-                switch (properties[i].getType()) {
-                    case "Slider" -> ((DevicePropertySlider) properties[i]).set(Double.parseDouble(value));
-                    case "Toggle" -> ((DevicePropertyToggle) properties[i]).set(value.charAt(0) == '1' | value.equals("true") | value.equals("True"));
-                    default -> {
-                    }
-                }
                 return;
             }
         }

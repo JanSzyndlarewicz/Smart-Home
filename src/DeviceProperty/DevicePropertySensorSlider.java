@@ -7,22 +7,15 @@ public class DevicePropertySensorSlider extends DeviceProperty implements Slider
 
     public DevicePropertySensorSlider(String name) {
         super(name, "SensorSlider");
-        value = 0;
         this.min = Double.MIN_VALUE;
         this.max = Double.MAX_VALUE;
+        this.value = ((max-min)/2)+min;
     }
-    public DevicePropertySensorSlider(String name, double value, double min, double max){
+    public DevicePropertySensorSlider(String name, double min, double max){
         super(name, "Slider");
-        this.value=value;
         this.min=min;
         this.max=max;
-    }
-
-    public DevicePropertySensorSlider(String name, double value) {
-        super(name, "Slider");
-        this.value = value;
-        this.min = Double.MIN_VALUE;
-        this.max = Double.MAX_VALUE;
+        this.value = ((max-min)/2)+min;
     }
 
     public double get() {
