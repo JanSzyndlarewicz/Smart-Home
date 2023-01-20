@@ -13,6 +13,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
+import java.util.Objects;
 import javax.swing.*;
 
 public class RegisterFrame extends JFrame {
@@ -100,8 +101,6 @@ public class RegisterFrame extends JFrame {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     registerButtonActionPerformed();
-                    passwordIsNotTheSame();
-
                 }
             });
 
@@ -167,25 +166,30 @@ public class RegisterFrame extends JFrame {
 
 //        this method should be rewritten to save data of the registered user in the ArrayList
         private void registerButtonActionPerformed() {
-
-            if(UserLoginBase.login(UsernameTextField.getText(), new String(passwordTextField.getPassword()))){
-
-                MainFrame home = new MainFrame();
-                home.setVisible(true);
-                MainFrame.RefreshTableData(UserLoginBase.getCurrentUser().getHome().getDeviceList());
-                dispose();
+            if(UserLoginBase.getUserHashMap().get(UsernameTextField.getText()) == null){
+                if(isPasswordTheSame()) {
+                    MainFrame home = new MainFrame();
+                    home.setVisible(true);
+                    dispose();
+                    MainFrame.RefreshTableData(UserLoginBase.getCurrentUser().getHome().getDeviceList());
+                }
+                else {
+                    JOptionPane.showMessageDialog(null, "Passwords are not the same", "ERROR", JOptionPane.ERROR_MESSAGE);
+                }
             }
             else {
-                JOptionPane.showMessageDialog(null, "Wrong password", "ERROR", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "This user already exists", "ERROR", JOptionPane.ERROR_MESSAGE);
             }
 
         }
 
+        private boolean isPasswordTheSame(){
+            return Arrays.toString(passwordTextField.getPassword()).equals(Arrays.toString(repeatPasswordTextField.getPassword()));
+        }
+
 //        this method is not working as it should
         private void passwordIsNotTheSame(){
-            String pass1 = Arrays.toString(passwordTextField.getPassword());
-            String pass2 = Arrays.toString(repeatPasswordTextField.getPassword());
-            if(pass1 != pass2){
+            if(!Objects.equals(passwordTextField.getPassword(), repeatPasswordTextField.getPassword())){
                 JOptionPane.showMessageDialog(null, "Passwords are not the same", "ERROR", JOptionPane.ERROR_MESSAGE);
             }
         }
