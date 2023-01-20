@@ -1,11 +1,10 @@
 package View;
 
 import User.UserLoginBase;
-import User.XD;
+import User.ResetPassword;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -161,7 +160,7 @@ public class UserSettingsFrame extends JFrame {
 		}
 
 		//Setting new password in UserDataBase (<String login, User user>) and UserLoginBase (<String login, String password>)
-		XD.newPassword(loginField.getText(), passField.getText());
+		ResetPassword.newPassword(loginField.getText(), passField.getText());
 		//UserLoginBase.getCurrentUser().setPassword(passField.getText());
 		//UserLoginBase.setPassword(loginField.getText(), passField.getText());
 	}
