@@ -18,6 +18,7 @@ public abstract class Device implements Serializable {
     }
     public Device(String alias){
         this.alias = alias;
+        this.location= "XD";
     }
     public Device(String alias, String location) {
     	this.alias = alias;

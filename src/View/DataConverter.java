@@ -20,7 +20,7 @@ public abstract class DataConverter {
 
         for (int i = 0; i < devices.size(); i++)
 
-                result.add(new Object[]{i,devices.get(i).getAlias()});
+                result.add(new Object[]{i,devices.get(i).getAlias(),devices.get(i).getLocation()});
 
 
         return returnFormat(result);
