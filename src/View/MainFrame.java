@@ -486,8 +486,9 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void AddRoutMButtonActionPerformed(java.awt.event.ActionEvent evt) {
         //Zablokowanie wyświetlania kilku tych samych okien
-        if(AddRoutineFrame.getRoutinePanel() == null || !AddRoutineFrame.getRoutinePanel().isShowing()){
+        if(!AddRoutineFrame.getIsOpen()){
             new AddRoutineFrame().setVisible(true);
+            AddRoutineFrame.setIsOpen(true);
         }
 
     }

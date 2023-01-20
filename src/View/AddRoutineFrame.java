@@ -8,6 +8,8 @@ import javax.swing.event.ChangeListener;
 
 public class AddRoutineFrame extends JFrame {
 
+	private static boolean isOpen = false;
+
 	private JPanel DeviceSelectionPanel;
 	private JCheckBox OnEnableSlider1;
 	private JCheckBox OnEnableSlider2;
@@ -417,8 +419,53 @@ public class AddRoutineFrame extends JFrame {
 		getContentPane().add(RoutineSettingsPanel);
 
 		getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+
+		this.addWindowListener(new WindowListener() {
+			@Override
+			public void windowOpened(WindowEvent e) {
+
+			}
+
+			@Override
+			public void windowClosing(WindowEvent e) {
+				setIsOpen(false);
+			}
+
+			@Override
+			public void windowClosed(WindowEvent e) {
+				setIsOpen(false);
+			}
+
+			@Override
+			public void windowIconified(WindowEvent e) {
+
+			}
+
+			@Override
+			public void windowDeiconified(WindowEvent e) {
+
+			}
+
+			@Override
+			public void windowActivated(WindowEvent e) {
+
+			}
+
+			@Override
+			public void windowDeactivated(WindowEvent e) {
+
+			}
+		});
 		pack();
 
+	}
+
+	public static void setIsOpen(boolean state){
+		isOpen = state;
+	}
+
+	public static boolean getIsOpen(){
+		return isOpen;
 	}
 
 	private void ToggleBox2ActionPerformed(ActionEvent evt) {
