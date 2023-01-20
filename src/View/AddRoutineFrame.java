@@ -1,7 +1,13 @@
 package View;
 
+import Device.Device;
+import Device.OutputDevice;
+import Device.Sensor.Sensor;
+import User.UserLoginBase;
+
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -10,6 +16,8 @@ public class AddRoutineFrame extends JFrame {
 
 	private static boolean isOpen = false;
 
+	private JLabel RoutineNameLabel;
+	private JTextField RoutineNameField;
 	private JPanel DeviceSelectionPanel;
 	private JCheckBox OnEnableSlider1;
 	private JCheckBox OnEnableSlider2;
@@ -70,10 +78,12 @@ public class AddRoutineFrame extends JFrame {
 
 		DeviceSelectionPanel = new JPanel();
 		//elementy panelu wyboru urzadzen
+		RoutineNameLabel = new JLabel();
+		RoutineNameField = new JTextField(10);
 		SensorLabel = new JLabel();
-		SensorComboBox = new JComboBox<>();
+		SensorComboBox = new JComboBox(getSensorList().toArray());
 		outputDeviceLabel = new JLabel();
-		outputDeviceComboBox = new JComboBox<>();
+		outputDeviceComboBox = new JComboBox(getOutputDeviceList().toArray());
 		AddButton = new JButton();
 
 
@@ -122,6 +132,8 @@ public class AddRoutineFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				OffToggleBox1.setEnabled(!OffToggleBox1.isEnabled());
+				OnEnableToggle1.setSelected(!OnEnableToggle1.isSelected());
+				OnToggleBox1.setEnabled(!OnToggleBox1.isEnabled());
 			}
 		});
 		OffToggleBox1 = new JComboBox<>();
@@ -132,6 +144,8 @@ public class AddRoutineFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				OffSlider1.setEnabled(!OffSlider1.isEnabled());
+				OnEnableSlider1.setSelected(!OnEnableSlider1.isSelected());
+				OnSlider1.setEnabled(!OnSlider1.isEnabled());
 			}
 		});
 		OffSlider1 = new JSlider();
@@ -142,6 +156,8 @@ public class AddRoutineFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				OffToggleBox2.setEnabled(!OffToggleBox2.isEnabled());
+				OnEnableToggle2.setSelected(!OnEnableToggle2.isSelected());
+				OnToggleBox2.setEnabled(!OnToggleBox2.isEnabled());
 			}
 		});
 		OffToggleBox2 = new JComboBox<>();
@@ -152,6 +168,8 @@ public class AddRoutineFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				OffSlider2.setEnabled(!OffSlider2.isEnabled());
+				OnEnableSlider2.setSelected(!OnEnableSlider2.isSelected());
+				OnSlider2.setEnabled(!OnSlider2.isEnabled());
 			}
 		});
 		OffSlider2 = new JSlider();
@@ -162,6 +180,8 @@ public class AddRoutineFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				OffToggleBox3.setEnabled(!OffToggleBox3.isEnabled());
+				OnEnableToggle3.setSelected(!OnEnableToggle3.isSelected());
+				OnToggleBox3.setEnabled(!OnToggleBox3.isEnabled());
 			}
 		});
 		OffToggleBox3 = new JComboBox<>();
@@ -172,6 +192,8 @@ public class AddRoutineFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				OffSlider3.setEnabled(!OffSlider3.isEnabled());
+				OnEnableSlider3.setSelected(!OnEnableSlider3.isSelected());
+				OnSlider3.setEnabled(!OnSlider3.isEnabled());
 			}
 		});
 		OffSlider3 = new JSlider();
@@ -215,7 +237,9 @@ public class AddRoutineFrame extends JFrame {
 		SliderSlider3 = new JSlider();
 		SliderSlider3.setEnabled(false);
 
-
+		RoutineNameLabel.setText("Name:");
+		DeviceSelectionPanel.add(RoutineNameLabel);
+		DeviceSelectionPanel.add(RoutineNameField);
 
 		SensorLabel.setText("Sensor:");
 		DeviceSelectionPanel.add(SensorLabel);
@@ -247,6 +271,8 @@ public class AddRoutineFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				OnToggleBox1.setEnabled(!OnToggleBox1.isEnabled());
+				OffEnableToggle1.setSelected(!OffEnableToggle1.isSelected());
+				OffToggleBox1.setEnabled(!OffToggleBox1.isEnabled());
 			}
 		});
 		OnStatePanel.add(OnEnableToggle1);
@@ -259,6 +285,8 @@ public class AddRoutineFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				OnSlider1.setEnabled(!OnSlider1.isEnabled());
+				OffEnableSlider1.setSelected(!OffEnableSlider1.isSelected());
+				OffSlider1.setEnabled(!OffSlider1.isEnabled());
 			}
 		});
 		OnStatePanel.add(OnEnableSlider1);
@@ -269,6 +297,8 @@ public class AddRoutineFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				OnToggleBox2.setEnabled(!OnToggleBox2.isEnabled());
+				OffEnableToggle2.setSelected(!OffEnableToggle2.isSelected());
+				OffToggleBox2.setEnabled(!OffToggleBox2.isEnabled());
 			}
 		});
 		OnStatePanel.add(OnEnableToggle2);
@@ -286,6 +316,8 @@ public class AddRoutineFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				OnSlider2.setEnabled(!OnSlider2.isEnabled());
+				OffEnableSlider2.setSelected(!OffEnableSlider2.isSelected());
+				OffSlider2.setEnabled(!OffSlider2.isEnabled());
 			}
 		});
 		OnStatePanel.add(OnEnableSlider2);
@@ -296,6 +328,8 @@ public class AddRoutineFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				OnToggleBox3.setEnabled(!OnToggleBox3.isEnabled());
+				OffEnableToggle3.setSelected(!OffEnableToggle3.isSelected());
+				OffToggleBox3.setEnabled(!OffToggleBox3.isEnabled());
 			}
 		});
 		OnStatePanel.add(OnEnableToggle3);
@@ -308,6 +342,8 @@ public class AddRoutineFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				OnSlider3.setEnabled(!OnSlider3.isEnabled());
+				OffEnableSlider3.setSelected(!OffEnableSlider3.isSelected());
+				OffSlider3.setEnabled(!OffSlider3.isEnabled());
 			}
 		});
 		OnStatePanel.add(OnEnableSlider3);
@@ -478,6 +514,30 @@ public class AddRoutineFrame extends JFrame {
 
 	private void ToggleBox8ActionPerformed(ActionEvent evt) {
 		// TODO add your handling code here:
+	}
+
+	private ArrayList<String> getSensorList() {
+		//should be changed when Controller is implemented
+		ArrayList<Device> tempDevList = UserLoginBase.getCurrentUser().getHome().getDeviceList();
+		ArrayList<String> devList = new ArrayList<String>();
+		for(int i=0; i<tempDevList.size(); i++) {
+			if(tempDevList.get(i) instanceof Sensor){
+				devList.add(tempDevList.get(i).getAlias());
+			}
+		}
+		return devList;
+	}
+
+	private ArrayList<String> getOutputDeviceList() {
+		//should be changed when Controller is implemented
+		ArrayList<Device> tempDevList = UserLoginBase.getCurrentUser().getHome().getDeviceList();
+		ArrayList<String> devList = new ArrayList<String>();
+		for(int i=0; i<tempDevList.size(); i++) {
+			if(tempDevList.get(i) instanceof OutputDevice){
+				devList.add(tempDevList.get(i).getAlias());
+			}
+		}
+		return devList;
 	}
 
 }
