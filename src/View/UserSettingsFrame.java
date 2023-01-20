@@ -1,6 +1,7 @@
 package View;
 
 import User.UserLoginBase;
+import User.XD;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -160,8 +161,9 @@ public class UserSettingsFrame extends JFrame {
 		}
 
 		//Setting new password in UserDataBase (<String login, User user>) and UserLoginBase (<String login, String password>)
-		UserLoginBase.getCurrentUser().setPassword(passField.getText());
-		UserLoginBase.setPassword(loginField.getText(), passField.getText());
+		XD.newPassword(loginField.getText(), passField.getText());
+		//UserLoginBase.getCurrentUser().setPassword(passField.getText());
+		//UserLoginBase.setPassword(loginField.getText(), passField.getText());
 	}
 
 	private void phoneButtonActionPerformed() {

@@ -171,6 +171,7 @@ public class RegisterFrame extends JFrame {
                     MainFrame home = new MainFrame();
                     home.setVisible(true);
                     dispose();
+
                     MainFrame.RefreshTableData(UserLoginBase.getCurrentUser().getHome().getDeviceList());
                 }
                 else {
