@@ -24,6 +24,8 @@ public abstract class Device implements Serializable {
     	this.location=location;
     }
 
+
+
     protected void addProperty(DeviceProperty prop) {
         if (propertiesCount == MAX_NUMBER_OF_PROPERTIES) {
             System.err.printf("Error! Property %s (%s) could not be created because parent object reached limit of contained properties. Aborting", prop.getName(), prop.getType());
@@ -113,4 +115,14 @@ public abstract class Device implements Serializable {
             res.append("\n\t\t").append(properties[i].toString());
         return res.toString();
     }
+
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
 }
