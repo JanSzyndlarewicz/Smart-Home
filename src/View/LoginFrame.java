@@ -13,11 +13,7 @@ public class LoginFrame extends JFrame {
 	private JPanel panel;
 	private static JButton loginButton;
 	private static JLabel welcomeMess;
-	private static JLabel loginLabel;
-	private static JTextField loginTextField;
-	private static JLabel passLabel;
-	private static JPasswordField passTextField;
-	private static JCheckBox hidePassword;
+
 	private static JPanel designPanel1;
 	private static JPanel designPanel2;
 	private static JPanel designPanel3;
@@ -32,11 +28,7 @@ public class LoginFrame extends JFrame {
 		panel = new JPanel();
 		loginButton = new JButton("Login");
 		welcomeMess = new JLabel("Login Page");
-		loginLabel = new JLabel("Login: ");
-		loginTextField = new JTextField();
-		passLabel = new JLabel("Password: ");
-		passTextField = new JPasswordField();
-		hidePassword = new JCheckBox();
+
 		designPanel1 = new JPanel();
 		designPanel2 = new JPanel();
 		designPanel3 = new JPanel();
@@ -47,22 +39,14 @@ public class LoginFrame extends JFrame {
 		panel.setLayout(null);
 		panel.setBackground(new Color(223, 237, 245));
 		//
-		hidePassword.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if (passTextField.getEchoChar() == '\u0000') {
-					passTextField.setEchoChar('*');
-				} else
-					passTextField.setEchoChar('\u0000');
-			}
-		});
-		loginButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				loginButtonActionPerformed();
 
-			}
-		});
+//		loginButton.addActionListener(new ActionListener() {
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				loginButtonActionPerformed();
+//
+//			}
+//		});
 
 		designPanel1.setBackground(designPanelColor);
 		designPanel2.setBackground(designPanelColor);
@@ -79,23 +63,16 @@ public class LoginFrame extends JFrame {
 		designPanel4.setBounds(0, 400, 500, 100);
 		welcomeMess.setBounds(195, 50, 100, 50);
 		loginButton.setBounds(200, 350, 100, 25);
-		loginLabel.setBounds(150, 150, 100, 25);
-		passLabel.setBounds(150, 225, 100, 25);
-		loginTextField.setBounds(150, 175, 175, 25);
-		passTextField.setBounds(150, 250, 175, 25);
-		hidePassword.setBounds(325, 250, 25, 25);
+
 		//
 		panel.add(designPanel1);
 		panel.add(designPanel2);
 		panel.add(designPanel3);
 		panel.add(designPanel4);
-		panel.add(loginLabel);
-		panel.add(loginTextField);
-		panel.add(passLabel);
-		panel.add(passTextField);
+
 		panel.add(loginButton);
 		panel.add(welcomeMess);
-		panel.add(hidePassword);
+
 		add(panel);
 
 		setSize(500, 500);
@@ -103,20 +80,20 @@ public class LoginFrame extends JFrame {
 		setResizable(false);
 		setVisible(true);
 	}
-	private void loginButtonActionPerformed() {
-
-		if(UserLoginBase.login(loginTextField.getText(), new String(passTextField.getPassword()))){
-
-			MainFrame home = new MainFrame();
-			home.setVisible(true);
-			MainFrame.RefreshTableData(UserLoginBase.getCurrentUser().getHome().getDeviceList());
-			dispose();
-		}
-		else{
-			JOptionPane.showMessageDialog(null, "Nieprawidłowe hasło", "", JOptionPane.ERROR_MESSAGE);
-		}
-		// stuff
-
-	}
+//	private void loginButtonActionPerformed() {
+//
+//		if(UserLoginBase.login(loginTextField.getText(), new String(passTextField.getPassword()))){
+//
+//			MainFrame home = new MainFrame();
+//			home.setVisible(true);
+//			MainFrame.RefreshTableData(UserLoginBase.getCurrentUser().getHome().getDeviceList());
+//			dispose();
+//		}
+//		else{
+//			JOptionPane.showMessageDialog(null, "Nieprawidłowe hasło", "", JOptionPane.ERROR_MESSAGE);
+//		}
+//		// stuff
+//
+//	}
 
 }

@@ -8,6 +8,7 @@ import Serialization.Serialization;
 import User.User;
 import User.UserLoginBase;
 import User.UserDataBase;
+import View.FirstFrame;
 import View.LoginFrame;
 import Serialization.SerializeUserDataBase;
 import Serialization.SerializeUserLoginBase;
@@ -52,7 +53,8 @@ public class Main {
 
 
 //        new LoginFrame().setVisible(true);
-        new RegisterFrame().setVisible(true);
+//        new RegisterFrame().setVisible(true);
+        new FirstFrame().setVisible(true);
 
 
 
