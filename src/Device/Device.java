@@ -52,6 +52,8 @@ public abstract class Device implements Serializable {
         System.err.println("Error! Specified property does not exist. Aborting");
     }
 
+
+
     public void setProperty(String name, double value) {
         for (int i = 0; i < propertiesCount; i++) {
             if (Objects.equals(properties[i].getName(), name)) {

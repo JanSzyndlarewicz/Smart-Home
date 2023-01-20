@@ -25,6 +25,10 @@ public class DevicePropertySlider extends DeviceProperty implements Slider {
         return this.value;
     }
 
+    public int getPercentage() {
+        return (int) (100* (value-min)/(max-min));
+    }
+
     public void set(double value) {
         if(value<min){
             this.value = min;

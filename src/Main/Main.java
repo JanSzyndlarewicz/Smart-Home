@@ -26,6 +26,7 @@ public class Main {
 
         Home home = new Home("Wroclawska 33");
         home.addDevice(new LightSensor("LightSensor_Outside_frontdoor"));
+        home.getDevice(0).setProperty("Brightness",2000);
         home.addDevice(new BulbRGBW("BulbRBGW_Outside_1"));
         home.addDevice(new BulbOneColor("BulbOneColor_Inside_livingroom"));
         home.addDevice(new BulbRGBW("BulbRGBW_Outside_garden_1"));

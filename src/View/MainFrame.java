@@ -3,7 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package View;
-
+import DeviceProperty.Slider;
+import DeviceProperty.Toggle;
 import Device.Device;
 import User.UserLoginBase;
 
@@ -23,16 +24,55 @@ public class MainFrame extends javax.swing.JFrame {
             ChBoxList.get(i).setVisible(false);
         }
     }
+    private void EnableCheckBox(boolean value,String name){
+        for (int i = 0; i <ChBoxList.size() ; i++) {
+            if (!ChBoxList.get(i).isVisible()) {
+                ChBoxList.get(i).setVisible(true);
+                ChBoxList.get(i).setText(name);
+                ChBoxList.get(i).setSelected(value);
+                break;
+            }
+        }
 
-//    private void enableChBox()
+    }
+
+    private void EnableSlider(int value,String name){
+        for (int i = 0; i <SliderList.size() ; i++) {
+            if (!SliderList.get(i).isVisible()) {
+                SliderList.get(i).setVisible(true);
+                LabelList.get(i).setVisible(true);
+                LabelList.get(i).setText(name);
+                SliderList.get(i).setValue(60);
+                break;
+            }
+        }
+
+    }
+
+    private void ShowProperties(Device device){
+        for (int i = 0; i < device.getProperties().length; i++) {
+            if( device.getProperties()[i]==null)
+                break;
+            if (device.getProperties() [i]instanceof Toggle){
+                EnableCheckBox(device.getProperties() [i].getValue(),device.getProperties() [i].getName());
+            }
+            else if (device.getProperties() [i]instanceof Slider){
+                EnableSlider(((Slider) device.getProperties() [i]).getPercentage(),device.getProperties() [i].getName());
+            }
+
+        }
+
+    }
+
     private void setSidePanelDevice(Device device){
-
+        hideAll();
         INDEX.setText(String.valueOf(DeviceTable.getSelectedRow()));
         NAME.setText(device.getAlias());
 //        LOCATION.setSelectedItem();
         String str = device.getClass().getName();
         String result[] = str.split("\\.");
         TYPE.setText(result[result.length-1]);
+        ShowProperties(device);
 
 
     }
@@ -84,10 +124,12 @@ public class MainFrame extends javax.swing.JFrame {
     public MainFrame() {
         initComponents();
         addComponents();
+        SidePanel.setLayout(null);
         hideAll();
     }
 
     private void initComponents() {
+
 
         TablePanel = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
