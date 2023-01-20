@@ -12,6 +12,7 @@ import View.LoginFrame;
 import Serialization.SerializeUserDataBase;
 import Serialization.SerializeUserLoginBase;
 import Serialization.SerializationFunc;
+import View.RegisterFrame;
 //import View.MainFrame;
 
 import java.util.ArrayList;
@@ -51,8 +52,9 @@ public class Main {
 
 
 
-        //W sumie jedyne co powinno być w mainie XD
-        new LoginFrame().setVisible(true);
+
+//        new LoginFrame().setVisible(true);
+        new RegisterFrame().setVisible(true);
 
 
 
