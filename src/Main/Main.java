@@ -49,6 +49,7 @@ public class Main {
 
 
 
+
         //DWIE GOTOWE FUNKCJE KTÓRE ZAŁATWIAJĄ SERIALIZACJĘ, NALEŻY JE TYLKO ZAIMPLEMENTOWAĆ W ODPOWIEDNICH MIEJSCACH W GUI
         //SerializationFunc.serialize();
         //SerializationFunc.deserialize();

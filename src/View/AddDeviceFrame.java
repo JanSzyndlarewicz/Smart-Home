@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.List;
+import java.util.Objects;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -79,7 +80,6 @@ public class AddDeviceFrame extends JFrame {
 						deviceTypeList.setModel(new DefaultComboBoxModel<>( DeviceType_Input.values() ));
 						deviceTypeList.revalidate();
 					}else {
-						
 						deviceTypeList.setModel(new DefaultComboBoxModel<>( DeviceType_Output.values() ));
 					}
 				}
@@ -110,14 +110,19 @@ public class AddDeviceFrame extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-				switch(deviceTypeIOList.getSelectedItem().toString()) {
-				case"Input":
-					addButtonActionPerformed(deviceTypeIOList.getSelectedItem().toString(),(DeviceType_Input) deviceTypeList.getSelectedItem(),null, nameTextField.getText(), locationList.getSelectedItem().toString());
-					break;
-				case"Output":
-					addButtonActionPerformed(deviceTypeIOList.getSelectedItem().toString(),null,(DeviceType_Output)deviceTypeList.getSelectedItem(), nameTextField.getText(), locationList.getSelectedItem().toString());
-					break;
+				String location;
+				if(Objects.equals(locationList.getSelectedItem().toString(), "Add location")){
+					location = newLocationField.getText();
+				}
+				else {
+					location = locationList.getSelectedItem().toString();
+				}
+
+				switch (Objects.requireNonNull(deviceTypeIOList.getSelectedItem()).toString()) {
+					case "Input" ->
+							addButtonActionPerformed(deviceTypeIOList.getSelectedItem().toString(), (DeviceType_Input) deviceTypeList.getSelectedItem(), null, nameTextField.getText(), location);
+					case "Output" ->
+							addButtonActionPerformed(deviceTypeIOList.getSelectedItem().toString(), null, (DeviceType_Output) deviceTypeList.getSelectedItem(), nameTextField.getText(), location);
 				}
 			}
 			
