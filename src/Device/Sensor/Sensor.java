@@ -32,16 +32,6 @@ public abstract class Sensor extends Device implements Subject{
         }
     }
 
-    public String getSensorType(){
-        if(properties[0] instanceof DevicePropertySensorToggle){
-            return "toggle";
-        } else if (properties[0] instanceof DevicePropertySensorSlider) {
-            return "slider";
-        }else{
-            return "";
-        }
-    }
-
     @Override
     public void removeObserver(Observer observer) {
         observerList.remove(observer);

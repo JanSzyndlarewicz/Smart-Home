@@ -3,6 +3,8 @@ package View;
 import Device.Device;
 import Device.OutputDevice;
 import Device.Sensor.Sensor;
+import DeviceProperty.Slider;
+import DeviceProperty.Toggle;
 import User.UserLoginBase;
 
 import java.awt.*;
@@ -250,16 +252,12 @@ public class AddRoutineFrame extends JFrame {
 		SensorComboBox.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String deviceType = (String) UserLoginBase.getCurrentUser().getHome().getDevice((String) SensorComboBox.getSelectedItem()).getSensorType();
-				switch (deviceType){
-					case "toggle":
-						cards.show(RoutineSettingsPanel, "card1");
-						break;
-					case "slider":
-						cards.show(RoutineSettingsPanel, "card2");
-						break;
-					default:
-						cards.show(RoutineSettingsPanel, "card0");
+				if(UserLoginBase.getCurrentUser().getHome().getDevice((String) SensorComboBox.getSelectedItem()).getProperties()[0] instanceof Slider){
+					cards.show(RoutineSettingsPanel, "card2");
+				} else if (UserLoginBase.getCurrentUser().getHome().getDevice((String) SensorComboBox.getSelectedItem()).getProperties()[0] instanceof Toggle) {
+					cards.show(RoutineSettingsPanel, "card1");
+				}else{
+					cards.show(RoutineSettingsPanel, "card0");
 				}
 			}
 		});
@@ -512,6 +510,8 @@ public class AddRoutineFrame extends JFrame {
 
 			}
 		});
+
+		this.setPreferredSize(new Dimension(1000, 500));
 		pack();
 
 	}
