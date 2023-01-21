@@ -1,6 +1,8 @@
 package Device.Sensor;
 
 import Device.Device;
+import DeviceProperty.DevicePropertySensorSlider;
+import DeviceProperty.DevicePropertySensorToggle;
 import Observable.Subject;
 import Observer.Observer;
 
@@ -27,6 +29,16 @@ public abstract class Sensor extends Device implements Subject{
     public void notifyObservers(String outputProperty, String outputValue) {
         for (Observer observer : observerList) {
             observer.update(outputProperty, outputValue);
+        }
+    }
+
+    public String getSensorType(){
+        if(properties[0] instanceof DevicePropertySensorToggle){
+            return "toggle";
+        } else if (properties[0] instanceof DevicePropertySensorSlider) {
+            return "slider";
+        }else{
+            return "";
         }
     }
 

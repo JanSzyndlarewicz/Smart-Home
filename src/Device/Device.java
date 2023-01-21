@@ -96,4 +96,9 @@ public abstract class Device implements Serializable {
         this.location = location;
     }
 
+    // tego tu nie bylo, nic nie widzeliscie
+    public String getSensorType() {
+        return null;
+    }
+
 }
