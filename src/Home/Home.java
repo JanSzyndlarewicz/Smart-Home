@@ -11,7 +11,7 @@ public class Home implements Serializable{
 
     private String label;
     private String login;
-    private ArrayList<String> locationList;
+    private ArrayList<String> locationList=new ArrayList<>();
 
     public Home(String label) {
         this.label = label;
@@ -20,6 +20,15 @@ public class Home implements Serializable{
     public Home(String label, ArrayList<String> locationList) {
     	this.label=label;
     	this.locationList=locationList;
+    }
+    public void AddLocation(String name){
+        if(!locationList.contains(name))
+            locationList.add(name);
+    }
+
+    public void DeleteLocation(String name){
+        if(locationList.contains(name))
+            locationList.remove(name);
     }
 
     public void addDevice(Device device){

@@ -7,8 +7,11 @@ import Controller.HomeToGui;
 import DeviceProperty.Slider;
 import DeviceProperty.Toggle;
 import Device.Device;
+import Serialization.*;
 import User.UserDataBase;
 import User.UserLoginBase;
+
+import static Controller.HomeToGui.ShowProperties;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -27,45 +30,9 @@ public class MainFrame extends javax.swing.JFrame {
             ChBoxList.get(i).setVisible(false);
         }
     }
-    private void EnableCheckBox(boolean value,String name){
-        for (int i = 0; i <ChBoxList.size() ; i++) {
-            if (!ChBoxList.get(i).isVisible()) {
-                ChBoxList.get(i).setVisible(true);
-                ChBoxList.get(i).setText(name);
-                ChBoxList.get(i).setSelected(value);
-                break;
-            }
-        }
 
-    }
 
-    private void EnableSlider(int value,String name){
-        for (int i = 0; i <SliderList.size() ; i++) {
-            if (!SliderList.get(i).isVisible()) {
-                SliderList.get(i).setVisible(true);
-                LabelList.get(i).setVisible(true);
-                LabelList.get(i).setText(name);
-                SliderList.get(i).setValue(value);
-                break;
-            }
-        }
 
-    }
-
-    private void ShowProperties(Device device){
-        for (int i = 0; i < device.getProperties().length; i++) {
-            if( device.getProperties()[i]==null)
-                break;
-            if (device.getProperties() [i]instanceof Toggle){
-                EnableCheckBox(device.getProperties() [i].getValue(),device.getProperties() [i].getName());
-            }
-            else if (device.getProperties() [i]instanceof Slider){
-                EnableSlider(((Slider) device.getProperties() [i]).getPercentage(),device.getProperties() [i].getName());
-            }
-
-        }
-
-    }
 
     private void setSidePanelDevice(Device device){
         hideAll();
@@ -74,7 +41,7 @@ public class MainFrame extends javax.swing.JFrame {
         String str = device.getClass().getName();
         String result[] = str.split("\\.");
         TYPE.setText(result[result.length-1]);
-        ShowProperties(device);
+        ShowProperties(device,ChBoxList,SliderList,LabelList);
 
 
     }
@@ -548,6 +515,11 @@ public class MainFrame extends javax.swing.JFrame {
                                         .addContainerGap()))
         );
 
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
         pack();
     }// </editor-fold>
     private void DeviceTableMouseClicked(java.awt.event.MouseEvent evt) {
@@ -561,7 +533,7 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     private void AddLocMButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+       new AddLocation().setVisible(true);
     }
 
     private void MainPanelMButtonActionPerformed(java.awt.event.ActionEvent evt) {
@@ -579,7 +551,7 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     private void DelLocMButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+      new DeleteLocationFrame().setVisible(true);
     }
 
     private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {
@@ -632,6 +604,10 @@ public class MainFrame extends javax.swing.JFrame {
         }
 
         return x;
+    }
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {
+        SerializationFunc.serialize();
     }
 
 

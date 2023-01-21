@@ -18,9 +18,14 @@ import Device.Sensor.LightSensor;
 import Device.Sensor.MotionSensor;
 import Device.Sensor.SmokeSensor;
 import Device.Sensor.TemperatureSensor;
+import DeviceProperty.Slider;
+import DeviceProperty.Toggle;
 import Home.Home;
+import User.User;
 import User.UserLoginBase;
 import View.MainFrame;
+
+import javax.swing.*;
 
 public class HomeToGui {
 	public static void addDeviceFromGui(String devType, DeviceType_Input devTypeIn, DeviceType_Output devTypeOut, String alias, String location) {
@@ -81,7 +86,10 @@ public class HomeToGui {
 			break;
 			default:
 				device = new Lock("Lock1");
+
+
 		}
+
 		UserLoginBase.getCurrentUser().getHome().addDevice(device);
 		MainFrame.RefreshTableData(UserLoginBase.getCurrentUser().getHome().getDeviceList());
 		
@@ -96,13 +104,9 @@ public class HomeToGui {
 		locations.add("Add location");
 		return locations;
 	}
-	public static void addLocationFromGui(String locationName) {
-		if(UserLoginBase.getCurrentUser().getHome().getCurrentLocationList()!=null)
-				UserLoginBase.getCurrentUser().getHome().getCurrentLocationList().add(locationName);
-		else {
-			UserLoginBase.getCurrentUser().getHome().setLocationList(new ArrayList<String>());
-			UserLoginBase.getCurrentUser().getHome().getCurrentLocationList().add(locationName);
-		}
+
+	public static void deleteLocation(String name){
+		UserLoginBase.getCurrentUser().getHome().DeleteLocation(name);
 	}
 
 	public static ArrayList<String> uniqueLocationsFromHome(){
@@ -113,5 +117,48 @@ public class HomeToGui {
 			}
 		}
 		return uniqueLocations;
+	}
+
+	public static void AddLocation(String name){
+		UserLoginBase.getCurrentUser().getHome().AddLocation(name);
+	}
+	public static void ShowProperties(Device device,ArrayList<JCheckBox> ChBoxList,ArrayList<JSlider> SliderList,ArrayList<JLabel> LabelList){
+		for (int i = 0; i < device.getProperties().length; i++) {
+			if( device.getProperties()[i]==null)
+				break;
+			if (device.getProperties() [i]instanceof Toggle){
+				EnableCheckBox(device.getProperties() [i].getValue(),device.getProperties() [i].getName(),ChBoxList);
+			}
+			else if (device.getProperties() [i]instanceof Slider){
+				EnableSlider(((Slider) device.getProperties() [i]).getPercentage(),device.getProperties() [i].getName(),SliderList,LabelList);
+			}
+
+		}
+
+	}
+
+	private static void EnableCheckBox(boolean value,String name,ArrayList<JCheckBox> ChBoxList){
+		for (int i = 0; i <ChBoxList.size() ; i++) {
+			if (!ChBoxList.get(i).isVisible()) {
+				ChBoxList.get(i).setVisible(true);
+				ChBoxList.get(i).setText(name);
+				ChBoxList.get(i).setSelected(value);
+				break;
+			}
+		}
+
+	}
+
+	private static void EnableSlider(int value,String name,ArrayList<JSlider> SliderList,ArrayList<JLabel> LabelList){
+		for (int i = 0; i <SliderList.size() ; i++) {
+			if (!SliderList.get(i).isVisible()) {
+				SliderList.get(i).setVisible(true);
+				LabelList.get(i).setVisible(true);
+				LabelList.get(i).setText(name);
+				SliderList.get(i).setValue(value);
+				break;
+			}
+		}
+
 	}
 }

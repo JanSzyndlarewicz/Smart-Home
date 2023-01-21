@@ -17,6 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import Main.Main;
+import User.UserDataBase;
 import User.UserLoginBase;
 import Control.DeviceType.DeviceType_Input;
 import Control.DeviceType.DeviceType_Output;
@@ -48,12 +49,12 @@ public class AddDeviceFrame extends JFrame {
 
 	private void initialize() {
 		//welcomeMess = new JLabel("Device adding panel");
-		
+
 		addButton = new JButton("Add");
 		nameLabel = new JLabel("Name: ");
 		nameTextField = new JTextField();
 		locationLabel = new JLabel("Location: ");
-		locationList = new JComboBox(getListFromModel().toArray());
+		locationList = new JComboBox(UserLoginBase.getCurrentUser().getHome().getLocationList().toArray(new String[UserLoginBase.getCurrentUser().getHome().getLocationList().size()]));
 		deviceTypeLabel = new JLabel("Device type: ");
 		deviceTypeList = new JComboBox(DeviceType_Input.values());
 		deviceTypeIOLabel = new JLabel("Input/Output");
@@ -111,11 +112,11 @@ public class AddDeviceFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String location;
-				if(Objects.equals(locationList.getSelectedItem().toString(), "Add location")){
+				if(Objects.equals((String) locationList.getSelectedItem(), "Add location")){
 					location = newLocationField.getText();
 				}
 				else {
-					location = locationList.getSelectedItem().toString();
+					location = (String)locationList.getSelectedItem();
 				}
 
 				switch (Objects.requireNonNull(deviceTypeIOList.getSelectedItem()).toString()) {
@@ -155,6 +156,10 @@ public class AddDeviceFrame extends JFrame {
 		///
 		setSize(425, 200);
 		setVisible(true);
+		if (UserLoginBase.getCurrentUser().getHome().getLocationList().size()==0) {
+			locationList.setVisible(false);
+			locationLabel.setVisible(false);
+		}
 	}
 
 	private List getListFromModel() {
@@ -164,11 +169,13 @@ public class AddDeviceFrame extends JFrame {
 	}
 	private void addButtonActionPerformed(String devType, DeviceType_Input devTypeIn, DeviceType_Output devTypeOut, String alias, String location) {
 		JOptionPane.showMessageDialog(panel,"The Device was added successfully.");
-		HomeToGui.addDeviceFromGui(devType,devTypeIn,devTypeOut,alias,location);
-		if(locationList.getSelectedItem()=="Add location"&&!newLocationField.getText().isBlank()) {
-			HomeToGui.addLocationFromGui(newLocationField.getText());
-		}
 
+		if(!newLocationField.getText().isBlank()) {
+			HomeToGui.AddLocation(newLocationField.getText());
+			HomeToGui.addDeviceFromGui(devType,devTypeIn,devTypeOut,alias,newLocationField.getText());
+		}
+		else{
+		HomeToGui.addDeviceFromGui(devType,devTypeIn,devTypeOut,alias,location);}
 		dispose();
 	}
 
