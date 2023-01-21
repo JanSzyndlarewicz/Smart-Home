@@ -5,26 +5,22 @@ import Observer.Observer;
 
 public class ToggleToToggleRoutine extends Routine{
 
-    private boolean state;
+    private String outputOnValue, outputOffValue;
 
-    public ToggleToToggleRoutine(String alias, Subject input, Observer output, String outputProperty, boolean state) {
+    public ToggleToToggleRoutine(String alias, Subject input, Observer output, String outputProperty, String outputOnValue, String outputOffValue) {
         super(alias, input, output, outputProperty);
-        this.state=state;
+        this.outputOffValue = outputOffValue;
+        this.outputOnValue = outputOnValue;
     }
 
     @Override
     public void update(String propertyName, String newValueForProperty) {
-        boolean inputValue;
+
         if(newValueForProperty.equalsIgnoreCase("true") || newValueForProperty.equals("1")){
-            inputValue=true;
-        }else{
-            inputValue=false;
+            notifyObservers(outputProperty, outputOnValue);
+        } else if (newValueForProperty.equalsIgnoreCase("false") || newValueForProperty.equals("1")) {
+            notifyObservers(outputProperty, outputOffValue);
         }
 
-        if(inputValue==state){
-            notifyObservers(outputProperty, "true");
-        }else{
-            notifyObservers(outputProperty, "false");
-        }
     }
 }

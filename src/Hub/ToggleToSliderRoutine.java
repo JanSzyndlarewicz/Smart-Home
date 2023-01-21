@@ -5,8 +5,7 @@ import Observer.Observer;
 
 public class ToggleToSliderRoutine extends Routine{
 
-    String outputOnValue;
-    String outputOffValue;
+    private String outputOnValue, outputOffValue;
 
     public ToggleToSliderRoutine(String alias, Subject input, Observer output, String outputProperty, String outputOnValue, String outputOffValue) {
         super(alias, input, output, outputProperty);
