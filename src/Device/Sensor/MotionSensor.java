@@ -6,14 +6,14 @@ public class MotionSensor extends Sensor{
 
     public MotionSensor() {
         super();
-        addProperty(new DevicePropertySensorToggle("Is motion detected?"));
+        addProperty(new DevicePropertySensorToggle("Motion detected"));
     }
     public MotionSensor(String alias) {
         super(alias);
-        addProperty(new DevicePropertySensorToggle("Is motion detected?"));
+        addProperty(new DevicePropertySensorToggle("Motion detected"));
     }
     public MotionSensor(String alias, String location) {
         super(alias,location);
-        addProperty(new DevicePropertySensorToggle("Is motion detected?"));
+        addProperty(new DevicePropertySensorToggle("Motion detected"));
     }
 }

@@ -26,7 +26,9 @@ public class DevicePropertySensorSlider extends DeviceProperty implements Slider
     }
 
     public int getPercentage() {
-        return (int) (100*(value-min)/(max-min));
+
+        System.out.println( (100*(value-min)/(max-min)));
+    return (int) (100*(value-min)/(max-min));
     }
 
     public String getValueString() {
