@@ -3,13 +3,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package View;
+import Controller.HomeToGui;
 import DeviceProperty.Slider;
 import DeviceProperty.Toggle;
 import Device.Device;
+import User.UserDataBase;
 import User.UserLoginBase;
 
 import javax.swing.*;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class MainFrame extends javax.swing.JFrame {
 
@@ -68,7 +71,6 @@ public class MainFrame extends javax.swing.JFrame {
         hideAll();
         INDEX.setText(String.valueOf(DeviceTable.getSelectedRow()));
         NAME.setText(device.getAlias());
-//        LOCATION.setSelectedItem();
         String str = device.getClass().getName();
         String result[] = str.split("\\.");
         TYPE.setText(result[result.length-1]);
@@ -84,6 +86,9 @@ public class MainFrame extends javax.swing.JFrame {
         SidePanel.add(DeviceSidePanel);
         SidePanel.repaint();
         SidePanel.revalidate();
+
+        //Ustawia aktualne lokalizacje w comboboxie po prawej stronie
+        LOCATION.setModel(new javax.swing.DefaultComboBoxModel<>(locationStringList()));
         // TODO add your handling code here:
     }
 
@@ -257,7 +262,8 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("DEVICE PANEL");
 
-        LOCATION.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        //LOCATION.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
 
         SLabel5.setText("jLabel1");
 
@@ -606,6 +612,25 @@ public class MainFrame extends javax.swing.JFrame {
         }
 
         // TODO add your handling code here:
+    }
+    public String[] locationStringList(){
+        //Funkcja zwacająca tablicę wszystkich lokalizacji (które są przypisane do jakichś urządzeń) w aktualnym domu (potrzebne do comboboxa w panelu Device Property)
+        ArrayList<String> locationList = HomeToGui.uniqueLocationsFromHome();
+        locationList.add(0, UserLoginBase.getCurrentUser().getHome().getDeviceList().get(DeviceTable.getSelectedRow()).getLocation());
+
+        for(int i=1; i<locationList.size(); i++){
+            if(Objects.equals(locationList.get(i), UserLoginBase.getCurrentUser().getHome().getDeviceList().get(DeviceTable.getSelectedRow()).getLocation())){
+                locationList.remove(i);
+                break;
+            }
+        }
+
+        String [] x = new String[locationList.size()];
+        for(int i=0; i<locationList.size(); i++){
+            x[i] = locationList.get(i);
+        }
+
+        return x;
     }
 
 
