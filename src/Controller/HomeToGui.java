@@ -104,4 +104,14 @@ public class HomeToGui {
 			UserLoginBase.getCurrentUser().getHome().getCurrentLocationList().add(locationName);
 		}
 	}
+
+	public static ArrayList<String> uniqueLocationsFromHome(){
+		ArrayList<String> uniqueLocations = new ArrayList<>();
+		for(int i=0; i<UserLoginBase.getCurrentUser().getHome().getDeviceList().size(); i++){
+			if(!uniqueLocations.contains(UserLoginBase.getCurrentUser().getHome().getDeviceList().get(i).getLocation())){
+				uniqueLocations.add(UserLoginBase.getCurrentUser().getHome().getDeviceList().get(i).getLocation());
+			}
+		}
+		return uniqueLocations;
+	}
 }

@@ -5,4 +5,5 @@ public class ResetPassword {
         UserLoginBase.getCurrentUser().setPassword(password);
         UserLoginBase.setPassword(login, password);
     }
+
 }
