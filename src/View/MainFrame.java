@@ -45,7 +45,7 @@ public class MainFrame extends javax.swing.JFrame {
                 SliderList.get(i).setVisible(true);
                 LabelList.get(i).setVisible(true);
                 LabelList.get(i).setText(name);
-                SliderList.get(i).setValue(60);
+                SliderList.get(i).setValue(value);
                 break;
             }
         }
@@ -131,6 +131,7 @@ public class MainFrame extends javax.swing.JFrame {
         addComponents();
         SidePanel.setLayout(null);
         hideAll();
+//        jCheckBox2.setSize(100,100);
     }
 
     private void initComponents() {
@@ -287,7 +288,7 @@ public class MainFrame extends javax.swing.JFrame {
                         .addGroup(DeviceSidePanelLayout.createSequentialGroup()
                                 .addGroup(DeviceSidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(DeviceSidePanelLayout.createSequentialGroup()
-                                                .addGap(29, 29, 29)
+                                                .addGap(5,29,29)
                                                 .addGroup(DeviceSidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                         .addComponent(jCheckBox2)
                                                         .addComponent(INDEX, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
