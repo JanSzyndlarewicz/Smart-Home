@@ -111,20 +111,32 @@ public class AddDeviceFrame extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String location;
-				if(Objects.equals((String) locationList.getSelectedItem(), "Add location")){
-					location = newLocationField.getText();
+				if(!Objects.equals(nameTextField.getText(), "")){
+					if(!Objects.equals(newLocationField.getText(), "")){
+						String location;
+						if(Objects.equals((String) locationList.getSelectedItem(), "Add location")){
+							location = newLocationField.getText();
+						}
+						else {
+							location = (String)locationList.getSelectedItem();
+						}
+
+						switch (Objects.requireNonNull(deviceTypeIOList.getSelectedItem()).toString()) {
+							case "Input" ->
+									addButtonActionPerformed(deviceTypeIOList.getSelectedItem().toString(), (DeviceType_Input) deviceTypeList.getSelectedItem(), null, nameTextField.getText(), location);
+							case "Output" ->
+									addButtonActionPerformed(deviceTypeIOList.getSelectedItem().toString(), null, (DeviceType_Output) deviceTypeList.getSelectedItem(), nameTextField.getText(), location);
+						}
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "Location field cannot be empty.", "Error", JOptionPane.ERROR_MESSAGE);
+					}
 				}
 				else {
-					location = (String)locationList.getSelectedItem();
+					JOptionPane.showMessageDialog(null, "Name field cannot be empty.", "Error", JOptionPane.ERROR_MESSAGE);
 				}
 
-				switch (Objects.requireNonNull(deviceTypeIOList.getSelectedItem()).toString()) {
-					case "Input" ->
-							addButtonActionPerformed(deviceTypeIOList.getSelectedItem().toString(), (DeviceType_Input) deviceTypeList.getSelectedItem(), null, nameTextField.getText(), location);
-					case "Output" ->
-							addButtonActionPerformed(deviceTypeIOList.getSelectedItem().toString(), null, (DeviceType_Output) deviceTypeList.getSelectedItem(), nameTextField.getText(), location);
-				}
+
 			}
 			
 		});
