@@ -7,6 +7,7 @@ import Observable.Subject;
 import Observer.Observer;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public abstract class Sensor extends Device implements Subject{
 
@@ -42,5 +43,18 @@ public abstract class Sensor extends Device implements Subject{
         observerList.add(observer);
     }
 
-
+    public void setProperty(String name, String value) {
+        for (int i = 0; i < propertiesCount; i++) {
+            if (Objects.equals(properties[i].getName(), name)) {
+                switch (properties[i].getType()) {
+                    case "Slider" -> ((DevicePropertySensorSlider) properties[i]).debugSetSensor(Double.parseDouble(value));
+                    case "Toggle" -> ((DevicePropertySensorToggle) properties[i]).debugSetSensor(value.charAt(0) == '1' | value.equals("true") | value.equals("True"));
+                    default -> {
+                    }
+                }
+                return;
+            }
+        }
+        System.err.println("Error! Specified property does not exist. Aborting");
+    }
 }
