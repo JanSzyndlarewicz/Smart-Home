@@ -11,6 +11,8 @@ import TextMenu.UserFunc;
 import User.UserLoginBase;
 import User.UserDataBase;
 import View.LoginFrame;
+import View.StartFrame;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,9 +51,9 @@ public class Main {
 
 
 //        SerializationFunc.deserialize();
-         new LoginFrame().setVisible(true);
+         //new LoginFrame().setVisible(true);
         //new RegisterFrame().setVisible(true);
-
+        StartFrame startFrame = new StartFrame();
 
 
 
