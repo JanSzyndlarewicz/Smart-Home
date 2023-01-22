@@ -4,6 +4,10 @@ import Device.Bulb.BulbOneColor;
 import Device.Bulb.BulbRGBW;
 import Device.Sensor.*;
 import Home.Home;
+import Serialization.SerializationFunc;
+
+import Serialization.SerializationFunc;
+import TextMenu.UserFunc;
 import User.UserLoginBase;
 import User.UserDataBase;
 import View.LoginFrame;
@@ -15,6 +19,7 @@ public class Main {
 
 
     public static void main(String[] args) {
+
 
         Home home = new Home("Wroclawska 33");
         home.addDevice(new LightSensor("LightSensor_Outside_frontdoor"));
@@ -43,7 +48,7 @@ public class Main {
 
 
 
-
+//        SerializationFunc.deserialize();
          new LoginFrame().setVisible(true);
         //new RegisterFrame().setVisible(true);
 

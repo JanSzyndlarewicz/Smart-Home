@@ -10,7 +10,6 @@ import Device.Bulb.*;
 import DeviceProperty.Slider;
 import DeviceProperty.Toggle;
 import Home.Home;
-import User.User;
 import User.UserLoginBase;
 import View.MainFrame;
 
@@ -119,7 +118,7 @@ public class HomeToGui {
 				EnableCheckBox(device.getProperties() [i].getValue(),device.getProperties() [i].getName(),ChBoxList);
 			}
 			else if (device.getProperties() [i]instanceof Slider){
-				EnableSlider(((Slider) device.getProperties() [i]).getPercentage(),device.getProperties() [i].getName(),SliderList,LabelList);
+				EnableSlider(((Slider) device.getProperties() [i]).getSliderInfo(),device.getProperties() [i].getName(),SliderList,LabelList);
 			}
 
 		}
@@ -136,7 +135,7 @@ public class HomeToGui {
 				HomeToGui.EnableComboBox("On", device.getProperties()[i].getName(), comboBoxes, comboBoxesLabel);
 			} else if (device.getProperties()[i] instanceof Slider) {
 				HomeToGui.EnableCheckBox(false, "Enable", checkBoxesSlider);
-				HomeToGui.EnableSlider(50, device.getProperties()[i].getName(), sliders, slidersLabel);
+				HomeToGui.EnableSlider(((Slider) device.getProperties() [i]).getSliderInfo(), device.getProperties()[i].getName(), sliders, slidersLabel);
 			}
 		}
 	}
@@ -152,13 +151,15 @@ public class HomeToGui {
 		}
 	}
 
-	public static void EnableSlider(int value,String name,ArrayList<JSlider> SliderList,ArrayList<JLabel> LabelList){
+	public static void EnableSlider(int[] range,String name,ArrayList<JSlider> SliderList,ArrayList<JLabel> LabelList){
 		for (int i = 0; i <SliderList.size() ; i++) {
 			if (!SliderList.get(i).isVisible()) {
 				SliderList.get(i).setVisible(true);
 				LabelList.get(i).setVisible(true);
 				LabelList.get(i).setText(name);
-				SliderList.get(i).setValue(value);
+				SliderList.get(i).setMinimum(range[0]);
+				SliderList.get(i).setMaximum(range[2]);
+				SliderList.get(i).setValue(range[1]);
 				break;
 			}
 		}

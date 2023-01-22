@@ -1,5 +1,6 @@
 package DeviceProperty;
 
 public interface Slider {
-    int getPercentage();
+    int[] getSliderInfo();
+    int getValueToSlider();
 }
