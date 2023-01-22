@@ -18,31 +18,11 @@ import java.util.List;
 
 
 public class Main {
-
-
     public static void main(String[] args) {
 
+        Initialization.initialization();
 
-       Initialization.initialization();
-
-
-
-
-//      SerializationFunc.deserialize();
-        StartFrame startFrame = new StartFrame();
-
-
-
-        //DWIE GOTOWE FUNKCJE KTÓRE ZAŁATWIAJĄ SERIALIZACJĘ, NALEŻY JE TYLKO ZAIMPLEMENTOWAĆ W ODPOWIEDNICH MIEJSCACH W GUI
-        //SerializationFunc.serialize();
         //SerializationFunc.deserialize();
+        StartFrame startFrame = new StartFrame();
     }
-    public static List<String> getListToGui() { // potem to usune, na chwile obecna nie wiem gdzie to powinno byc
-		ArrayList<String> locations = new ArrayList<>();
-		locations.add("Kitchen");
-		locations.add("Garden");
-		locations.add("Room1");
-		locations.add("Add Location");
-		return locations;
-	}
 }
