@@ -126,7 +126,9 @@ public class HomeToGui {
 
 	}
 
-	public static void ShowRoutineProperties(Device device, ArrayList<JCheckBox> checkBoxesToggle, ArrayList<JCheckBox> checkBoxesSlider, ArrayList<JComboBox> comboBoxes, ArrayList<JLabel> comboBoxesLabel, ArrayList<JSlider> sliders, ArrayList<JLabel> slidersLabel){
+	public static void ShowRoutineProperties(String deviceAlias, ArrayList<JCheckBox> checkBoxesToggle, ArrayList<JCheckBox> checkBoxesSlider, ArrayList<JComboBox> comboBoxes, ArrayList<JLabel> comboBoxesLabel, ArrayList<JSlider> sliders, ArrayList<JLabel> slidersLabel){
+		Device device = UserLoginBase.getCurrentUser().getHome().getDevice(deviceAlias);
+
 		for(int i=0; i<device.getProperties().length; i++){
 			if(device.getProperties()[i]==null){
 				break;
@@ -198,6 +200,30 @@ public class HomeToGui {
 			}
 		}
 		return devList;
+	}
+
+	public static boolean CreateRoutine(String alias, String inputDeviceAlias, String outputDeviceAlias, String outputProperty, String[] args){
+		String routineType;
+		if(UserLoginBase.getCurrentUser().getHome().getDevice(inputDeviceAlias).getProperties()[0] instanceof Toggle && UserLoginBase.getCurrentUser().getHome().getDevice(outputDeviceAlias).getProperty(outputProperty) instanceof Toggle){
+			//TT
+			return false;
+		} else if (UserLoginBase.getCurrentUser().getHome().getDevice(inputDeviceAlias).getProperties()[0] instanceof Toggle && UserLoginBase.getCurrentUser().getHome().getDevice(outputDeviceAlias).getProperty(outputProperty) instanceof Slider) {
+			//TS
+			return false;
+		} else if (UserLoginBase.getCurrentUser().getHome().getDevice(inputDeviceAlias).getProperties()[0] instanceof Slider && UserLoginBase.getCurrentUser().getHome().getDevice(outputDeviceAlias).getProperty(outputProperty) instanceof Toggle) {
+			//ST
+			return false;
+		} else if (UserLoginBase.getCurrentUser().getHome().getDevice(inputDeviceAlias).getProperties()[0] instanceof Slider && UserLoginBase.getCurrentUser().getHome().getDevice(outputDeviceAlias).getProperty(outputProperty) instanceof Slider) {
+			//SS
+			return false;
+		} else {
+			return true;
+		}
+
+	}
+
+	public static boolean checkRoutineNameAvailability(String name){
+		return UserLoginBase.getCurrentUser().getHub().checkRoutineAliasAvailbility(name);
 	}
 
 
