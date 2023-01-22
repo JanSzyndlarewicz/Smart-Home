@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class Hub implements Serializable {
 
-    private ArrayList<Routine> routineList = new ArrayList<Routine>();
+    private static ArrayList<Routine> routineList = new ArrayList<Routine>();
 
     public void addRoutine(Routine routine){
         routineList.add(routine);
@@ -15,7 +15,8 @@ public class Hub implements Serializable {
         routineList.remove(routine);
     }
 
-    public void removeRoutines(String alias){
+    public static void removeRoutines(String alias){
+    	while(!checkRoutineAliasAvailbility(alias))
         for(int i=0; i<routineList.size(); i++){
             if(routineList.get(i).getAlias().equalsIgnoreCase(alias)){
                 routineList.remove(i);
@@ -26,8 +27,11 @@ public class Hub implements Serializable {
     public void listRoutines(){
 
     }
+    public static ArrayList<Routine> getRoutineList(){
+    	return routineList;
+    }
     
-    public boolean checkRoutineAliasAvailbility(String alias){
+    public static boolean checkRoutineAliasAvailbility(String alias){
         boolean state = true;
         for(int i=0; i<routineList.size(); i++){
             if(routineList.get(i).getAlias().equalsIgnoreCase(alias)){
