@@ -10,6 +10,7 @@ import Device.Device;
 import Serialization.*;
 import User.UserDataBase;
 import User.UserLoginBase;
+import Device.OutputDevice;
 import org.w3c.dom.css.CSSValueList;
 
 import static Controller.HomeToGui.ShowProperties;
@@ -593,7 +594,33 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void SaveButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
+        if(UserLoginBase.getCurrentUser().getHome().getDevice(DeviceTable.getSelectedRow()) instanceof OutputDevice){
+            OutputDevice device = (OutputDevice) UserLoginBase.getCurrentUser().getHome().getDevice(DeviceTable.getSelectedRow());
+            int deviceIteration = 0;
+            int sliderIteration = 0;
+            do{
+                if(SliderList.get(sliderIteration).isVisible() && SliderList.get(sliderIteration).isEnabled()){
+                    device.setProperty(LabelList.get(sliderIteration).getText(), String.valueOf((double) SliderList.get(sliderIteration).getValue()/100));
+                    sliderIteration++;
+                }
+                deviceIteration++;
+            }while (device.getProperties()[deviceIteration]!=null);
+        }
+        if(UserLoginBase.getCurrentUser().getHome().getDevice(DeviceTable.getSelectedRow()) instanceof OutputDevice){
+            OutputDevice device = (OutputDevice) UserLoginBase.getCurrentUser().getHome().getDevice(DeviceTable.getSelectedRow());
+            int deviceIteration = 0;
+            int sliderIteration = 0;
+            do{
+                if(ChBoxList.get(sliderIteration).isVisible() && ChBoxList.get(sliderIteration).isEnabled()){
+                    device.setProperty(ChBoxList.get(sliderIteration).getText(), String.valueOf(ChBoxList.get(sliderIteration).isSelected()));
+                    sliderIteration++;
+                }
+                deviceIteration++;
+            }while (device.getProperties()[deviceIteration]!=null);
+        }
     }
+
+
 
     private void AddLocMButtonActionPerformed(java.awt.event.ActionEvent evt) {
        new AddLocation().setVisible(true);
