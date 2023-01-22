@@ -3,10 +3,11 @@ package Hub;
 import Observable.Subject;
 import Observer.Observer;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
-public abstract class Routine implements Subject,Observer{
+public abstract class Routine implements Subject,Observer, Serializable {
 
     private String alias;
     protected String outputProperty;
@@ -44,4 +45,12 @@ public abstract class Routine implements Subject,Observer{
 
     @Override
     public void update(String propertyName, String newValueForProperty) {}
+
+    public String getAlias() {
+        return alias;
+    }
+
+    public String getOutputProperty() {
+        return outputProperty;
+    }
 }

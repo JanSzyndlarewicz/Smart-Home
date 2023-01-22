@@ -52,6 +52,20 @@ public abstract class Device implements Serializable {
         System.err.println("Error! Specified property does not exist. Aborting");
     }
 
+    public DeviceProperty getProperty(String name){
+        DeviceProperty querried = null;
+
+        for(int i=0; i<properties.length; i++){
+            if(properties[i]!=null){
+                if(properties[i].getName().equals(name)){
+                    querried = properties[i];
+                }
+            }
+        }
+
+        return querried;
+    }
+
     public String getAlias() {
         return this.alias;
     }

@@ -1,9 +1,6 @@
 package View;
 
 import Controller.HomeToGui;
-import Device.Device;
-import Device.OutputDevice;
-import Device.Sensor.Sensor;
 import DeviceProperty.Slider;
 import DeviceProperty.Toggle;
 import User.UserLoginBase;
@@ -19,6 +16,7 @@ import java.util.ArrayList;
 public class AddRoutineFrame extends JFrame {
 
 	private static boolean isOpen = false;
+	private int currentlyShown;
 
 	private ArrayList<JLabel> OnPropertyLabelsSlider = new ArrayList<>();
 	private ArrayList<JLabel> OffPropertyLabelsSlider = new ArrayList<>();
@@ -117,8 +115,11 @@ public class AddRoutineFrame extends JFrame {
 	private JSlider FromSlider;
 	private JSlider ToSlider;
 	private JButton AddButton;
+	CardLayout cards;
 
 	public AddRoutineFrame() {
+
+		currentlyShown = 0;
 
 		OnToggleLabel1 = new JLabel("OnToggleLabel1");
 		OnToggleLabel2 = new JLabel("OnToggleLabel2");
@@ -156,7 +157,7 @@ public class AddRoutineFrame extends JFrame {
 
 
 		RoutineSettingsPanel = new JPanel();
-		CardLayout cards = new CardLayout();
+		cards = new CardLayout();
 		RoutineSettingsPanel.setLayout(cards);
 		//elementy panelu ustawien rutyny
 		startPanel = new JPanel();
@@ -319,10 +320,13 @@ public class AddRoutineFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if(UserLoginBase.getCurrentUser().getHome().getDevice((String) SensorComboBox.getSelectedItem()).getProperties()[0] instanceof Slider){
 					cards.show(RoutineSettingsPanel, "card2");
+					currentlyShown = 2;
 				} else if (UserLoginBase.getCurrentUser().getHome().getDevice((String) SensorComboBox.getSelectedItem()).getProperties()[0] instanceof Toggle) {
 					cards.show(RoutineSettingsPanel, "card1");
+					currentlyShown = 1;
 				}else{
 					cards.show(RoutineSettingsPanel, "card0");
+					currentlyShown = 0;
 				}
 			}
 		});
@@ -541,12 +545,24 @@ public class AddRoutineFrame extends JFrame {
 		SliderStatePanel.add(SliderSliderLabel1);
 
 		SliderEnableToggle1.setText("Enable");
+		SliderEnableToggle1.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				SliderToggleBox1.setEnabled(!SliderToggleBox1.isEnabled());
+			}
+		});
 		SliderStatePanel.add(SliderEnableToggle1);
 
 		SliderToggleBox1.setModel(new DefaultComboBoxModel<>(new String[] { "On", "Off" }));
 		SliderStatePanel.add(SliderToggleBox1);
 
 		SliderEnableSlider1.setText("Enable");
+		SliderEnableSlider1.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				SliderSlider1.setEnabled(!SliderSlider1.isEnabled());
+			}
+		});
 		SliderStatePanel.add(SliderEnableSlider1);
 		SliderStatePanel.add(SliderSlider1);
 
@@ -556,6 +572,12 @@ public class AddRoutineFrame extends JFrame {
 		SliderStatePanel.add(SliderSliderLabel2);
 
 		SliderEnableToggle2.setText("Enable");
+		SliderEnableToggle2.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				SliderToggleBox2.setEnabled(!SliderToggleBox2.isEnabled());
+			}
+		});
 		SliderStatePanel.add(SliderEnableToggle2);
 
 		SliderToggleBox2.setModel(new DefaultComboBoxModel<>(new String[] { "On", "Off" }));
@@ -567,6 +589,12 @@ public class AddRoutineFrame extends JFrame {
 		SliderStatePanel.add(SliderToggleBox2);
 
 		SliderEnableSlider2.setText("Enable");
+		SliderEnableSlider2.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				SliderSlider2.setEnabled(!SliderSlider2.isEnabled());
+			}
+		});
 		SliderStatePanel.add(SliderEnableSlider2);
 		SliderStatePanel.add(SliderSlider2);
 
@@ -576,12 +604,24 @@ public class AddRoutineFrame extends JFrame {
 		SliderStatePanel.add(SliderSliderLabel3);
 
 		SliderEnableToggle3.setText("Enable");
+		SliderEnableToggle3.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				SliderToggleBox3.setEnabled(!SliderToggleBox3.isEnabled());
+			}
+		});
 		SliderStatePanel.add(SliderEnableToggle3);
 
 		SliderToggleBox3.setModel(new DefaultComboBoxModel<>(new String[] { "On", "Off" }));
 		SliderStatePanel.add(SliderToggleBox3);
 
 		SliderEnableSlider3.setText("Enable");
+		SliderEnableSlider3.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				SliderSlider3.setEnabled(!SliderSlider3.isEnabled());
+			}
+		});
 		SliderStatePanel.add(SliderEnableSlider3);
 		SliderStatePanel.add(SliderSlider3);
 
@@ -707,6 +747,13 @@ public class AddRoutineFrame extends JFrame {
 
 		hideAll();
 		showProperties();
+
+		AddButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				createRoutines();
+			}
+		});
 	}
 
 	public static void setIsOpen(boolean state){
@@ -764,9 +811,108 @@ public class AddRoutineFrame extends JFrame {
 	}
 
 	private void showProperties(){
-		HomeToGui.ShowRoutineProperties(UserLoginBase.getCurrentUser().getHome().getDevice((String) outputDeviceComboBox.getSelectedItem()), OnEnableToggles, OnEnableSliders, OnComboBoxes, OnPropertyLabelsToggle, OnSliders, OnPropertyLabelsSlider);
-		HomeToGui.ShowRoutineProperties(UserLoginBase.getCurrentUser().getHome().getDevice((String) outputDeviceComboBox.getSelectedItem()), OffEnableToggles, OffEnableSliders, OffComboBoxes, OffPropertyLabelsToggle, OffSliders, OffPropertyLabelsSlider);
-		HomeToGui.ShowRoutineProperties(UserLoginBase.getCurrentUser().getHome().getDevice((String) outputDeviceComboBox.getSelectedItem()), SliderEnableToggles, SliderEnableSliders, SliderComboBoxes, SliderPropertyLabelsToggle, SliderSliders, SliderPropertyLabelsSlider);
+		HomeToGui.ShowRoutineProperties((String) outputDeviceComboBox.getSelectedItem(), OnEnableToggles, OnEnableSliders, OnComboBoxes, OnPropertyLabelsToggle, OnSliders, OnPropertyLabelsSlider);
+		HomeToGui.ShowRoutineProperties((String) outputDeviceComboBox.getSelectedItem(), OffEnableToggles, OffEnableSliders, OffComboBoxes, OffPropertyLabelsToggle, OffSliders, OffPropertyLabelsSlider);
+		HomeToGui.ShowRoutineProperties((String) outputDeviceComboBox.getSelectedItem(), SliderEnableToggles, SliderEnableSliders, SliderComboBoxes, SliderPropertyLabelsToggle, SliderSliders, SliderPropertyLabelsSlider);
+	}
+
+	private void createRoutines(){
+
+		if(RoutineNameField.getText().equals("")){
+			JOptionPane.showMessageDialog(null, "Name field cannot be empty.", "Error", JOptionPane.ERROR_MESSAGE);
+		} else if (!HomeToGui.checkRoutineNameAvailability(RoutineNameField.getText())) {
+			JOptionPane.showMessageDialog(null, "A routine of such name already exists", "Error", JOptionPane.ERROR_MESSAGE);
+		} else{
+			switch (currentlyShown){
+				case 1:
+					for(int i=0; i<OnEnableToggles.size(); i++){
+						if(OnEnableToggles.get(i).isEnabled() && OnEnableToggles.get(i).isSelected()){
+
+							String outputOnValue = convertComboBoxtoString(OnComboBoxes.get(i));
+							String outputOffValue = convertComboBoxtoString(OffComboBoxes.get(i));
+							Object[] args = {outputOnValue, outputOffValue};
+
+							HomeToGui.CreateRoutine(RoutineNameField.getText(),(String) SensorComboBox.getSelectedItem(), (String) outputDeviceComboBox.getSelectedItem(), OnPropertyLabelsToggle.get(i).getText(), args);
+							System.out.println("Created TtoT");
+
+						}
+					}
+
+					for(int i=0; i<OnEnableSliders.size(); i++){
+						if(OnEnableSliders.get(i).isEnabled() && OnEnableSliders.get(i).isSelected()){
+
+							double doubleOnValue = (double) OnSliders.get(i).getValue()/100;
+							String outputOnValue = String.valueOf(doubleOnValue);
+							double doubleOffValue = (double) OffSliders.get(i).getValue()/100;
+							String outputOffValue = String.valueOf(doubleOffValue);
+
+							Object[] args = {outputOnValue, outputOffValue};
+
+							HomeToGui.CreateRoutine(RoutineNameField.getText(),(String) SensorComboBox.getSelectedItem(), (String) outputDeviceComboBox.getSelectedItem(), OnPropertyLabelsSlider.get(i).getText(), args);
+							System.out.println("Created TtoS");
+						}
+					}
+					break;
+				case 2:
+					for(int i=0; i<SliderEnableToggles.size(); i++){
+						if(SliderEnableToggles.get(i).isEnabled() && SliderEnableToggles.get(i).isSelected()){
+
+							double minValue = HomeToGui.convertSliderPercentageToSensorSlider((String) SensorComboBox.getSelectedItem(), FromSlider.getValue());
+							double maxValue = HomeToGui.convertSliderPercentageToSensorSlider((String) SensorComboBox.getSelectedItem(), ToSlider.getValue());
+							boolean outputState = convertComboBoxtoBool(SliderComboBoxes.get(i));
+
+							Object[] args = {minValue, maxValue, outputState};
+
+							HomeToGui.CreateRoutine(RoutineNameField.getText(),(String) SensorComboBox.getSelectedItem(), (String) outputDeviceComboBox.getSelectedItem(), SliderPropertyLabelsToggle.get(i).getText(), args);
+							System.out.println("Created StoT");
+						}
+					}
+
+					for(int i=0; i<SliderEnableSliders.size(); i++){
+						if(SliderEnableSliders.get(i).isEnabled() && SliderEnableSliders.get(i).isSelected()){
+
+							double minValue = HomeToGui.convertSliderPercentageToSensorSlider((String) SensorComboBox.getSelectedItem(), FromSlider.getValue());
+							double maxValue = HomeToGui.convertSliderPercentageToSensorSlider((String) SensorComboBox.getSelectedItem(), ToSlider.getValue());
+							String outputValue = String.valueOf(SliderSliders.get(i).getValue());
+
+							Object[] args = {minValue, maxValue, outputValue};
+
+							HomeToGui.CreateRoutine(RoutineNameField.getText(),(String) SensorComboBox.getSelectedItem(), (String) outputDeviceComboBox.getSelectedItem(), SliderPropertyLabelsSlider.get(i).getText(), args);
+							System.out.println("Created StoS");
+						}
+					}
+			}
+
+			JOptionPane.showMessageDialog(null, "The routine has been created.", "Status", JOptionPane.PLAIN_MESSAGE);
+			this.setVisible(false);
+			isOpen = false;
+			this.dispose();
+
+		}
+	}
+
+	private String convertComboBoxtoString(JComboBox box){
+		String output;
+		switch ((String) box.getSelectedItem()){
+			case "Off":
+				output = "false";
+				break;
+			default:
+				output = "true";
+		}
+		return output;
+	}
+
+	private boolean convertComboBoxtoBool(JComboBox box){
+		boolean output;
+		switch ((String) box.getSelectedItem()){
+			case "Off":
+				output = false;
+				break;
+			default:
+				output = true;
+		}
+		return output;
 	}
 
 }

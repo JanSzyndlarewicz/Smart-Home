@@ -33,6 +33,12 @@ public class DevicePropertySensorSlider extends DeviceProperty implements Slider
         return (int) (value*100);
     }
 
+    public double convertPercentToVal(int percentage){
+        double perc = (double) percentage/100;
+        double val = perc*(max-min)+min;
+        return val;
+    }
+
     public String getValueString() {
         return String.valueOf(value);
         //String.format("%.2f", value);

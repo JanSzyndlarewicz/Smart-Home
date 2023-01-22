@@ -1,6 +1,7 @@
 package User;
 
 import Home.Home;
+import Hub.Hub;
 
 import java.io.Serializable;
 
@@ -10,6 +11,7 @@ public class User implements Serializable {
     private String phoneNumber;
     private String email;
     private Home home;
+    private Hub hub;
 
 
     public User(String login,
@@ -20,6 +22,7 @@ public class User implements Serializable {
         this.phoneNumber = "";
         this.email = "";
         this.home = new Home(label);
+        this.hub = new Hub();
     }
 
     public User(String login,
@@ -32,6 +35,7 @@ public class User implements Serializable {
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.home = new Home(label);
+        this.hub = new Hub();
     }
 
     public String getPhoneNumber() {
@@ -68,6 +72,14 @@ public class User implements Serializable {
 
     public Home getHome() {
         return home;
+    }
+
+    public Hub getHub() {
+        return hub;
+    }
+
+    public void setHub(Hub hub) {
+        this.hub = hub;
     }
 
     public void setHome(Home home) {

@@ -7,11 +7,19 @@ import Control.DeviceType.DeviceType_Output;
 import Device.*;
 import Device.Sensor.*;
 import Device.Bulb.*;
+import DeviceProperty.DevicePropertySensorSlider;
 import DeviceProperty.Slider;
 import DeviceProperty.Toggle;
 import Home.Home;
+import Hub.SliderToSliderRoutine;
+import Hub.SliderToToggleRoutine;
+import Hub.ToggleToSliderRoutine;
+import Hub.ToggleToToggleRoutine;
+import User.User;
 import User.UserLoginBase;
 import View.MainFrame;
+import Observable.Subject;
+import Observer.Observer;
 
 import javax.swing.*;
 
@@ -203,19 +211,22 @@ public class HomeToGui {
 		return devList;
 	}
 
-	public static boolean CreateRoutine(String alias, String inputDeviceAlias, String outputDeviceAlias, String outputProperty, String[] args){
-		String routineType;
+	public static boolean CreateRoutine(String alias, String inputDeviceAlias, String outputDeviceAlias, String outputProperty, Object[] args){
 		if(UserLoginBase.getCurrentUser().getHome().getDevice(inputDeviceAlias).getProperties()[0] instanceof Toggle && UserLoginBase.getCurrentUser().getHome().getDevice(outputDeviceAlias).getProperty(outputProperty) instanceof Toggle){
 			//TT
+			UserLoginBase.getCurrentUser().getHub().addRoutine(new ToggleToToggleRoutine(alias, (Subject) UserLoginBase.getCurrentUser().getHome().getDevice(inputDeviceAlias), (Observer) UserLoginBase.getCurrentUser().getHome().getDevice(outputDeviceAlias), outputProperty, (String) args[0], (String) args[1]));
 			return false;
 		} else if (UserLoginBase.getCurrentUser().getHome().getDevice(inputDeviceAlias).getProperties()[0] instanceof Toggle && UserLoginBase.getCurrentUser().getHome().getDevice(outputDeviceAlias).getProperty(outputProperty) instanceof Slider) {
 			//TS
+			UserLoginBase.getCurrentUser().getHub().addRoutine(new ToggleToSliderRoutine(alias, (Subject) UserLoginBase.getCurrentUser().getHome().getDevice(inputDeviceAlias), (Observer) UserLoginBase.getCurrentUser().getHome().getDevice(outputDeviceAlias), outputProperty, (String) args[0], (String) args[1]));
 			return false;
 		} else if (UserLoginBase.getCurrentUser().getHome().getDevice(inputDeviceAlias).getProperties()[0] instanceof Slider && UserLoginBase.getCurrentUser().getHome().getDevice(outputDeviceAlias).getProperty(outputProperty) instanceof Toggle) {
 			//ST
+			UserLoginBase.getCurrentUser().getHub().addRoutine(new SliderToToggleRoutine(alias, (Subject) UserLoginBase.getCurrentUser().getHome().getDevice(inputDeviceAlias), (Observer) UserLoginBase.getCurrentUser().getHome().getDevice(outputDeviceAlias), outputProperty, (double) args[0], (double) args[1], (boolean) args[2]));
 			return false;
 		} else if (UserLoginBase.getCurrentUser().getHome().getDevice(inputDeviceAlias).getProperties()[0] instanceof Slider && UserLoginBase.getCurrentUser().getHome().getDevice(outputDeviceAlias).getProperty(outputProperty) instanceof Slider) {
 			//SS
+			UserLoginBase.getCurrentUser().getHub().addRoutine(new SliderToSliderRoutine(alias, (Subject) UserLoginBase.getCurrentUser().getHome().getDevice(inputDeviceAlias), (Observer) UserLoginBase.getCurrentUser().getHome().getDevice(outputDeviceAlias), outputProperty, (double) args[0], (double) args[1], (String) args[2]));
 			return false;
 		} else {
 			return true;
@@ -225,6 +236,10 @@ public class HomeToGui {
 
 	public static boolean checkRoutineNameAvailability(String name){
 		return UserLoginBase.getCurrentUser().getHub().checkRoutineAliasAvailbility(name);
+	}
+
+	public static double convertSliderPercentageToSensorSlider(String sensorAlias, int sliderVal){
+		return ( (DevicePropertySensorSlider) UserLoginBase.getCurrentUser().getHome().getDevice(sensorAlias).getProperties()[0]).convertPercentToVal(sliderVal);
 	}
 
 
