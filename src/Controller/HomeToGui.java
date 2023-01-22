@@ -1,6 +1,7 @@
 package Controller;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 import Control.DeviceType.DeviceType_Input;
 import Control.DeviceType.DeviceType_Output;
@@ -11,6 +12,8 @@ import DeviceProperty.DevicePropertySensorSlider;
 import DeviceProperty.Slider;
 import DeviceProperty.Toggle;
 import Home.Home;
+import Hub.Hub;
+import Hub.Routine;
 import Hub.SliderToSliderRoutine;
 import Hub.SliderToToggleRoutine;
 import Hub.ToggleToSliderRoutine;
@@ -240,6 +243,18 @@ public class HomeToGui {
 
 	public static double convertSliderPercentageToSensorSlider(String sensorAlias, int sliderVal){
 		return ( (DevicePropertySensorSlider) UserLoginBase.getCurrentUser().getHome().getDevice(sensorAlias).getProperties()[0]).convertPercentToVal(sliderVal);
+	}
+	public static void deleteRoutine(String alias) {
+		UserLoginBase.getCurrentUser().getHub().removeRoutines(alias);
+		
+	}
+	public static HashSet<String> getRoutineList() {
+		HashSet<String> routineNameList = new HashSet<String>();
+		ArrayList<Routine> routineList = Hub.getRoutineList();
+		for(int i=0; i<routineList.size();i++) {
+			routineNameList.add(routineList.get(i).getAlias());
+		}
+		return routineNameList;
 	}
 
 
