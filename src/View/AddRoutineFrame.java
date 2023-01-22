@@ -1,5 +1,6 @@
 package View;
 
+import Controller.HomeToGui;
 import Device.Device;
 import Device.OutputDevice;
 import Device.Sensor.Sensor;
@@ -7,21 +8,61 @@ import DeviceProperty.Slider;
 import DeviceProperty.Toggle;
 import User.UserLoginBase;
 
-import java.awt.*;
-import java.awt.event.*;
-import java.util.ArrayList;
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+import java.util.ArrayList;
 
 public class AddRoutineFrame extends JFrame {
 
 	private static boolean isOpen = false;
 
+	private ArrayList<JLabel> OnPropertyLabelsSlider = new ArrayList<>();
+	private ArrayList<JLabel> OffPropertyLabelsSlider = new ArrayList<>();
+	private ArrayList<JLabel> SliderPropertyLabelsSlider = new ArrayList<>();
+	private ArrayList<JLabel> OnPropertyLabelsToggle = new ArrayList<>();
+	private ArrayList<JLabel> OffPropertyLabelsToggle = new ArrayList<>();
+	private ArrayList<JLabel> SliderPropertyLabelsToggle = new ArrayList<>();
+	private ArrayList<JCheckBox> OnEnableSliders = new ArrayList<>();
+	private ArrayList<JCheckBox> OnEnableToggles = new ArrayList<>();
+	private ArrayList<JCheckBox> OffEnableSliders = new ArrayList<>();
+	private ArrayList<JCheckBox> OffEnableToggles = new ArrayList<>();
+	private ArrayList<JCheckBox> SliderEnableSliders = new ArrayList<>();
+	private ArrayList<JCheckBox> SliderEnableToggles = new ArrayList<>();
+	private ArrayList<JComboBox> OnComboBoxes = new ArrayList<>();
+	private ArrayList<JComboBox> OffComboBoxes = new ArrayList<>();
+	private ArrayList<JComboBox> SliderComboBoxes = new ArrayList<>();
+	private ArrayList<JSlider> OnSliders = new ArrayList<>();
+	private ArrayList<JSlider> OffSliders = new ArrayList<>();
+	private ArrayList<JSlider> SliderSliders = new ArrayList<>();
+
 	private JPanel startPanel;
 	private JLabel RoutineNameLabel;
 	private JTextField RoutineNameField;
 	private JPanel DeviceSelectionPanel;
+
+	private JLabel SliderToggleLabel1;
+	private JLabel SliderToggleLabel2;
+	private JLabel SliderToggleLabel3;
+	private JLabel SliderSliderLabel1;
+	private JLabel SliderSliderLabel2;
+	private JLabel SliderSliderLabel3;
+	private JLabel OnToggleLabel1;
+	private JLabel OnToggleLabel2;
+	private JLabel OnToggleLabel3;
+	private JLabel OnSliderLabel1;
+	private JLabel OnSliderLabel2;
+	private JLabel OnSliderLabel3;
+	private JLabel OnSliderLabel4;
+	private JLabel OffToggleLabel1;
+	private JLabel OffToggleLabel2;
+	private JLabel OffToggleLabel3;
+	private JLabel OffSliderLabel1;
+	private JLabel OffSliderLabel2;
+	private JLabel OffSliderLabel3;
 	private JCheckBox OnEnableSlider1;
 	private JCheckBox OnEnableSlider2;
 	private JCheckBox OnEnableSlider3;
@@ -79,14 +120,38 @@ public class AddRoutineFrame extends JFrame {
 
 	public AddRoutineFrame() {
 
+		OnToggleLabel1 = new JLabel("OnToggleLabel1");
+		OnToggleLabel2 = new JLabel("OnToggleLabel2");
+		OnToggleLabel3 = new JLabel("OnToggleLabel3");
+		OnSliderLabel1 = new JLabel("OnSliderLabel1");
+		OnSliderLabel2 = new JLabel("OnSliderLabel2");
+		OnSliderLabel3 = new JLabel("OnSliderLabel3");
+
+		OffToggleLabel1 = new JLabel("OffToggleLabel1");
+		OffToggleLabel2 = new JLabel("OffToggleLabel2");
+		OffToggleLabel3 = new JLabel("OffToggleLabel3");
+		OffSliderLabel1 = new JLabel("OffSliderLabel1");
+		OffSliderLabel2 = new JLabel("OffSliderLabel2");
+		OffSliderLabel3 = new JLabel("OffSliderLabel3");
+
+		SliderToggleLabel1 = new JLabel("SliderToggleLabel1");
+		SliderToggleLabel2 = new JLabel("SliderToggleLabel2");
+		SliderToggleLabel3 = new JLabel("SliderToggleLabel3");
+		SliderSliderLabel1 = new JLabel("SliderSliderLabel1");
+		SliderSliderLabel2 = new JLabel("SliderSliderLabel2");
+		SliderSliderLabel3 = new JLabel("SliderSliderLabel3");
+
+
+
+
 		DeviceSelectionPanel = new JPanel();
 		//elementy panelu wyboru urzadzen
 		RoutineNameLabel = new JLabel();
 		RoutineNameField = new JTextField(10);
 		SensorLabel = new JLabel();
-		SensorComboBox = new JComboBox(getSensorList().toArray());
+		SensorComboBox = new JComboBox(HomeToGui.getSensorAliasList().toArray());
 		outputDeviceLabel = new JLabel();
-		outputDeviceComboBox = new JComboBox(getOutputDeviceList().toArray());
+		outputDeviceComboBox = new JComboBox(HomeToGui.getOutputDeviceAliasList().toArray());
 		AddButton = new JButton();
 
 
@@ -265,6 +330,13 @@ public class AddRoutineFrame extends JFrame {
 
 		outputDeviceLabel.setText("Output device:");
 		DeviceSelectionPanel.add(outputDeviceLabel);
+		outputDeviceComboBox.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				hideAll();
+				showProperties();
+			}
+		});
 		DeviceSelectionPanel.add(outputDeviceComboBox);
 
 		AddButton.setText("Add");
@@ -282,7 +354,12 @@ public class AddRoutineFrame extends JFrame {
 		OnStateLabel.setText("On:");
 		ToggleSensorPanel.add(OnStateLabel);
 
-		OnStatePanel.setLayout(new GridLayout(3, 4));
+		OnStatePanel.setLayout(new GridLayout(6, 4));
+
+		OnStatePanel.add(new JPanel());
+		OnStatePanel.add(OnToggleLabel1);
+		OnStatePanel.add(new JPanel());
+		OnStatePanel.add((OnSliderLabel1));
 
 		OnEnableToggle1.setText("Enable");
 		OnEnableToggle1.addActionListener(new ActionListener() {
@@ -309,6 +386,12 @@ public class AddRoutineFrame extends JFrame {
 		});
 		OnStatePanel.add(OnEnableSlider1);
 		OnStatePanel.add(OnSlider1);
+
+		OnStatePanel.add(new JPanel());
+		OnStatePanel.add(OnToggleLabel2);
+		OnStatePanel.add(new JPanel());
+		OnStatePanel.add(OnSliderLabel2);
+
 
 		OnEnableToggle2.setText("Enable");
 		OnEnableToggle2.addActionListener(new ActionListener() {
@@ -341,6 +424,12 @@ public class AddRoutineFrame extends JFrame {
 		OnStatePanel.add(OnEnableSlider2);
 		OnStatePanel.add(OnSlider2);
 
+		OnStatePanel.add(new JPanel());
+		OnStatePanel.add(OnToggleLabel3);
+		OnStatePanel.add(new JPanel());
+		//OnStateLabel.add(OnSliderLabel3);
+		OnStatePanel.add(new JPanel().add(OnSliderLabel3));
+
 		OnEnableToggle3.setText("Enable");
 		OnEnableToggle3.addActionListener(new ActionListener() {
 			@Override
@@ -372,7 +461,12 @@ public class AddRoutineFrame extends JFrame {
 		OffStateLabel.setText("Off:");
 		ToggleSensorPanel.add(OffStateLabel);
 
-		OffStatePanel.setLayout(new GridLayout(3, 4));
+		OffStatePanel.setLayout(new GridLayout(6, 4));
+
+		OffStatePanel.add(new JPanel());
+		OffStatePanel.add(OffToggleLabel1);
+		OffStatePanel.add(new JPanel());
+		OffStatePanel.add(OffSliderLabel1);
 
 		OffEnableToggle1.setText("Enable");
 		OffStatePanel.add(OffEnableToggle1);
@@ -383,6 +477,11 @@ public class AddRoutineFrame extends JFrame {
 		OffEnableSlider1.setText("Enable");
 		OffStatePanel.add(OffEnableSlider1);
 		OffStatePanel.add(OffSlider1);
+
+		OffStatePanel.add(new JPanel());
+		OffStatePanel.add(OffToggleLabel2);
+		OffStatePanel.add(new JPanel());
+		OffStatePanel.add(OffSliderLabel2);
 
 		OffEnableToggle2.setText("Enable");
 		OffStatePanel.add(OffEnableToggle2);
@@ -398,6 +497,11 @@ public class AddRoutineFrame extends JFrame {
 		OffEnableSlider2.setText("Enable");
 		OffStatePanel.add(OffEnableSlider2);
 		OffStatePanel.add(OffSlider2);
+
+		OffStatePanel.add(new JPanel());
+		OffStatePanel.add(OffToggleLabel3);
+		OffStatePanel.add(new JPanel());
+		OffStatePanel.add(OffSliderLabel3);
 
 		OffEnableToggle3.setText("Enable");
 		OffStatePanel.add(OffEnableToggle3);
@@ -429,7 +533,12 @@ public class AddRoutineFrame extends JFrame {
 
 		SliderSensorPanel.add(RangeSelectionPanel);
 
-		SliderStatePanel.setLayout(new GridLayout(3, 4));
+		SliderStatePanel.setLayout(new GridLayout(6, 4));
+
+		SliderStatePanel.add(new JPanel());
+		SliderStatePanel.add(SliderToggleLabel1);
+		SliderStatePanel.add(new JPanel());
+		SliderStatePanel.add(SliderSliderLabel1);
 
 		SliderEnableToggle1.setText("Enable");
 		SliderStatePanel.add(SliderEnableToggle1);
@@ -440,6 +549,11 @@ public class AddRoutineFrame extends JFrame {
 		SliderEnableSlider1.setText("Enable");
 		SliderStatePanel.add(SliderEnableSlider1);
 		SliderStatePanel.add(SliderSlider1);
+
+		SliderStatePanel.add(new JPanel());
+		SliderStatePanel.add(SliderToggleLabel2);
+		SliderStatePanel.add(new JPanel());
+		SliderStatePanel.add(SliderSliderLabel2);
 
 		SliderEnableToggle2.setText("Enable");
 		SliderStatePanel.add(SliderEnableToggle2);
@@ -455,6 +569,11 @@ public class AddRoutineFrame extends JFrame {
 		SliderEnableSlider2.setText("Enable");
 		SliderStatePanel.add(SliderEnableSlider2);
 		SliderStatePanel.add(SliderSlider2);
+
+		SliderStatePanel.add(new JPanel());
+		SliderStatePanel.add(SliderToggleLabel3);
+		SliderStatePanel.add(new JPanel());
+		SliderStatePanel.add(SliderSliderLabel3);
 
 		SliderEnableToggle3.setText("Enable");
 		SliderStatePanel.add(SliderEnableToggle3);
@@ -511,9 +630,83 @@ public class AddRoutineFrame extends JFrame {
 			}
 		});
 
+		OnPropertyLabelsToggle.add(OnToggleLabel1);
+		OnPropertyLabelsToggle.add(OnToggleLabel2);
+		OnPropertyLabelsToggle.add(OnToggleLabel3);
+
+		OffPropertyLabelsToggle.add(OffToggleLabel1);
+		OffPropertyLabelsToggle.add(OffToggleLabel2);
+		OffPropertyLabelsToggle.add(OffToggleLabel3);
+
+		SliderPropertyLabelsToggle.add(SliderToggleLabel1);
+		SliderPropertyLabelsToggle.add(SliderToggleLabel2);
+		SliderPropertyLabelsToggle.add(SliderToggleLabel3);
+
+		OnPropertyLabelsSlider.add(OnSliderLabel1);
+		OnPropertyLabelsSlider.add(OnSliderLabel2);
+		OnPropertyLabelsSlider.add(OnSliderLabel3);
+
+		OffPropertyLabelsSlider.add(OffSliderLabel1);
+		OffPropertyLabelsSlider.add(OffSliderLabel2);
+		OffPropertyLabelsSlider.add(OffSliderLabel3);
+
+		SliderPropertyLabelsSlider.add(SliderSliderLabel1);
+		SliderPropertyLabelsSlider.add(SliderSliderLabel2);
+		SliderPropertyLabelsSlider.add(SliderSliderLabel3);
+
+		OnEnableToggles.add(OnEnableToggle1);
+		OnEnableToggles.add(OnEnableToggle2);
+		OnEnableToggles.add(OnEnableToggle3);
+
+		OffEnableToggles.add(OffEnableToggle1);
+		OffEnableToggles.add(OffEnableToggle2);
+		OffEnableToggles.add(OffEnableToggle3);
+
+		SliderEnableToggles.add(SliderEnableToggle1);
+		SliderEnableToggles.add(SliderEnableToggle2);
+		SliderEnableToggles.add(SliderEnableToggle3);
+
+		OnEnableSliders.add(OnEnableSlider1);
+		OnEnableSliders.add(OnEnableSlider2);
+		OnEnableSliders.add(OnEnableSlider3);
+
+		OffEnableSliders.add(OffEnableSlider1);
+		OffEnableSliders.add(OffEnableSlider2);
+		OffEnableSliders.add(OffEnableSlider3);
+
+		SliderEnableSliders.add(SliderEnableSlider1);
+		SliderEnableSliders.add(SliderEnableSlider2);
+		SliderEnableSliders.add(SliderEnableSlider3);
+
+		OnComboBoxes.add(OnToggleBox1);
+		OnComboBoxes.add(OnToggleBox2);
+		OnComboBoxes.add(OnToggleBox3);
+
+		OffComboBoxes.add(OffToggleBox1);
+		OffComboBoxes.add(OffToggleBox2);
+		OffComboBoxes.add(OffToggleBox3);
+
+		SliderComboBoxes.add(SliderToggleBox1);
+		SliderComboBoxes.add(SliderToggleBox2);
+		SliderComboBoxes.add(SliderToggleBox3);
+
+		OnSliders.add(OnSlider1);
+		OnSliders.add(OnSlider2);
+		OnSliders.add(OnSlider3);
+
+		OffSliders.add(OffSlider1);
+		OffSliders.add(OffSlider2);
+		OffSliders.add(OffSlider3);
+
+		SliderSliders.add(SliderSlider1);
+		SliderSliders.add(SliderSlider2);
+		SliderSliders.add(SliderSlider3);
+
 		this.setPreferredSize(new Dimension(1000, 500));
 		pack();
 
+		hideAll();
+		showProperties();
 	}
 
 	public static void setIsOpen(boolean state){
@@ -536,28 +729,44 @@ public class AddRoutineFrame extends JFrame {
 		// TODO add your handling code here:
 	}
 
-	private ArrayList<String> getSensorList() {
-		//should be changed when Controller is implemented
-		ArrayList<Device> tempDevList = UserLoginBase.getCurrentUser().getHome().getDeviceList();
-		ArrayList<String> devList = new ArrayList<String>();
-		for(int i=0; i<tempDevList.size(); i++) {
-			if(tempDevList.get(i) instanceof Sensor){
-				devList.add(tempDevList.get(i).getAlias());
+	private void hideAll() {
+		ArrayList<ArrayList> listoflists = new ArrayList<>();
+
+		listoflists.add(OnPropertyLabelsToggle);
+		listoflists.add(OffPropertyLabelsToggle);
+		listoflists.add(OnPropertyLabelsSlider);
+		listoflists.add(OffPropertyLabelsSlider);
+		listoflists.add(OnEnableToggles);
+		listoflists.add(OffEnableToggles);
+		listoflists.add(OnEnableSliders);
+		listoflists.add(OffEnableSliders);
+		listoflists.add(OnComboBoxes);
+		listoflists.add(OffComboBoxes);
+		listoflists.add(OnSliders);
+		listoflists.add(OffSliders);
+		listoflists.add(SliderSliders);
+		listoflists.add(SliderComboBoxes);
+		listoflists.add(SliderPropertyLabelsToggle);
+		listoflists.add(SliderPropertyLabelsSlider);
+		listoflists.add(SliderEnableSliders);
+		listoflists.add(SliderEnableToggles);
+
+		for (int i = 0; i < listoflists.size(); i++) {
+			for (int j = 0; j < listoflists.get(i).size(); j++) {
+				((JComponent) listoflists.get(i).get(j)).setVisible(false);
+				if(listoflists.get(i).get(j) instanceof JCheckBox){
+					((JCheckBox) listoflists.get(i).get(j)).setSelected(false);
+				}else{
+					((JComponent) listoflists.get(i).get(j)).setEnabled(false);
+				}
 			}
 		}
-		return devList;
 	}
 
-	private ArrayList<String> getOutputDeviceList() {
-		//should be changed when Controller is implemented
-		ArrayList<Device> tempDevList = UserLoginBase.getCurrentUser().getHome().getDeviceList();
-		ArrayList<String> devList = new ArrayList<String>();
-		for(int i=0; i<tempDevList.size(); i++) {
-			if(tempDevList.get(i) instanceof OutputDevice){
-				devList.add(tempDevList.get(i).getAlias());
-			}
-		}
-		return devList;
+	private void showProperties(){
+		HomeToGui.ShowRoutineProperties(UserLoginBase.getCurrentUser().getHome().getDevice((String) outputDeviceComboBox.getSelectedItem()), OnEnableToggles, OnEnableSliders, OnComboBoxes, OnPropertyLabelsToggle, OnSliders, OnPropertyLabelsSlider);
+		HomeToGui.ShowRoutineProperties(UserLoginBase.getCurrentUser().getHome().getDevice((String) outputDeviceComboBox.getSelectedItem()), OffEnableToggles, OffEnableSliders, OffComboBoxes, OffPropertyLabelsToggle, OffSliders, OffPropertyLabelsSlider);
+		HomeToGui.ShowRoutineProperties(UserLoginBase.getCurrentUser().getHome().getDevice((String) outputDeviceComboBox.getSelectedItem()), SliderEnableToggles, SliderEnableSliders, SliderComboBoxes, SliderPropertyLabelsToggle, SliderSliders, SliderPropertyLabelsSlider);
 	}
 
 }

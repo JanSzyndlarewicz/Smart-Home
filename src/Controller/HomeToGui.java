@@ -4,20 +4,9 @@ import java.util.ArrayList;
 
 import Control.DeviceType.DeviceType_Input;
 import Control.DeviceType.DeviceType_Output;
-import Device.Device;
-import Device.Gate;
-import Device.Heater;
-import Device.Lock;
-import Device.Shutter;
-import Device.WallSocket;
-import Device.Bulb.BulbOneColor;
-import Device.Bulb.BulbRGBW;
-import Device.Sensor.AirHumiditySensor;
-import Device.Sensor.GasSensor;
-import Device.Sensor.LightSensor;
-import Device.Sensor.MotionSensor;
-import Device.Sensor.SmokeSensor;
-import Device.Sensor.TemperatureSensor;
+import Device.*;
+import Device.Sensor.*;
+import Device.Bulb.*;
 import DeviceProperty.Slider;
 import DeviceProperty.Toggle;
 import Home.Home;
@@ -137,7 +126,22 @@ public class HomeToGui {
 
 	}
 
-	private static void EnableCheckBox(boolean value,String name,ArrayList<JCheckBox> ChBoxList){
+	public static void ShowRoutineProperties(Device device, ArrayList<JCheckBox> checkBoxesToggle, ArrayList<JCheckBox> checkBoxesSlider, ArrayList<JComboBox> comboBoxes, ArrayList<JLabel> comboBoxesLabel, ArrayList<JSlider> sliders, ArrayList<JLabel> slidersLabel){
+		for(int i=0; i<device.getProperties().length; i++){
+			if(device.getProperties()[i]==null){
+				break;
+			}
+			if(device.getProperties()[i] instanceof Toggle){
+				HomeToGui.EnableCheckBox(false, "Enable", checkBoxesToggle);
+				HomeToGui.EnableComboBox("On", device.getProperties()[i].getName(), comboBoxes, comboBoxesLabel);
+			} else if (device.getProperties()[i] instanceof Slider) {
+				HomeToGui.EnableCheckBox(false, "Enable", checkBoxesSlider);
+				HomeToGui.EnableSlider(50, device.getProperties()[i].getName(), sliders, slidersLabel);
+			}
+		}
+	}
+
+	public static void EnableCheckBox(boolean value,String name,ArrayList<JCheckBox> ChBoxList){
 		for (int i = 0; i <ChBoxList.size() ; i++) {
 			if (!ChBoxList.get(i).isVisible()) {
 				ChBoxList.get(i).setVisible(true);
@@ -146,10 +150,9 @@ public class HomeToGui {
 				break;
 			}
 		}
-
 	}
 
-	private static void EnableSlider(int value,String name,ArrayList<JSlider> SliderList,ArrayList<JLabel> LabelList){
+	public static void EnableSlider(int value,String name,ArrayList<JSlider> SliderList,ArrayList<JLabel> LabelList){
 		for (int i = 0; i <SliderList.size() ; i++) {
 			if (!SliderList.get(i).isVisible()) {
 				SliderList.get(i).setVisible(true);
@@ -159,6 +162,43 @@ public class HomeToGui {
 				break;
 			}
 		}
-
 	}
+
+	public static void EnableComboBox(String selection, String name, ArrayList<JComboBox> ComboBoxList, ArrayList<JLabel> LabelList){
+		for(int i = 0; i<ComboBoxList.size(); i++){
+			if(!ComboBoxList.get(i).isVisible()){
+				ComboBoxList.get(i).setVisible(true);
+				ComboBoxList.get(i).setSelectedItem(selection);
+				LabelList.get(i).setVisible(true);
+				LabelList.get(i).setText(name);
+				break;
+			}
+		}
+	}
+
+	public static ArrayList<String> getSensorAliasList() {
+		//should be changed when Controller is implemented
+		ArrayList<Device> tempDevList = UserLoginBase.getCurrentUser().getHome().getDeviceList();
+		ArrayList<String> devList = new ArrayList<String>();
+		for(int i=0; i<tempDevList.size(); i++) {
+			if(tempDevList.get(i) instanceof Sensor){
+				devList.add(tempDevList.get(i).getAlias());
+			}
+		}
+		return devList;
+	}
+
+	public static ArrayList<String> getOutputDeviceAliasList() {
+		//should be changed when Controller is implemented
+		ArrayList<Device> tempDevList = UserLoginBase.getCurrentUser().getHome().getDeviceList();
+		ArrayList<String> devList = new ArrayList<String>();
+		for(int i=0; i<tempDevList.size(); i++) {
+			if(tempDevList.get(i) instanceof OutputDevice){
+				devList.add(tempDevList.get(i).getAlias());
+			}
+		}
+		return devList;
+	}
+
+
 }
