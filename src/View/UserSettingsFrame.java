@@ -144,7 +144,7 @@ public class UserSettingsFrame extends JFrame {
 	}
 
 	private void logoutButtonActionPerformed() {
-		new LoginFrame().setVisible(true);
+		new StartFrame().setVisible(true);
 		InitializingWindow.dispose();
 		dispose();
 	}
@@ -159,10 +159,7 @@ public class UserSettingsFrame extends JFrame {
 			passField.setEditable(true);
 		}
 
-		//Setting new password in UserDataBase (<String login, User user>) and UserLoginBase (<String login, String password>)
 		ResetPassword.newPassword(loginField.getText(), passField.getText());
-		//UserLoginBase.getCurrentUser().setPassword(passField.getText());
-		//UserLoginBase.setPassword(loginField.getText(), passField.getText());
 	}
 
 	private void phoneButtonActionPerformed() {

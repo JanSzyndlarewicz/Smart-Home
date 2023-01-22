@@ -257,6 +257,42 @@ public class HomeToGui {
 		return routineNameList;
 	}
 
+	public static void devicePanelToBackend(JTextField NAME,
+											javax.swing.JComboBox<String> LOCATION,
+											ArrayList<JSlider> SliderList,
+											ArrayList<JLabel> LabelList,
+											ArrayList<JCheckBox> ChBoxList,
+											JTable DeviceTable){
+		if(DeviceTable.getSelectedRow()>=0){
+			Device device = UserLoginBase.getCurrentUser().getHome().getDevice(DeviceTable.getSelectedRow());
+			device.setLocation(LOCATION.getSelectedItem().toString());
+			device.setAlias(NAME.getText());
+
+			int deviceIteration = 0;
+			int sliderIteration = 0;
+			do {
+				if (SliderList.get(sliderIteration).isVisible() && SliderList.get(sliderIteration).isEnabled()) {
+					device.setProperty(LabelList.get(sliderIteration).getText(), String.valueOf((double) SliderList.get(sliderIteration).getValue() / 100));
+					sliderIteration++;
+				}
+				deviceIteration++;
+			} while (device.getProperties()[deviceIteration] != null);
+
+
+			device = UserLoginBase.getCurrentUser().getHome().getDevice(DeviceTable.getSelectedRow());
+			deviceIteration = 0;
+			sliderIteration = 0;
+			do{
+				if (ChBoxList.get(sliderIteration).isVisible() && ChBoxList.get(sliderIteration).isEnabled()) {
+					device.setProperty(ChBoxList.get(sliderIteration).getText(), String.valueOf(ChBoxList.get(sliderIteration).isSelected()));
+					sliderIteration++;
+				}
+				deviceIteration++;
+			}while(device.getProperties()[deviceIteration]!=null);
+		}
+
+	}
+
 
 
 }

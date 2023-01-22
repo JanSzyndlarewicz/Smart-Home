@@ -18,10 +18,7 @@ public class UserLoginBase implements Serializable {
 
     public static boolean login(String login, String password){
         if(userHashMap.containsKey(login)){
-            //currentUser.setLogin(login);
-            //currentUser.setPassword(userHashMap.get(login));
             currentUser = UserDataBase.findUser(login);
-            //currentUser.setHome(UserDataBase.findUser(login).getHome());
             return Objects.equals(password, userHashMap.get(login));
 
         }

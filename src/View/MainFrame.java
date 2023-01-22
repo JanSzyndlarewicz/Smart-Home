@@ -110,9 +110,7 @@ public class MainFrame extends javax.swing.JFrame {
     public MainFrame() {
         initComponents();
         addComponents();
-
         hideAll();
-//        jCheckBox2.setSize(100,100);
     }
 
 
@@ -600,32 +598,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void SaveButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
-
-        Device device = UserLoginBase.getCurrentUser().getHome().getDevice(DeviceTable.getSelectedRow());
-        device.setLocation(LOCATION.getSelectedItem().toString());
-        device.setAlias(NAME.getText());
-
-        int deviceIteration = 0;
-        int sliderIteration = 0;
-        do {
-            if (SliderList.get(sliderIteration).isVisible() && SliderList.get(sliderIteration).isEnabled()) {
-                device.setProperty(LabelList.get(sliderIteration).getText(), String.valueOf((double) SliderList.get(sliderIteration).getValue() / 100));
-                sliderIteration++;
-            }
-            deviceIteration++;
-        } while (device.getProperties()[deviceIteration] != null);
-
-
-        device = UserLoginBase.getCurrentUser().getHome().getDevice(DeviceTable.getSelectedRow());
-        deviceIteration = 0;
-        sliderIteration = 0;
-        do{
-            if (ChBoxList.get(sliderIteration).isVisible() && ChBoxList.get(sliderIteration).isEnabled()) {
-              device.setProperty(ChBoxList.get(sliderIteration).getText(), String.valueOf(ChBoxList.get(sliderIteration).isSelected()));
-               sliderIteration++;
-            }
-            deviceIteration++;
-        }while(device.getProperties()[deviceIteration]!=null);
+        HomeToGui.devicePanelToBackend(NAME, LOCATION, SliderList, LabelList, ChBoxList, DeviceTable);
 
         RefreshTableData(UserLoginBase.getCurrentUser().getHome().getDeviceList());
     }

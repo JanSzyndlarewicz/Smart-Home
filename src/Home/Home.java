@@ -92,7 +92,6 @@ public class Home implements Serializable{
         return null;
     }
     public Device getDevice(int index) {
-
         return deviceList.get(index);
     }
 
