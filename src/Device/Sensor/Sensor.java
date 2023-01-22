@@ -47,11 +47,12 @@ public abstract class Sensor extends Device implements Subject{
         for (int i = 0; i < propertiesCount; i++) {
             if (Objects.equals(properties[i].getName(), name)) {
                 switch (properties[i].getType()) {
-                    case "Slider" -> ((DevicePropertySensorSlider) properties[i]).debugSetSensor(Double.parseDouble(value));
-                    case "Toggle" -> ((DevicePropertySensorToggle) properties[i]).debugSetSensor(value.charAt(0) == '1' | value.equals("true") | value.equals("True"));
+                    case "Slider", "SensorSlider" -> ((DevicePropertySensorSlider) properties[i]).debugSetSensor(Double.parseDouble(value));
+                    case "Toggle", "SensorToggle" -> ((DevicePropertySensorToggle) properties[i]).debugSetSensor(value.charAt(0) == '1' | value.equals("true") | value.equals("True"));
                     default -> {
                     }
                 }
+                notifyObservers(properties[i].getName(), properties[i].getValueString());
                 return;
             }
         }

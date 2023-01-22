@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="29bf1f68-c113-46b1-b485-a3a0f531bc24" name="Changes" comment="Blocked displaying many frames with same functionality" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="Multiple_Windows_Blocked" />
+        <entry key="$PROJECT_DIR$/Smart-Home" value="master" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/Main/Main.java" root0="SKIP_INSPECTION" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2IxAcGSO3PCDyIImGF1o6SPM3Sb" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/jansz/OneDrive - Politechnika Wroclawska/Studia (Semestr I)/Programowanie obiektowe i strukturalne/Laboratorium/Lab 12 - zadania/Zad 1 - Lab 12&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  }
+}</component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="29bf1f68-c113-46b1-b485-a3a0f531bc24" name="Changes" comment="" />
+      <created>1671112937805</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1671112937805</updated>
+      <workItem from="1671112939365" duration="624000" />
+      <workItem from="1671654690674" duration="6700000" />
+      <workItem from="1671740739778" duration="4845000" />
+      <workItem from="1671828742165" duration="13320000" />
+      <workItem from="1672439305281" duration="5108000" />
+      <workItem from="1672495743970" duration="488000" />
+      <workItem from="1672663291579" duration="18285000" />
+      <workItem from="1672694025074" duration="1921000" />
+      <workItem from="1672702557418" duration="24211000" />
+      <workItem from="1672829442616" duration="2882000" />
+      <workItem from="1672878200966" duration="3067000" />
+      <workItem from="1672931535919" duration="2084000" />
+      <workItem from="1672938217393" duration="122000" />
+      <workItem from="1672938362735" duration="596000" />
+      <workItem from="1672947197878" duration="605000" />
+      <workItem from="1673091717218" duration="1113000" />
+      <workItem from="1673116735190" duration="5526000" />
+      <workItem from="1673191477028" duration="5888000" />
+      <workItem from="1673275656879" duration="7342000" />
+      <workItem from="1673345918409" duration="33000" />
+      <workItem from="1673861740030" duration="9217000" />
+      <workItem from="1673877367517" duration="4662000" />
+      <workItem from="1673895271845" duration="1267000" />
+      <workItem from="1673906615304" duration="11309000" />
+      <workItem from="1673959772877" duration="1434000" />
+      <workItem from="1673961224731" duration="34000" />
+      <workItem from="1673961264289" duration="467000" />
+      <workItem from="1673989436700" duration="4682000" />
+      <workItem from="1674076112591" duration="4859000" />
+      <workItem from="1674132333798" duration="652000" />
+      <workItem from="1674134430577" duration="654000" />
+      <workItem from="1674314873869" duration="11000" />
+    </task>
+    <task id="LOCAL-00001" summary="Initial commit">
+      <created>1671112954188</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1671112954188</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Color, ColorRGBW, ColorHSL, Bulb, BulbRGBW, BulbOneColor implementation">
+      <created>1671659148204</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1671659148204</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Before adding setter and getter for properties to Device">
+      <created>1671660245252</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1671660245252</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Commented tests in main">
+      <created>1671660916891</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1671660916891</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Initial commit">
+      <created>1671731374316</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1671731374316</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Packaging Sensor and Color">
+      <created>1671732542476</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1671732542476</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Date class">
+      <created>1671744712555</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1671744712555</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Testing setProperty">
+      <created>1671829043653</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1671829043653</updated>
+    </task>
+    <task id="LOCAL-00009" summary="LightSensor added">
+      <created>1671831135426</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1671831135426</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Working Obsevrator scheme but it's under construction, that's why it is on another branch which shouldn't be merged to master!!">
+      <created>1671843258508</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1671843258508</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Bulb and LightSensor Strategy Observator">
+      <created>1672012775976</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1672012775976</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Bulb and LightSensor Strategy Observator 1">
+      <created>1672440799280</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1672440799280</updated>
+    </task>
+    <task id="LOCAL-00013" summary="LightSensor and abstract Bulb Observing function">
+      <created>1672442042538</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1672442042538</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Subject Extended without working arraylist">
+      <created>1672682451306</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1672682451306</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Working static arraylist which contains all objects and their observerLists">
+      <created>1672684704071</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1672684704071</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Assigning many observers to one object using SubjectExtendedList">
+      <created>1672689707098</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1672689707098</updated>
+    </task>
+    <task id="LOCAL-00017" summary="C1">
+      <created>1672759381513</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1672759381513</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Working Observer function">
+      <created>1672776489484</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1672776489484</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Adding many observers in constructor">
+      <created>1672780480502</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1672780480502</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Printing Observers function">
+      <created>1672784757047</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1672784757047</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Adding many checkAlias to one object">
+      <created>1672830408852</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1672830408852</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Bulb observing LightSensor">
+      <created>1672933340799</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1672933340799</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Register and Remove observer function in Main">
+      <created>1673118068164</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1673118068164</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Register and Remove observer with checkAlias in Device">
+      <created>1673132618364</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1673132618364</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Implementation removeObserver">
+      <created>1673133135507</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1673133135507</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Implementation removeObserver">
+      <created>1673192874762</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1673192874762</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Fixing some problems">
+      <created>1673210247111</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1673210247111</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Gniot">
+      <created>1673277906731</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1673277906731</updated>
+    </task>
+    <task id="LOCAL-00029" summary="New constructors in Bulb">
+      <created>1673282151035</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1673282151035</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Test">
+      <created>1673282199476</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1673282199476</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Test">
+      <created>1673861800253</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1673861800253</updated>
+    </task>
+    <task id="LOCAL-00032" summary="UserSettings display">
+      <created>1673867390073</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1673867390073</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Full user setting panels">
+      <created>1673876970265</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1673876970265</updated>
+    </task>
+    <task id="LOCAL-00034" summary="Coś tam">
+      <created>1673878028247</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1673878028247</updated>
+    </task>
+    <task id="LOCAL-00035" summary="Gniot v2.0(Pass change works)">
+      <created>1673884195788</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1673884195788</updated>
+    </task>
+    <task id="LOCAL-00036" summary="Deleted useless files">
+      <created>1673895674106</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1673895674106</updated>
+    </task>
+    <task id="LOCAL-00037" summary="Clearing some code">
+      <created>1673909451523</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1673909451523</updated>
+    </task>
+    <task id="LOCAL-00038" summary="Completed Serialization">
+      <created>1673917143637</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1673917143637</updated>
+    </task>
+    <task id="LOCAL-00039" summary="Igonred file">
+      <created>1673961013332</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1673961013332</updated>
+    </task>
+    <task id="LOCAL-00040" summary="Ignored file">
+      <created>1673961367974</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1673961367974</updated>
+    </task>
+    <task id="LOCAL-00041" summary="Ignored file v2">
+      <created>1673961487554</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1673961487554</updated>
+    </task>
+    <task id="LOCAL-00042" summary="Ignored file v3">
+      <created>1673961719045</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1673961719045</updated>
+    </task>
+    <task id="LOCAL-00043" summary="Fixed outdated imports">
+      <created>1673998487756</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1673998487756</updated>
+    </task>
+    <task id="LOCAL-00044" summary="Blocked displaying many frames with same functionality">
+      <created>1674080248291</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1674080248291</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/Hub-test" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Working Observer function" />
+    <MESSAGE value="Adding many observers in constructor" />
+    <MESSAGE value="Printing Observers function" />
+    <MESSAGE value="Adding many checkAlias to one object" />
+    <MESSAGE value="Bulb observing LightSensor" />
+    <MESSAGE value="Register and Remove observer function in Main" />
+    <MESSAGE value="Register and Remove observer with checkAlias in Device" />
+    <MESSAGE value="Implementation removeObserver" />
+    <MESSAGE value="Fixing some problems" />
+    <MESSAGE value="Gniot" />
+    <MESSAGE value="New constructors in Bulb" />
+    <MESSAGE value="Test" />
+    <MESSAGE value="UserSettings display" />
+    <MESSAGE value="Full user setting panels" />
+    <MESSAGE value="Coś tam" />
+    <MESSAGE value="Gniot v2.0(Pass change works)" />
+    <MESSAGE value="Deleted useless files" />
+    <MESSAGE value="Clearing some code" />
+    <MESSAGE value="Completed Serialization" />
+    <MESSAGE value="Igonred file" />
+    <MESSAGE value="Ignored file" />
+    <MESSAGE value="Ignored file v2" />
+    <MESSAGE value="Ignored file v3" />
+    <MESSAGE value="Fixed outdated imports" />
+    <MESSAGE value="Blocked displaying many frames with same functionality" />
+    <option name="LAST_COMMIT_MESSAGE" value="Blocked displaying many frames with same functionality" />
+  </component>
+</project>

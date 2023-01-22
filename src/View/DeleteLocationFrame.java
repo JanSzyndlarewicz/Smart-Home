@@ -18,7 +18,7 @@ public class DeleteLocationFrame extends JFrame {
         initialize();
     }
     public void initialize() {
-        LocList = new JComboBox(UserLoginBase.getCurrentUser().getHome().getLocationList().toArray(new String[UserLoginBase.getCurrentUser().getHome().getLocationList().size()]));
+        LocList = new JComboBox(UserLoginBase.getCurrentUser().getHome().getLocationList().toArray());
         deviceListLabel = new JLabel("Device List");
         deleteButton = new JButton("Delete");
         panel = new JPanel();

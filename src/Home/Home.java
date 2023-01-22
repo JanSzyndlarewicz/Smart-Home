@@ -15,7 +15,6 @@ public class Home implements Serializable{
 
     public Home(String label) {
         this.label = label;
-        
     }
     public Home(String label, ArrayList<String> locationList) {
     	this.label=label;
@@ -72,6 +71,11 @@ public class Home implements Serializable{
     }
     public static ArrayList<String> getCurrentLocationList(){
     	return UserLoginBase.getCurrentUser().getHome().getLocationList();
+    }
+
+
+    public static void addLocation(String location){
+        UserLoginBase.getCurrentUser().getHome().getLocationList().add(location);
     }
     public void setLocationList(ArrayList<String> locationList) {
     	this.locationList=locationList;

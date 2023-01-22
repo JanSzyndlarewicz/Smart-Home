@@ -21,7 +21,7 @@ import java.util.Objects;
 
 public class MainFrame extends javax.swing.JFrame {
 
-    private void hideAll(){
+    private void hideAll() {
         for (int i = 0; i < LabelList.size(); i++) {
             SliderList.get(i).setVisible(false);
         }
@@ -37,16 +37,14 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
 
-
-
-    private void setSidePanelDevice(Device device){
+    private void setSidePanelDevice(Device device) {
         hideAll();
         INDEX.setText(String.valueOf(DeviceTable.getSelectedRow()));
         NAME.setText(device.getAlias());
         String str = device.getClass().getName();
         String result[] = str.split("\\.");
-        TYPE.setText(result[result.length-1]);
-        ShowProperties(device,ChBoxList,SliderList,LabelList);
+        TYPE.setText(result[result.length - 1]);
+        ShowProperties(device, ChBoxList, SliderList, LabelList);
 
 
     }
@@ -65,22 +63,25 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
 
-
-
-    private ArrayList<JSlider> SliderList =new ArrayList<>();
-    private ArrayList<JLabel> LabelList =new ArrayList<>();
-    private ArrayList<JLabel> SliderValues =new ArrayList<>();
+    private ArrayList<JSlider> SliderList = new ArrayList<>();
+    private ArrayList<JLabel> LabelList = new ArrayList<>();
+    private ArrayList<JLabel> SliderValues = new ArrayList<>();
     private ArrayList<JCheckBox> ChBoxList = new ArrayList<>();
-    public static void RefreshTableData(ArrayList<Device> devices){
+
+    public static void RefreshTableData(ArrayList<Device> devices) {
         DeviceTable.setModel(new javax.swing.table.DefaultTableModel(
                 DataConverter.returnDevTabFormat(devices),
-                new String [] {
-                        "ID", "NAME","LOCATION"
+                new String[]{
+                        "ID", "NAME", "LOCATION"
                 }
-        ){public boolean isCellEditable(int row, int column){return false;}});
+        ) {
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        });
     }
 
-    private void addComponents(){
+    private void addComponents() {
         SliderValues.add(ValueLabel1);
         SliderValues.add(ValueLabel2);
         SliderValues.add(ValueLabel3);
@@ -105,6 +106,7 @@ public class MainFrame extends javax.swing.JFrame {
         ChBoxList.add(jCheckBox4);
 
     }
+
     public MainFrame() {
         initComponents();
         addComponents();
@@ -179,22 +181,27 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         DeviceTable.setModel(new javax.swing.table.DefaultTableModel(
-                new Object [][] {
+                new Object[][]{
                         {null, null, null, null},
                         {null, null, null, null},
                         {null, null, null, null},
                         {null, null, null, null}
                 },
-                new String [] {
+                new String[]{
                         "Title 1", "Title 2", "Title 3", "Title 4"
                 }
-        ){public boolean isCellEditable(int row, int column){return false;}});
+        ) {
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        });
         DeviceTable.setFocusable(false);
         DeviceTable.getTableHeader().setReorderingAllowed(false);
         DeviceTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 DeviceTableMouseClicked(evt);
             }
+
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 DeviceTableMousePressed(evt);
             }
@@ -591,33 +598,36 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
 
-
     private void SaveButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
-        if(UserLoginBase.getCurrentUser().getHome().getDevice(DeviceTable.getSelectedRow()) instanceof OutputDevice){
-            OutputDevice device = (OutputDevice) UserLoginBase.getCurrentUser().getHome().getDevice(DeviceTable.getSelectedRow());
-            int deviceIteration = 0;
-            int sliderIteration = 0;
-            do{
-                if(SliderList.get(sliderIteration).isVisible() && SliderList.get(sliderIteration).isEnabled()){
-                    device.setProperty(LabelList.get(sliderIteration).getText(), String.valueOf((double) SliderList.get(sliderIteration).getValue()/100));
-                    sliderIteration++;
-                }
-                deviceIteration++;
-            }while (device.getProperties()[deviceIteration]!=null);
-        }
-        if(UserLoginBase.getCurrentUser().getHome().getDevice(DeviceTable.getSelectedRow()) instanceof OutputDevice){
-            OutputDevice device = (OutputDevice) UserLoginBase.getCurrentUser().getHome().getDevice(DeviceTable.getSelectedRow());
-            int deviceIteration = 0;
-            int sliderIteration = 0;
-            do{
-                if(ChBoxList.get(sliderIteration).isVisible() && ChBoxList.get(sliderIteration).isEnabled()){
-                    device.setProperty(ChBoxList.get(sliderIteration).getText(), String.valueOf(ChBoxList.get(sliderIteration).isSelected()));
-                    sliderIteration++;
-                }
-                deviceIteration++;
-            }while (device.getProperties()[deviceIteration]!=null);
-        }
+
+        Device device = UserLoginBase.getCurrentUser().getHome().getDevice(DeviceTable.getSelectedRow());
+        device.setLocation(LOCATION.getSelectedItem().toString());
+        device.setAlias(NAME.getText());
+
+        int deviceIteration = 0;
+        int sliderIteration = 0;
+        do {
+            if (SliderList.get(sliderIteration).isVisible() && SliderList.get(sliderIteration).isEnabled()) {
+                device.setProperty(LabelList.get(sliderIteration).getText(), String.valueOf((double) SliderList.get(sliderIteration).getValue() / 100));
+                sliderIteration++;
+            }
+            deviceIteration++;
+        } while (device.getProperties()[deviceIteration] != null);
+
+
+        device = UserLoginBase.getCurrentUser().getHome().getDevice(DeviceTable.getSelectedRow());
+        deviceIteration = 0;
+        sliderIteration = 0;
+        do{
+            if (ChBoxList.get(sliderIteration).isVisible() && ChBoxList.get(sliderIteration).isEnabled()) {
+              device.setProperty(ChBoxList.get(sliderIteration).getText(), String.valueOf(ChBoxList.get(sliderIteration).isSelected()));
+               sliderIteration++;
+            }
+            deviceIteration++;
+        }while(device.getProperties()[deviceIteration]!=null);
+
+        RefreshTableData(UserLoginBase.getCurrentUser().getHome().getDeviceList());
     }
 
 

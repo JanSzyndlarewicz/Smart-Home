@@ -18,10 +18,10 @@ public class UserLoginBase implements Serializable {
 
     public static boolean login(String login, String password){
         if(userHashMap.containsKey(login)){
-            currentUser.setLogin(login);
-            currentUser.setPassword(userHashMap.get(login));
-            System.out.println(UserDataBase.findUser(login));
+            //currentUser.setLogin(login);
+            //currentUser.setPassword(userHashMap.get(login));
             currentUser = UserDataBase.findUser(login);
+            //currentUser.setHome(UserDataBase.findUser(login).getHome());
             return Objects.equals(password, userHashMap.get(login));
 
         }
@@ -32,6 +32,8 @@ public class UserLoginBase implements Serializable {
         if(!userHashMap.containsKey(login)){
             userHashMap.put(login, password);
             UserDataBase.addUser(login, password, label);
+
+            currentUser = UserDataBase.findUser(login);
             return true;
         }
         else {
@@ -42,7 +44,9 @@ public class UserLoginBase implements Serializable {
     public static boolean register(String login, String password, String phoneNumber, String email, String label){
         if(!userHashMap.containsKey(login)){
             userHashMap.put(login, password);
-            UserDataBase.addUser(login, password, phoneNumber, email, label);
+            UserDataBase.addUser(login, password, label);
+
+            currentUser = UserDataBase.findUser(login);
             return true;
         }
         else {

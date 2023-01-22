@@ -1,6 +1,8 @@
 package Device;
 
 import DeviceProperty.*;
+import Home.Home;
+
 import java.util.Objects;
 import java.io.Serializable;
 
@@ -19,10 +21,18 @@ public abstract class Device implements Serializable {
     public Device(String alias){
         this.alias = alias;
         this.location= "pozdrawiam <3";
+        //if(!Home.getCurrentLocationList().contains(this.location)){
+            //Home.getCurrentLocationList().add(this.location);
+
+        //}
     }
     public Device(String alias, String location) {
     	this.alias = alias;
     	this.location=location;
+        if(!Home.getCurrentLocationList().contains(this.location)){
+            Home.getCurrentLocationList().add(this.location);
+            //Home.addLocation(location);
+        }
     }
 
 
@@ -37,20 +47,7 @@ public abstract class Device implements Serializable {
 
     }
 
-    public void setProperty(String name, boolean value) {
-        for (int i = 0; i < propertiesCount; i++) {
-            if (Objects.equals(properties[i].getName(), name)) {
-                if (!Objects.equals(properties[i].getType(), "Toggle")) {
-                    System.err.println("Error! Types mismatch. Cannot assign boolean value to DeviceProperty"
-                            + properties[i].getType() + "! Aborting");
-                    return;
-                }
-                ((DevicePropertyToggle) properties[i]).set(value);
-                return;
-            }
-        }
-        System.err.println("Error! Specified property does not exist. Aborting");
-    }
+    public abstract void setProperty(String name, String value);
 
     public DeviceProperty getProperty(String name){
         DeviceProperty querried = null;
@@ -108,6 +105,9 @@ public abstract class Device implements Serializable {
 
     public void setLocation(String location) {
         this.location = location;
+        if(!Home.getCurrentLocationList().contains(this.location)){
+            Home.getCurrentLocationList().add(this.location);
+        }
     }
 
 }

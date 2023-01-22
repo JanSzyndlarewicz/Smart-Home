@@ -8,6 +8,7 @@ public class UserDataBase implements Serializable {
     private static HashMap<String, User> userDataBase = new HashMap<>();
 
     public static User findUser(String login){
+        System.out.println(userDataBase.getOrDefault(login, null));
         return userDataBase.getOrDefault(login, null);
     }
 

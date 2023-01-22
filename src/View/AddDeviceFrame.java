@@ -112,7 +112,7 @@ public class AddDeviceFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(!Objects.equals(nameTextField.getText(), "")){
-					if(!Objects.equals(newLocationField.getText(), "")){
+					if(!Objects.equals(newLocationField.getText(), "") || locationList.getSelectedItem() != null){
 						String location;
 						if(Objects.equals((String) locationList.getSelectedItem(), "Add location")){
 							location = newLocationField.getText();
