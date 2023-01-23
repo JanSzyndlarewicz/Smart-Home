@@ -3,12 +3,13 @@ package View;
 import Controller.HomeToGui;
 
 public class AddLocation extends javax.swing.JFrame {
-
+    private MainFrame initWindow;
     /**
      * Creates new form AddLocation
      */
-    public AddLocation() {
+    public AddLocation(MainFrame init) {
         initComponents();
+        initWindow=init;
     }
 
     /**
@@ -88,7 +89,8 @@ public class AddLocation extends javax.swing.JFrame {
 
     private void SaveActionPerformed(java.awt.event.ActionEvent evt) {
         HomeToGui.AddLocation(LOCATION.getText());
-        this.dispose();
+        initWindow.refreshLocList();
+        dispose();
     }
 
 

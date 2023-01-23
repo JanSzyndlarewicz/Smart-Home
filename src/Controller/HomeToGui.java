@@ -26,73 +26,8 @@ import Observer.Observer;
 
 import javax.swing.*;
 
-public class HomeToGui {
-	public static void addDeviceFromGui(String devType, DeviceType_Input devTypeIn, DeviceType_Output devTypeOut, String alias, String location) {
-		Device device = new Lock("lock1");
-		switch(devType) {
-		case "Input":
-			switch(devTypeIn) {
-			case Air_Humidity_Sensor:
-				device = new AirHumiditySensor(alias, location);
-				break;
-			case Gas_Sensor:
-				device = new GasSensor(alias, location);
-				break;
-			case Light_Sensor:
-				device  = new LightSensor(alias, location);
-				break;
-			case Motion_Sensor:
-				device = new MotionSensor(alias, location);
-				break;
-			case Smoke_Sensor:
-				device = new SmokeSensor(alias, location);
-				break;
-			case Temperature_Sensor:
-				device = new TemperatureSensor(alias, location);
-				break;
-			default:
-				device = new Lock("Lock1");
-					
-			}
-			break;
-		case "Output":
-			switch(devTypeOut) {
-			case GATE:
-				device = new Gate(alias, location);
-				break;
-			case HEATER:
-				device = new Heater(alias, location);
-				break;
-			case LOCK:
-				device = new Lock(alias, location);
-				break;
-			case SHUTTER:
-				device = new Shutter(alias, location);
-				break;
-			case WALLSOCKET:
-				device = new WallSocket(alias, location);
-				break;
-			case BULB_RGB:
-				device = new BulbRGBW(alias, location);
-				break;
-			case BULB_ONECOLOR:
-				device = new BulbOneColor(alias, location);
-				break; 
-			default:
-				device = new Lock("Lock1");
-				
-			}
-			break;
-			default:
-				device = new Lock("Lock1");
+public abstract class HomeToGui {
 
-
-		}
-
-		UserLoginBase.getCurrentUser().getHome().addDevice(device);
-		MainFrame.RefreshTableData(UserLoginBase.getCurrentUser().getHome().getDeviceList());
-		
-	}
 	public static ArrayList<String> sendLocationListToGui(){
 		ArrayList<String> locations = new ArrayList<String>();
 		locations.removeAll(locations);
@@ -105,7 +40,9 @@ public class HomeToGui {
 	}
 
 	public static void deleteLocation(String name){
+
 		UserLoginBase.getCurrentUser().getHome().DeleteLocation(name);
+
 	}
 
 	public static ArrayList<String> uniqueLocationsFromHome(){
@@ -293,6 +230,71 @@ public class HomeToGui {
 
 	}
 
+	public static void addDeviceFromGui(String devType, DeviceType_Input devTypeIn, DeviceType_Output devTypeOut, String alias, String location) {
+		Device device = new Lock("lock1");
+		switch(devType) {
+			case "Input":
+				switch(devTypeIn) {
+					case Air_Humidity_Sensor:
+						device = new AirHumiditySensor(alias, location);
+						break;
+					case Gas_Sensor:
+						device = new GasSensor(alias, location);
+						break;
+					case Light_Sensor:
+						device  = new LightSensor(alias, location);
+						break;
+					case Motion_Sensor:
+						device = new MotionSensor(alias, location);
+						break;
+					case Smoke_Sensor:
+						device = new SmokeSensor(alias, location);
+						break;
+					case Temperature_Sensor:
+						device = new TemperatureSensor(alias, location);
+						break;
+					default:
+						device = new Lock("Lock1");
 
+				}
+				break;
+			case "Output":
+				switch(devTypeOut) {
+					case GATE:
+						device = new Gate(alias, location);
+						break;
+					case HEATER:
+						device = new Heater(alias, location);
+						break;
+					case LOCK:
+						device = new Lock(alias, location);
+						break;
+					case SHUTTER:
+						device = new Shutter(alias, location);
+						break;
+					case WALLSOCKET:
+						device = new WallSocket(alias, location);
+						break;
+					case BULB_RGB:
+						device = new BulbRGBW(alias, location);
+						break;
+					case BULB_ONECOLOR:
+						device = new BulbOneColor(alias, location);
+						break;
+					default:
+						device = new Lock("Lock1");
+
+				}
+				break;
+			default:
+				device = new Lock("Lock1");
+
+
+		}
+
+		UserLoginBase.getCurrentUser().getHome().addDevice(device);
+		MainFrame.RefreshTableData(UserLoginBase.getCurrentUser().getHome().getDeviceList());
+
+	}
 
 }

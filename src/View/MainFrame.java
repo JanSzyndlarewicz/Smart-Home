@@ -22,6 +22,7 @@ import java.util.Objects;
 public class MainFrame extends javax.swing.JFrame {
 
     private void hideAll() {
+
         for (int i = 0; i < LabelList.size(); i++) {
             SliderList.get(i).setVisible(false);
         }
@@ -35,7 +36,9 @@ public class MainFrame extends javax.swing.JFrame {
             ChBoxList.get(i).setVisible(false);
         }
     }
-
+    public void refreshLocList(){
+        LOCATION.setModel(new DefaultComboBoxModel<>(UserLoginBase.getCurrentUser().getHome().getLocationList().toArray(new String[UserLoginBase.getCurrentUser().getHome().getLocationList().size()])));
+    }
 
     private void setSidePanelDevice(Device device) {
         hideAll();
@@ -45,8 +48,7 @@ public class MainFrame extends javax.swing.JFrame {
         String result[] = str.split("\\.");
         TYPE.setText(result[result.length - 1]);
         ShowProperties(device, ChBoxList, SliderList, LabelList);
-
-
+        LOCATION.setSelectedItem(device.getLocation());
     }
 
 
@@ -58,7 +60,6 @@ public class MainFrame extends javax.swing.JFrame {
         SidePanel.revalidate();
 
         //Ustawia aktualne lokalizacje w comboboxie po prawej stronie
-        LOCATION.setModel(new javax.swing.DefaultComboBoxModel<>(locationStringList()));
         // TODO add your handling code here:
     }
 
@@ -79,6 +80,7 @@ public class MainFrame extends javax.swing.JFrame {
                 return false;
             }
         });
+
     }
 
     private void addComponents() {
@@ -131,7 +133,7 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        LOCATION = new javax.swing.JComboBox<>();
+        LOCATION = new JComboBox(UserLoginBase.getCurrentUser().getHome().getLocationList().toArray(new String[UserLoginBase.getCurrentUser().getHome().getLocationList().size()]));
         SaveButton = new javax.swing.JButton();
         CancelButton = new javax.swing.JButton();
         NAME = new javax.swing.JTextField();
@@ -606,7 +608,7 @@ public class MainFrame extends javax.swing.JFrame {
 
 
     private void AddLocMButtonActionPerformed(java.awt.event.ActionEvent evt) {
-       new AddLocation().setVisible(true);
+       new AddLocation(this).setVisible(true);
     }
 
     private void MainPanelMButtonActionPerformed(java.awt.event.ActionEvent evt) {
@@ -621,7 +623,7 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     private void DelLocMButtonActionPerformed(java.awt.event.ActionEvent evt) {
-      new DeleteLocationFrame().setVisible(true);
+      new DeleteLocationFrame(this).setVisible(true);
     }
 
     private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {
@@ -646,12 +648,12 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     private void DelRoutMButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+       new DeleteRoutineFrame().setVisible(true);
     }
     private void AddDevMButtonActionPerformed(java.awt.event.ActionEvent evt) {
         //Zablokowanie wyświetlania kilku tych samych okien
         if(AddDeviceFrame.getPanel() == null || !AddDeviceFrame.getPanel().isShowing()){
-            new AddDeviceFrame().setVisible(true);
+            new AddDeviceFrame(this).setVisible(true);
         }
 
         // TODO add your handling code here:

@@ -10,12 +10,14 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class DeleteLocationFrame extends JFrame {
+    private MainFrame initWindow;
     private JComboBox LocList;
     private JLabel deviceListLabel;
     private JButton deleteButton;
     private static JPanel panel;
-    public DeleteLocationFrame() {
+    public DeleteLocationFrame(MainFrame init) {
         initialize();
+        initWindow=init;
     }
     public void initialize() {
         LocList = new JComboBox(UserLoginBase.getCurrentUser().getHome().getLocationList().toArray());
@@ -47,12 +49,19 @@ public class DeleteLocationFrame extends JFrame {
     }
 
     private void deleteLocation() {
+        if (HomeToGui.uniqueLocationsFromHome().contains(LocList.getSelectedItem())) {
+            JOptionPane.showMessageDialog(panel, "You cant delete it!");
+
+        }
+        else{
         int result = JOptionPane.showConfirmDialog(panel, "Are you sure that you want to delete " + LocList.getSelectedItem(), "Deletion", JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
         if(result == JOptionPane.YES_OPTION){
+
             JOptionPane.showMessageDialog(panel, "Location deleted successfully");
             HomeToGui.deleteLocation((String) LocList.getSelectedItem());
+            initWindow.refreshLocList();
             this.dispose();
-        }
+        }}
     }
 
     public static JPanel getPanel() {

@@ -28,6 +28,7 @@ import Device.Sensor.*;
 import Device.*;
 
 public class AddDeviceFrame extends JFrame {
+	private MainFrame initWindow;
 	private JButton addButton;
 	private JLabel welcomeMess;
 	private JLabel nameLabel;
@@ -42,8 +43,9 @@ public class AddDeviceFrame extends JFrame {
 	private JLabel newLocationLabel;
 	private JTextField newLocationField;
 
-	public AddDeviceFrame() {
+	public AddDeviceFrame(MainFrame init) {
 		initialize();
+		initWindow=init;
 	}
 	//
 
@@ -184,7 +186,9 @@ public class AddDeviceFrame extends JFrame {
 
 		if(!newLocationField.getText().isBlank()) {
 			HomeToGui.AddLocation(newLocationField.getText());
+			initWindow.refreshLocList();
 			HomeToGui.addDeviceFromGui(devType,devTypeIn,devTypeOut,alias,newLocationField.getText());
+
 		}
 		else{
 		HomeToGui.addDeviceFromGui(devType,devTypeIn,devTypeOut,alias,location);}
