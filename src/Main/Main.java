@@ -20,9 +20,9 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
 
-        //Initialization.initialization();
+        Initialization.initialization();
 
-        SerializationFunc.deserialize();
+        //SerializationFunc.deserialize();
         StartFrame startFrame = new StartFrame();
 
     }

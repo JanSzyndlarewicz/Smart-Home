@@ -30,6 +30,9 @@ public class Hub implements Serializable {
     public static ArrayList<Routine> getRoutineList(){
     	return routineList;
     }
+    public ArrayList<Routine> getRoutineList1(){
+        return routineList;
+    }
     
     public static boolean checkRoutineAliasAvailbility(String alias){
         boolean state = true;

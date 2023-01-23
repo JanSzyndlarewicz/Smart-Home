@@ -2,6 +2,7 @@ package View;
 
 import Controller.HomeToGui;
 import Device.Device;
+import Hub.Routine;
 import User.UserLoginBase;
 
 import javax.swing.*;
@@ -17,8 +18,23 @@ public class DeleteRoutineFrame extends JFrame {
     public DeleteRoutineFrame() {
         initialize();
     }
+
+    private String[] array(){
+        ArrayList<String > routine = new ArrayList<>();
+        for(int i=0; i<UserLoginBase.getCurrentUser().getHub().getRoutineList1().size(); i++){
+            if(!routine.contains(UserLoginBase.getCurrentUser().getHub().getRoutineList1().get(i).getAlias()))
+            routine.add(UserLoginBase.getCurrentUser().getHub().getRoutineList1().get(i).getAlias());
+        }
+
+        String[] x = new String[routine.size()];
+        for(int i=0; i<routine.size(); i++){
+            x[i] = routine.get(i);
+        }
+        return x;
+    }
     public void initialize() {
-        routineList = new JComboBox(HomeToGui.getRoutineList().toArray());
+        //routineList = new JComboBox(HomeToGui.getRoutineList().toArray());
+        routineList = new JComboBox(array());
         routineListLabel = new JLabel("Routine List");
         deleteButton = new JButton("Delete");
         panel = new JPanel();
