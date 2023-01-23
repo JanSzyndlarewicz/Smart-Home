@@ -1,19 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package View;
 import Controller.HomeToGui;
-import DeviceProperty.Slider;
-import DeviceProperty.Toggle;
 import Device.Device;
 import Serialization.*;
-import User.UserDataBase;
 import User.UserLoginBase;
-import Device.OutputDevice;
-import org.w3c.dom.css.CSSValueList;
 
 import static Controller.HomeToGui.ShowProperties;
+import static Controller.HomeToGui.routineCreationCheck;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -115,9 +107,6 @@ public class MainFrame extends javax.swing.JFrame {
         hideAll();
     }
 
-
-    @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents() {
 
         TablePanel = new javax.swing.JPanel();
@@ -591,15 +580,13 @@ public class MainFrame extends javax.swing.JFrame {
         );
 
         pack();
-    }// </editor-fold>
+    }
 
     private void DeviceTableMouseClicked(java.awt.event.MouseEvent evt) {
-        // TODO add your handling code here:
     }
 
 
     private void SaveButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
         HomeToGui.devicePanelToBackend(NAME, LOCATION, SliderList, LabelList, ChBoxList, DeviceTable);
 
         RefreshTableData(UserLoginBase.getCurrentUser().getHome().getDeviceList());
@@ -612,11 +599,9 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     private void MainPanelMButtonActionPerformed(java.awt.event.ActionEvent evt) {
-         // TODO add your handling code here:
     }
 
     private void AccountSetMButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        //Zablokowanie wyświetlania kilku tych samych okien
         if(UserSettingsFrame.getUserPanel() == null || !UserSettingsFrame.getUserPanel().isShowing()){
             new UserSettingsFrame(this).setVisible(true);
         }
@@ -627,12 +612,10 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
     }
 
     private void AddRoutMButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        //Zablokowanie wyświetlania kilku tych samych okien
-        if(!AddRoutineFrame.getIsOpen()){
+        if(!AddRoutineFrame.getIsOpen() &&  routineCreationCheck()){
             new AddRoutineFrame().setVisible(true);
             AddRoutineFrame.setIsOpen(true);
         }
@@ -640,7 +623,6 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     private void DelDevMButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        //Zablokowanie wyświetlania kilku tych samych okien
         if(DeleteDeviceFrame.getPanel() == null || !DeleteDeviceFrame.getPanel().isShowing()){
             new DeleteDeviceFrame().setVisible(true);
         }
@@ -651,27 +633,21 @@ public class MainFrame extends javax.swing.JFrame {
        new DeleteRoutineFrame().setVisible(true);
     }
     private void AddDevMButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        //Zablokowanie wyświetlania kilku tych samych okien
         if(AddDeviceFrame.getPanel() == null || !AddDeviceFrame.getPanel().isShowing()){
             new AddDeviceFrame(this).setVisible(true);
         }
 
-        // TODO add your handling code here:
     }
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
     }
 
     private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
     }
 
     private void jCheckBox3ActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
     }
 
     private void jCheckBox4ActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
     }
 
     public String[] locationStringList(){
@@ -698,8 +674,6 @@ public class MainFrame extends javax.swing.JFrame {
         SerializationFunc.serialize();
     }
 
-
-    // Variables declaration - do not modify
     private javax.swing.JMenuItem AccountSetMButton;
     private javax.swing.JMenuItem AddDevMButton;
     private javax.swing.JMenuItem AddLocMButton;

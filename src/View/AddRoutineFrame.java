@@ -318,16 +318,7 @@ public class AddRoutineFrame extends JFrame {
 		SensorComboBox.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(UserLoginBase.getCurrentUser().getHome().getDevice((String) SensorComboBox.getSelectedItem()).getProperties()[0] instanceof Slider){
-					cards.show(RoutineSettingsPanel, "card2");
-					currentlyShown = 2;
-				} else if (UserLoginBase.getCurrentUser().getHome().getDevice((String) SensorComboBox.getSelectedItem()).getProperties()[0] instanceof Toggle) {
-					cards.show(RoutineSettingsPanel, "card1");
-					currentlyShown = 1;
-				}else{
-					cards.show(RoutineSettingsPanel, "card0");
-					currentlyShown = 0;
-				}
+				sensorComboBoxAction();
 			}
 		});
 		DeviceSelectionPanel.add(SensorComboBox);
@@ -745,6 +736,8 @@ public class AddRoutineFrame extends JFrame {
 		this.setPreferredSize(new Dimension(1000, 500));
 		pack();
 
+		sensorComboBoxAction();
+
 		hideAll();
 		showProperties();
 
@@ -913,6 +906,19 @@ public class AddRoutineFrame extends JFrame {
 				output = true;
 		}
 		return output;
+	}
+
+	private void sensorComboBoxAction(){
+		if(UserLoginBase.getCurrentUser().getHome().getDevice((String) SensorComboBox.getSelectedItem()).getProperties()[0] instanceof Slider){
+			cards.show(RoutineSettingsPanel, "card2");
+			currentlyShown = 2;
+		} else if (UserLoginBase.getCurrentUser().getHome().getDevice((String) SensorComboBox.getSelectedItem()).getProperties()[0] instanceof Toggle) {
+			cards.show(RoutineSettingsPanel, "card1");
+			currentlyShown = 1;
+		}else{
+			cards.show(RoutineSettingsPanel, "card0");
+			currentlyShown = 0;
+		}
 	}
 
 }

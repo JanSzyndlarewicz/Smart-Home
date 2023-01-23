@@ -73,19 +73,35 @@ public abstract class HomeToGui {
 
 	}
 
+	public static boolean routineCreationCheck()
+	{
+		boolean input=false;
+		boolean output=false;
+		for (int i = 0; i < UserLoginBase.getCurrentUser().getHome().getDeviceList().size(); i++) {
+			if(UserLoginBase.getCurrentUser().getHome().getDeviceList().get(i) instanceof Sensor)
+				input=true;
+			else if(UserLoginBase.getCurrentUser().getHome().getDeviceList().get(i) instanceof OutputDevice)
+				output=true;
+			if(input && output)
+				return true;
+		}
+
+		return false;
+	}
 	public static void ShowRoutineProperties(String deviceAlias, ArrayList<JCheckBox> checkBoxesToggle, ArrayList<JCheckBox> checkBoxesSlider, ArrayList<JComboBox> comboBoxes, ArrayList<JLabel> comboBoxesLabel, ArrayList<JSlider> sliders, ArrayList<JLabel> slidersLabel){
 		Device device = UserLoginBase.getCurrentUser().getHome().getDevice(deviceAlias);
-
-		for(int i=0; i<device.getProperties().length; i++){
-			if(device.getProperties()[i]==null){
-				break;
-			}
-			if(device.getProperties()[i] instanceof Toggle){
-				HomeToGui.EnableCheckBox(false, "Enable", checkBoxesToggle);
-				HomeToGui.EnableComboBox("On", device.getProperties()[i].getName(), comboBoxes, comboBoxesLabel);
-			} else if (device.getProperties()[i] instanceof Slider) {
-				HomeToGui.EnableCheckBox(false, "Enable", checkBoxesSlider);
-				HomeToGui.EnableSlider(((Slider) device.getProperties() [i]).getSliderInfo(), device.getProperties()[i].getName(), sliders, slidersLabel);
+		if (device != null) {
+			for(int i=0; i<device.getProperties().length; i++){
+				if(device.getProperties()[i]==null){
+					break;
+				}
+				if(device.getProperties()[i] instanceof Toggle){
+					HomeToGui.EnableCheckBox(false, "Enable", checkBoxesToggle);
+					HomeToGui.EnableComboBox("On", device.getProperties()[i].getName(), comboBoxes, comboBoxesLabel);
+				} else if (device.getProperties()[i] instanceof Slider) {
+					HomeToGui.EnableCheckBox(false, "Enable", checkBoxesSlider);
+					HomeToGui.EnableSlider(((Slider) device.getProperties() [i]).getSliderInfo(), device.getProperties()[i].getName(), sliders, slidersLabel);
+				}
 			}
 		}
 	}
