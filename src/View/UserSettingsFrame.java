@@ -1,5 +1,6 @@
 package View;
 
+import Serialization.SerializationFunc;
 import User.UserLoginBase;
 import User.ResetPassword;
 
@@ -145,6 +146,7 @@ public class UserSettingsFrame extends JFrame {
 
 	private void logoutButtonActionPerformed() {
 		new StartFrame().setVisible(true);
+		SerializationFunc.serialize();
 		InitializingWindow.dispose();
 		dispose();
 	}

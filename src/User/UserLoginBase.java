@@ -41,7 +41,7 @@ public class UserLoginBase implements Serializable {
     public static boolean register(String login, String password, String phoneNumber, String email, String label){
         if(!userHashMap.containsKey(login)){
             userHashMap.put(login, password);
-            UserDataBase.addUser(login, password, label);
+            UserDataBase.addUser(login, password, phoneNumber, email,label);
 
             currentUser = UserDataBase.findUser(login);
             return true;
