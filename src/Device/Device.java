@@ -21,17 +21,12 @@ public abstract class Device implements Serializable {
     public Device(String alias){
         this.alias = alias;
         this.location= "pozdrawiam <3";
-        //if(!Home.getCurrentLocationList().contains(this.location)){
-            //Home.getCurrentLocationList().add(this.location);
-
-        //}
     }
     public Device(String alias, String location) {
     	this.alias = alias;
     	this.location=location;
         if(!Home.getCurrentLocationList().contains(this.location)){
             Home.getCurrentLocationList().add(this.location);
-            //Home.addLocation(location);
         }
     }
 
