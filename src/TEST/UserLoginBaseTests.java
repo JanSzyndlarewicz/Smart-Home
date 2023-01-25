@@ -9,43 +9,43 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class UserLoginBaseTests {
     @BeforeEach
-    void setup() throws Exception {
+    void setup() {
         UserLoginBase.register("test1", "old", "123456789", "user@example.com", "");
         ResetPassword.newPassword("test1", "new");
     }
 
    @Test
-    void test1() {
+    void passwordChanged() {
        assertEquals("new", UserLoginBase.getUserHashMap().get("test1"));
    }
 
     @Test
-    void test2() {
+    void newPasswordValid() {
         assertTrue(UserLoginBase.login("test1", "new"));
     }
 
     @Test
-    void test3() {
+    void oldPasswordInvalid() {
         assertFalse(UserLoginBase.login("test1", "old"));
     }
 
     @Test
-    void test4() {
+    void incorrectPasswordInvalid() {
         assertFalse(UserLoginBase.login("test1", "1234"));
     }
 
     @Test
-    void test5() {
+    void incorrectParameter1Given() {
         assertFalse(UserLoginBase.login("test1", null));
     }
 
     @Test
-    void test6() {
+    void incorrectParameter2Given() {
         assertFalse(UserLoginBase.login(null, "old"));
     }
 
     @Test
-    void test7() {
+    void incorrectPasswordSet() {
         ResetPassword.newPassword("test1", null);
         assertTrue(UserLoginBase.login("test1", "new"));
     }
