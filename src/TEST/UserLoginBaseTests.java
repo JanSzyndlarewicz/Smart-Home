@@ -47,7 +47,7 @@ class UserLoginBaseTests {
     @Test
     void test7() {
         ResetPassword.newPassword("test1", null);
-        assertFalse(UserLoginBase.login("test1", null));
+        assertTrue(UserLoginBase.login("test1", "new"));
     }
 
 
